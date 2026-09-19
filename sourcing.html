@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tìm nguồn hàng &amp; kiểm soát chất lượng toàn diện | SpeeGo Logistics</title>
+  
+  <!-- Google Fonts: Be Vietnam Pro & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       RESET & ROOT VARIABLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Brand Color Palette */
+      --navy-main: #0B233B;         /* Section dark navy & headings */
+      --navy-deep: #071C2F;         /* Footer deep navy */
+      --navy-darker: #051525;       /* Copyright bar background */
+      --orange-primary: #F5731F;    /* SpeeGo brand orange */
+      --orange-hover: #E05E0D;      /* Darker orange on hover */
+      --orange-light: #FFF2EA;      /* Light orange badge background */
+      
+      /* Neutral Grayscale & Surfaces */
+      --bg-white: #FFFFFF;
+      --bg-light-gray: #F8FAFC;     /* Anchor bar background */
+      --bg-ice-blue: #F3F7FA;       /* Testimonial background */
+      --border-light: #E5E9EC;      /* Clean hairline card border */
+      --border-dark: rgba(255, 255, 255, 0.12); /* Dark section line border */
+      
+      /* Typography Colors */
+      --text-navy: #0B233B;         /* Dark headings and strong labels */
+      --text-body: #5A6A7E;         /* Descriptions and body copy */
+      --text-muted: #94A3B8;        /* Subtitles & dark section body */
+      --text-white: #FFFFFF;
+      
+      /* Typography Families */
+      --font-base: 'Be Vietnam Pro', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-heading: 'Be Vietnam Pro', 'Plus Jakarta Sans', sans-serif;
+      
+      /* Shadows & Transitions */
+      --shadow-card: 0 4px 16px rgba(11, 35, 59, 0.04);
+      --shadow-hover: 0 10px 28px rgba(11, 35, 59, 0.09);
+      --transition: all 0.25s ease-in-out;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-base);
+      color: var(--text-body);
+      background-color: var(--bg-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* Section Subtitle Tag / Badge */
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+
+    .qc-section .section-tag,
+    .form-section .section-tag {
+      color: #94A3B8;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-navy);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title-white {
+      color: var(--text-white);
+    }
+
+    /* Standard CTA Buttons */
+    .btn-orange {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background-color: var(--orange-primary);
+      color: var(--text-white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: 1px solid var(--orange-primary);
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(245, 115, 31, 0.25);
+    }
+
+    .btn-orange:hover {
+      background-color: var(--orange-hover);
+      border-color: var(--orange-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(245, 115, 31, 0.35);
+    }
+
+    .btn-navy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background-color: var(--navy-main);
+      color: var(--text-white);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 10px 18px;
+      border-radius: 6px;
+      border: 1px solid var(--navy-main);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-navy:hover {
+      background-color: var(--orange-primary);
+      border-color: var(--orange-primary);
+    }
+
+    /* ==========================================================================
+       1. TOP BAR
+       ========================================================================== */
+    .top-bar {
+      background-color: var(--navy-main);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar-left {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 500;
+    }
+
+    .top-bar-link {
+      color: #CBD5E1;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .top-bar-link:hover {
+      color: var(--orange-primary);
+    }
+
+    .top-bar-sep {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ==========================================================================
+       2. HEADER / MAIN NAVIGATION
+       ========================================================================== */
+    .site-header {
+      background-color: var(--bg-white);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 74px;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      height: 74px;
+    }
+
+    .nav-item {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text-navy);
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 4px;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--orange-primary);
+    }
+
+    /* Active Nav Item Indicator (Sourcing) */
+    .nav-item.active .nav-link {
+      color: var(--orange-primary);
+    }
+
+    .nav-item.active .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-color: var(--orange-primary);
+      border-radius: 3px 3px 0 0;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-navy);
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .lang-switcher:hover {
+      color: var(--orange-primary);
+      background-color: var(--bg-light-gray);
+    }
+
+    .lang-arrow {
+      font-size: 0.7rem;
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    /* Mobile Hamburger */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--navy-main);
+    }
+
+    .mobile-menu-btn svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    /* Mobile Navigation Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 82%;
+      max-width: 320px;
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-drawer.open {
+      right: 0;
+    }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 35, 59, 0.5);
+      backdrop-filter: blur(2px);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .drawer-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-navy);
+    }
+
+    .drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .drawer-link {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-navy);
+      padding: 8px 0;
+    }
+
+    .drawer-link.active {
+      color: var(--orange-primary);
+    }
+
+    /* ==========================================================================
+       3. BREADCRUMB
+       ========================================================================== */
+    .breadcrumb-section {
+      padding: 16px 0 6px 0;
+    }
+
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb-link {
+      color: var(--text-body);
+    }
+
+    .breadcrumb-link:hover {
+      color: var(--orange-primary);
+    }
+
+    .breadcrumb-sep {
+      color: #CBD5E1;
+    }
+
+    .breadcrumb-current {
+      color: var(--text-navy);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION (2 COLUMNS)
+       ========================================================================== */
+    .hero-section {
+      padding: 32px 0 54px 0;
+      background-color: var(--bg-white);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-left {
+      padding-right: 12px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64748B;
+      margin-bottom: 12px;
+    }
+
+    .hero-badge::before {
+      content: '—';
+      font-weight: 800;
+      color: #94A3B8;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--text-navy);
+      line-height: 1.14;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title .highlight-orange {
+      color: var(--orange-primary);
+    }
+
+    .hero-desc {
+      font-size: 0.98rem;
+      color: var(--text-body);
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-phone-link {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-navy);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-phone-link:hover {
+      color: var(--orange-primary);
+    }
+
+    /* Hero Visual Right */
+    .hero-visual-wrap {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(11, 35, 59, 0.12);
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero-visual-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11, 35, 59, 0.75) 0%, rgba(11, 35, 59, 0.15) 35%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-visual-wrap:hover .hero-img {
+      transform: scale(1.02);
+    }
+
+    /* Floating caption text bottom-left of hero image (no backdrop box) */
+    .hero-overlay-caption {
+      position: absolute;
+      bottom: 22px;
+      left: 22px;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      padding: 0;
+      border: none;
+      max-width: calc(100% - 44px);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-overlay-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--orange-primary);
+      margin-bottom: 4px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-overlay-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.35;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    }
+
+    /* ==========================================================================
+       5. ANCHOR NAVIGATION BAR
+       ========================================================================== */
+    .anchor-bar {
+      background-color: var(--bg-light-gray);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 14px 0;
+    }
+
+    .anchor-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+    }
+
+    .anchor-links-left,
+    .anchor-links-right {
+      display: contents;
+    }
+
+    .anchor-link,
+    .anchor-link-right {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-navy);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 12px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .anchor-link:hover,
+    .anchor-link-right:hover {
+      color: var(--orange-primary);
+    }
+
+    /* ==========================================================================
+       6. SECTION: VÌ SAO CHỌN SPEEGO
+       ========================================================================== */
+    .why-section {
+      padding: 72px 0 84px 0;
+      background-color: var(--bg-white);
+    }
+
+    .why-header {
+      margin-bottom: 44px;
+    }
+
+    .cards-grid-3x2 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background-color: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 30px 26px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card:hover {
+      border-color: #CBD5E1;
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-num {
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--orange-primary);
+      background-color: rgba(238, 108, 37, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      width: fit-content;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text-navy);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       7. SECTION: QUALITY CONTROL (NAVY BACKGROUND)
+       ========================================================================== */
+    .qc-section {
+      background-color: var(--navy-main);
+      padding: 76px 0 86px 0;
+      color: var(--text-white);
+    }
+
+    .qc-header {
+      margin-bottom: 50px;
+    }
+
+    .qc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .qc-col {
+      border-top: 1px solid var(--border-dark);
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .qc-num {
+      font-family: var(--font-heading);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--orange-primary);
+      margin-bottom: 16px;
+    }
+
+    .qc-title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .qc-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.62;
+    }
+
+    /* ==========================================================================
+       8. SECTION: NGÀNH HÀNG
+       ========================================================================== */
+    .categories-section {
+      padding: 76px 0 84px 0;
+      background-color: var(--bg-white);
+    }
+
+    .categories-header {
+      margin-bottom: 44px;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .categories-btn-wrap {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 8px;
+    }
+
+    /* ==========================================================================
+       9. SECTION: CÂU HỎI THƯỜNG GẶP (FAQ ACCORDION)
+       ========================================================================== */
+    .faq-section {
+      padding: 68px 0 80px 0;
+      background-color: var(--bg-white);
+      border-top: 1px solid var(--border-light);
+    }
+
+    .faq-header {
+      margin-bottom: 34px;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .faq-question-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 4px;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-navy);
+      transition: var(--transition);
+    }
+
+    .faq-question-btn:hover {
+      color: var(--orange-primary);
+    }
+
+    .faq-icon {
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--orange-primary);
+      transition: transform 0.3s ease;
+      line-height: 1;
+      margin-left: 16px;
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 4px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-bottom: 20px;
+    }
+
+    .faq-answer-text {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       10. SECTION: TESTIMONIAL (NỀN XÁM XANH BĂNG)
+       ========================================================================== */
+    .testimonial-section {
+      background-color: var(--bg-ice-blue);
+      padding: 72px 0 80px 0;
+    }
+
+    .testimonial-header {
+      margin-bottom: 34px;
+    }
+
+    .testimonial-block {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .quote-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      fill: var(--orange-primary);
+      margin-top: 4px;
+    }
+
+    .testimonial-content {
+      flex: 1;
+    }
+
+    .quote-text {
+      font-family: var(--font-heading);
+      font-size: 1.42rem;
+      font-weight: 700;
+      color: var(--text-navy);
+      line-height: 1.45;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .author-info {
+      margin-bottom: 16px;
+    }
+
+    .author-name {
+      font-family: var(--font-heading);
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text-navy);
+      margin-bottom: 2px;
+    }
+
+    .author-role {
+      font-size: 0.85rem;
+      color: var(--text-body);
+    }
+
+    .case-study-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-navy);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .case-study-link:hover {
+      color: var(--orange-primary);
+    }
+
+    /* ==========================================================================
+       11. SECTION: FORM (LET'S MOVE FORWARD / BẮT ĐẦU TỪ NHU CẦU CỦA BẠN)
+       ========================================================================== */
+    .form-section {
+      background-color: var(--navy-main);
+      padding: 80px 0 90px 0;
+      color: var(--text-white);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .form-left {
+      padding-right: 16px;
+    }
+
+    .form-left-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 18px 0 28px 0;
+      max-width: 420px;
+    }
+
+    .form-hotline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: 0.02em;
+    }
+
+    .form-hotline:hover {
+      color: var(--orange-primary);
+    }
+
+    /* The White Form Container */
+    .consult-card {
+      background-color: var(--bg-white);
+      border-radius: 8px;
+      padding: 32px 30px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .consult-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-navy);
+    }
+
+    .form-control {
+      width: 100%;
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-family: var(--font-base);
+      font-size: 0.88rem;
+      color: var(--text-navy);
+      background-color: var(--bg-white);
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .form-control::placeholder {
+      color: #94A3B8;
+      font-size: 0.84rem;
+    }
+
+    .form-control:focus {
+      border-color: var(--orange-primary);
+      box-shadow: 0 0 0 3px rgba(245, 115, 31, 0.15);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      font-size: 0.98rem;
+      margin-top: 6px;
+    }
+
+    .form-security-note {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       12. FOOTER
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--navy-deep);
+      color: var(--text-muted);
+      padding-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: 50px;
+    }
+
+    .footer-logo {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 16px;
+    }
+
+    .footer-tagline {
+      font-size: 0.86rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 320px;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-link {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .footer-link:hover {
+      color: var(--orange-primary);
+      padding-left: 3px;
+    }
+
+    .footer-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-contact-item a:hover {
+      color: var(--orange-primary);
+    }
+
+    /* Footer Bottom Bar */
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 20px 0;
+      background-color: var(--navy-darker);
+    }
+
+    .footer-bottom-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: #64748B;
+    }
+
+    .footer-legal-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-legal-links a:hover {
+      color: var(--text-muted);
+    }
+
+    /* Toast Notification for Form Submit */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--navy-main);
+      color: #FFFFFF;
+      padding: 14px 22px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      border-left: 4px solid var(--orange-primary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toast-popup.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS (TABLET & MOBILE)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .hero-title {
+        font-size: 2.35rem;
+      }
+
+      .cards-grid-3x2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .qc-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-bar-inner {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .header-actions .btn-navy {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 1.95rem;
+      }
+
+      .section-title {
+        font-size: 1.65rem;
+      }
+
+      .cards-grid-3x2 {
+        grid-template-columns: 1fr;
+      }
+
+      .qc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .anchor-inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .form-row-2col {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-text {
+        font-size: 1.18rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom-inner {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. TOP BAR MỎNG NỀN NAVY
+       ======================================================================== -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        GLOBAL LOGISTICS PARTNER
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:+84906828898" class="top-bar-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          (+84) 906 828 898
+        </a>
+        <span class="top-bar-sep">•</span>
+        <a href="mailto:info@speego.com" class="top-bar-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          info@speego.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. HEADER / NAVIGATION CHÍNH NỀN TRẮNG
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo SpeeGo (Horizontal Navy/Orange for light background) -->
+      <a href="#" class="logo-link" title="SpeeGo Logistics">
+        <img src="assets/speego-logo-dark.png" alt="SpeeGo Logistics" class="logo-img">
+      </a>
+
+      <!-- Menu Ngang -->
+      <nav class="nav-menu">
+        <div class="nav-item"><a href="#" class="nav-link">Knowledge</a></div>
+        <div class="nav-item"><a href="#" class="nav-link">Xuất nhập khẩu</a></div>
+        <div class="nav-item"><a href="#" class="nav-link">Tuyến chuyển vận</a></div>
+        <div class="nav-item"><a href="#" class="nav-link">Fulfillment</a></div>
+        <!-- Mục Sourcing đang active có gạch chân cam -->
+        <div class="nav-item active"><a href="#" class="nav-link">Sourcing</a></div>
+      </nav>
+
+      <!-- CTA & Toggle Language -->
+      <div class="header-actions">
+        <a href="#contact-form" class="btn-navy">
+          Nhận tư vấn ↗
+        </a>
+        <div class="lang-switcher" id="langToggle">
+          <span>English</span>
+          <span class="lang-arrow">▾</span>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuOpen" aria-label="Mở Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <img src="assets/speego-logo-dark.png" alt="SpeeGo Logistics" style="height: 32px; width: auto;">
+      <button class="drawer-close" id="mobileMenuClose">&times;</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#" class="drawer-link">Knowledge</a>
+      <a href="#" class="drawer-link">Xuất nhập khẩu</a>
+      <a href="#" class="drawer-link">Tuyến chuyển vận</a>
+      <a href="#" class="drawer-link">Fulfillment</a>
+      <a href="#" class="drawer-link active">Sourcing</a>
+      <div style="margin-top: 16px;">
+        <a href="#contact-form" class="btn-orange" style="width: 100%;" onclick="closeMobileDrawer()">Nhận tư vấn ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       3. BREADCRUMB
+       ======================================================================== -->
+  <div class="breadcrumb-section">
+    <div class="container">
+      <div class="breadcrumb-list">
+        <a href="#" class="breadcrumb-link">Trang chủ</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Sourcing &amp; kiểm soát chất lượng</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       4. HERO SECTION (2 CỘT)
+       ======================================================================== -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <!-- Cột trái: Text & 2 CTA -->
+      <div class="hero-left">
+        <span class="hero-badge">SOURCING &amp; QUALITY CONTROL</span>
+        <h1 class="hero-title">
+          Tìm nguồn hàng &amp;<br>
+          kiểm soát chất lượng<br>
+          <span class="highlight-orange">toàn diện.</span>
+        </h1>
+        <p class="hero-desc">
+        SpeeGo hỗ trợ doanh nghiệp tìm kiếm nhà sản xuất phù hợp, xác minh năng lực nhà máy, đàm phán điều khoản hợp tác và kiểm soát chất lượng sản phẩm trước khi xuất xưởng, giúp giảm thiểu rủi ro và tối ưu hiệu quả trong chuỗi cung ứng.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact-form" class="btn-orange">
+            Trao đổi nhu cầu ↗
+          </a>
+          <a href="tel:+84906828898" class="hero-phone-link">
+            (+84) 906 828 898
+          </a>
+        </div>
+      </div>
+
+      <!-- Cột phải: Ảnh kho hàng kệ cao tầng với text trực tiếp góc dưới trái -->
+      <div class="hero-right">
+        <div class="hero-visual-wrap">
+          <img 
+            src="assets/warehouse_hero.jpg" 
+            alt="Hệ thống kho bãi &amp; kiểm soát chất lượng SpeeGo Logistics" 
+            class="hero-img"
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&amp;fit=crop&amp;w=1200&amp;q=80';"
+          >
+          <div class="hero-overlay-caption">
+            <div class="hero-overlay-tag">SPEEGO LOGISTICS</div>
+            <div class="hero-overlay-text">Từ nhà máy đến thị trường toàn cầu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. THANH ANCHOR-LINK NGANG DƯỚI HERO
+       ======================================================================== -->
+  <nav class="anchor-bar">
+    <div class="container anchor-inner">
+      <div class="anchor-links-left">
+        <a href="#why-speego" class="anchor-link">Vì sao SpeeGo</a>
+        <a href="#quality-control" class="anchor-link">Kiểm soát chất lượng</a>
+        <a href="#categories" class="anchor-link">Ngành hàng</a>
+      </div>
+      <div class="anchor-links-right">
+        <a href="#contact-form" class="anchor-link-right">
+          Tư vấn nguồn hàng ↗
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       6. SECTION "VÌ SAO CHỌN SPEEGO" (GRID 6 CARDS: 3 CỘT X 2 HÀNG)
+       ======================================================================== -->
+  <section class="why-section" id="why-speego">
+    <div class="container">
+      <div class="why-header">
+        <span class="section-tag">VÌ SAO CHỌN SPEEGO</span>
+        <h2 class="section-title">
+          Tìm nguồn hàng &amp; kiểm soát<br>
+          chất lượng toàn diện.
+        </h2>
+      </div>
+
+      <div class="cards-grid-3x2">
+        <!-- Card 01 -->
+        <div class="feature-card">
+          <span class="card-num">01</span>
+          <h3 class="card-title">Mạng lưới đối tác rộng lớn</h3>
+          <p class="card-desc">SpeeGo có đội ngũ tìm nguồn hàng và hệ thống đối tác mọi lĩnh vực</p>
+        </div>
+
+        <!-- Card 02 -->
+        <div class="feature-card">
+          <span class="card-num">02</span>
+          <h3 class="card-title">Đánh giá nhà máy chất lượng nhất</h3>
+          <p class="card-desc">Đánh giá năng lực sản xuất, lựa chọn nhà máy phù hợp từng khách hàng</p>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="feature-card">
+          <span class="card-num">03</span>
+          <h3 class="card-title">Đàm phán giá và MOQ phù hợp</h3>
+          <p class="card-desc">Hỗ trợ đàm phán giá phù hợp và lượng đặt hàng tối thiểu phù hợp với nhu cầu</p>
+        </div>
+
+        <!-- Card 04 -->
+        <div class="feature-card">
+          <span class="card-num">04</span>
+          <h3 class="card-title">Theo dõi &amp; cập nhật tiến độ sản xuất</h3>
+          <p class="card-desc">Cập nhật liên tục bằng hình ảnh, video, mẫu sản phẩm, tiến độ sản xuất</p>
+        </div>
+
+        <!-- Card 05 -->
+        <div class="feature-card">
+          <span class="card-num">05</span>
+          <h3 class="card-title">Kiểm tra chất lượng (QC)</h3>
+          <p class="card-desc">Đảm bảo chất lượng sản phẩm đầu ra đáp ứng đủ tiêu chuẩn chất lượng</p>
+        </div>
+
+        <!-- Card 06 -->
+        <div class="feature-card">
+          <span class="card-num">06</span>
+          <h3 class="card-title">Vận chuyển &amp; fulfillment (nếu cần)</h3>
+          <p class="card-desc">Vận chuyển quốc tế & lưu kho fulfillment nếu khách hàng có nhu cầu</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. SECTION "QUALITY CONTROL" (NỀN XANH NAVY ĐẬM)
+       ======================================================================== -->
+  <section class="qc-section" id="quality-control">
+    <div class="container">
+      <div class="qc-header">
+        <span class="section-tag">QUALITY CONTROL</span>
+        <h2 class="section-title section-title-white">
+          Chất lượng được kiểm soát<br>
+          ở từng giai đoạn.
+        </h2>
+      </div>
+
+      <div class="qc-grid">
+        <!-- Col 01 -->
+        <div class="qc-col">
+          <div class="qc-num">01</div>
+          <h3 class="qc-title">Kiểm tra trước sản xuất</h3>
+          <p class="qc-desc">Đảm bảo nguyên vật liệu và quy trình đáp ứng yêu cầu.</p>
+        </div>
+
+        <!-- Col 02 -->
+        <div class="qc-col">
+          <div class="qc-num">02</div>
+          <h3 class="qc-title">Kiểm tra trong quá trình sản xuất</h3>
+          <p class="qc-desc">Phát hiện lỗi sớm để giảm chi phí khắc phục.</p>
+        </div>
+
+        <!-- Col 03 -->
+        <div class="qc-col">
+          <div class="qc-num">03</div>
+          <h3 class="qc-title">Kiểm tra trước khi xuất hàng</h3>
+          <p class="qc-desc">Đánh giá sản phẩm trước khi đóng gói và giao đi.</p>
+        </div>
+
+        <!-- Col 04 -->
+        <div class="qc-col">
+          <div class="qc-num">04</div>
+          <h3 class="qc-title">Báo cáo QC</h3>
+          <p class="qc-desc">Khách hàng nhận: Sample, Hình ảnh, Video, Báo cáo chi tiết, Danh sách lỗi (nếu có)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. SECTION "NGÀNH HÀNG" (5 CARDS + NÚT CTA CAM)
+       ======================================================================== -->
+  <section class="categories-section" id="categories">
+    <div class="container">
+      <div class="categories-header">
+        <span class="section-tag">NGÀNH HÀNG</span>
+        <h2 class="section-title">
+          Hiểu sản phẩm.<br>
+          Kết nối đúng nhà sản xuất.
+        </h2>
+      </div>
+
+      <!-- Layout 5 cards: 3 cards hàng trên, 2 cards hàng dưới -->
+      <div class="categories-grid">
+        <!-- Card 01 -->
+        <div class="feature-card">
+          <span class="card-num">01</span>
+          <h3 class="card-title">Mỹ phẩm</h3>
+          <p class="card-desc">SpeeGo Logistics cung cấp giải pháp end-to-end cho ngành mỹ phẩm từ tìm nguồn, sản xuất đến vận chuyển</p>
+        </div>
+
+        <!-- Card 02 -->
+        <div class="feature-card">
+          <span class="card-num">02</span>
+          <h3 class="card-title">Nails</h3>
+          <p class="card-desc">SpeeGo Logistics chuyên sỉ, sản xuất, order đa dạng nguyên liệu, dụng cụ và phụ kiện nails chất lượng cao</p>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="feature-card">
+          <span class="card-num">03</span>
+          <h3 class="card-title">Decor, nội thất</h3>
+          <p class="card-desc">SpeeGo Logistics chuyên cung ứng đồ decor nội thất, trang trí cửa hàng, tiệm nails, spa, nhà hàng, đến không gian sống và làm việc</p>
+        </div>
+
+        <!-- Card 04 -->
+        <div class="feature-card">
+          <span class="card-num">04</span>
+          <h3 class="card-title">Thủ công mỹ nghệ</h3>
+          <p class="card-desc">SpeeGo Logistics chuyên cung cấp các mặt hàng đồ thủ công mỹ nghệ mang đậm nét truyền thống dân tộc</p>
+        </div>
+
+        <!-- Card 05 -->
+        <div class="feature-card">
+          <span class="card-num">05</span>
+          <h3 class="card-title">Thiết bị kỹ thuật</h3>
+          <p class="card-desc">Trao đổi với SpeeGo để lựa chọn giải pháp phù hợp với nhu cầu của doanh nghiệp.</p>
+        </div>
+      </div>
+
+      <!-- CTA cam bên dưới -->
+      <div class="categories-btn-wrap">
+        <a href="#contact-form" class="btn-orange">
+          Tư vấn ngành hàng của bạn ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. SECTION FAQ "CÂU HỎI THƯỜNG GẶP" (ACCORDION)
+       ======================================================================== -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-header">
+        <span class="section-tag">CÂU HỎI THƯỜNG GẶP</span>
+        <h2 class="section-title">Câu hỏi thường gặp</h2>
+      </div>
+
+      <div class="faq-list">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>SpeeGo có hỗ trợ đàm phán MOQ không?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-text">
+              Có. SpeeGo trực tiếp làm việc với các nhà xưởng đối tác để thương lượng số lượng đặt hàng tối thiểu (MOQ) phù hợp với quy mô và ngân sách thử nghiệm của bạn mà vẫn đảm bảo đơn giá cạnh tranh nhất.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>Tôi có thể theo dõi tiến độ sản xuất như thế nào?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-text">
+              Đội ngũ SpeeGo tại xưởng liên tục cập nhật tiến độ định kỳ hàng tuần kèm hình ảnh và video thực tế. Mọi số liệu và mốc thời gian đều được số hóa minh bạch giúp bạn nắm bắt 24/7.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>Báo cáo QC bao gồm những gì?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-text">
+              Báo cáo kiểm định QC chuẩn AQL của SpeeGo bao gồm: đo lường thông số kích thước, kiểm tra chất liệu, chức năng thực tế, quy cách đóng gói tem nhãn barcode và hình ảnh chi tiết các lỗi phát hiện (nếu có).
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>Sau khi kiểm tra, SpeeGo có hỗ trợ vận chuyển trọn gói không?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-text">
+              Hoàn toàn có. SpeeGo cung cấp giải pháp End-to-End trọn gói từ kiểm hàng xưởng, đóng gói tiêu chuẩn xuất khẩu, thủ tục hải quan cho tới vận chuyển đường biển/hàng không và fulfillment kho bãi tại Mỹ, Canada, Úc.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       10. SECTION TESTIMONIAL (NỀN XÁM XANH BĂNG NHẠT)
+       ======================================================================== -->
+  <section class="testimonial-section">
+    <div class="container">
+      <div class="testimonial-header">
+        <span class="section-tag">KHÁCH HÀNG SPEEGO</span>
+        <h2 class="section-title">Đồng hành cùng doanh nghiệp</h2>
+      </div>
+
+      <div class="testimonial-block">
+        <!-- Icon quote cam -->
+        <svg class="quote-icon" viewBox="0 0 24 24">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+        <div class="testimonial-content">
+          <blockquote class="quote-text">
+            “Đội ngũ QC tại chỗ đã giúp chúng tôi tiết kiệm hàng nghìn đô la trước khi container được niêm phong.”
+          </blockquote>
+          <div class="author-info">
+            <div class="author-name">Kevin Le</div>
+            <div class="author-role"> CEO, Glamour Nail Supplies • California, USA</div>
+          </div>
+          <a href="#" class="case-study-link">
+            Theo chia sẻ trên website SpeeGo • bản dịch tiếng Việt ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       11. SECTION CTA & FORM "BẮT ĐẦU TỪ NHU CẦU CỦA BẠN." (NỀN NAVY)
+       ======================================================================== -->
+  <section class="form-section" id="contact-form">
+    <div class="container form-grid">
+      <!-- Cột trái: Heading & Mô tả & Hotline -->
+      <div class="form-left">
+        <span class="section-tag">LET'S MOVE FORWARD</span>
+        <h2 class="section-title section-title-white">
+          Bắt đầu từ nhu cầu<br>
+          của bạn.
+        </h2>
+        <p class="form-left-desc">
+          Chia sẻ về hàng hóa và kế hoạch của doanh nghiệp.<br> SpeeGo sẽ tư vấn giải pháp phù hợp.
+        </p>
+        <a href="tel:+84906828898" class="form-hotline">
+          (+84) 906828898 ↗
+        </a>
+      </div>
+
+      <!-- Cột phải: Form trắng -->
+      <div class="form-right">
+        <div class="consult-card">
+          <form class="consult-form" id="consultForm">
+            <!-- Row 1: Họ tên + Email -->
+            <div class="form-row-2col">
+              <div class="form-group">
+                <label class="form-label" for="fullName">Họ và tên</label>
+                <input type="text" id="fullName" class="form-control" placeholder="Nguyễn Văn A" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="name@congty.com" required>
+              </div>
+            </div>
+
+            <!-- Row 2: Số điện thoại -->
+            <div class="form-group">
+              <label class="form-label" for="phone">Số điện thoại</label>
+              <input type="tel" id="phone" class="form-control" placeholder="Số điện thoại liên hệ" required>
+            </div>
+
+            <!-- Row 3: Nhu cầu tư vấn -->
+            <div class="form-group">
+              <label class="form-label" for="message">Nhu cầu tư vấn</label>
+              <textarea id="message" class="form-control" placeholder="Loại hàng, số lượng, điểm đi và điểm đến..."></textarea>
+            </div>
+
+            <!-- Submit Button Cam -->
+            <button type="submit" class="btn-orange btn-submit">
+              Soạn email tư vấn ↗
+            </button>
+
+            <!-- Ghi chú bảo mật -->
+            <p class="form-security-note">
+              Mở ứng dụng email với nội dung đã điền. Thông tin chỉ được gửi đi khi bạn bấm Gửi trong email.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       12. FOOTER NỀN NAVY ĐẬM SÂU
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <!-- Cột 1: Logo & Tagline -->
+      <div class="footer-col">
+        <!-- Logo SpeeGo (White SpeeGo + Orange LOGISTICS for dark footer) -->
+        <img src="assets/speego-logo-white.png" alt="SpeeGo Logistics" class="footer-logo">
+        <p class="footer-tagline">
+          Giải pháp sourcing &amp; logistics toàn diện cho doanh nghiệp xuất nhập khẩu.
+        </p>
+      </div>
+
+      <!-- Cột 2: Khám phá -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Khám phá</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Knowledge</a></li>
+          <li><a href="#" class="footer-link">Xuất nhập khẩu</a></li>
+          <li><a href="#" class="footer-link">Tuyến vận chuyển</a></li>
+          <li><a href="#" class="footer-link">Fulfillment</a></li>
+          <li><a href="#" class="footer-link">Sourcing</a></li>
+        </ul>
+      </div>
+
+      <!-- Cột 3: Kết nối với SpeeGo -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Kết nối với SpeeGo</h4>
+        <div class="footer-contact-list">
+          <div class="footer-contact-item">
+            <a href="mailto:info@speegologistics.com">info@speegologistics.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <a href="tel:+84906828898">(+84) 906 828 898</a>
+          </div>
+          <div class="footer-contact-item">
+            7303 Breen Dr, Suite D2<br>
+            Houston, TX 77086, US
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thanh Copyright dưới cùng -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div class="footer-copyright">
+          © 2026 SpeeGo Logistics. 
+        </div>
+        <div class="footer-legal-links">
+          <a href="#">Quy trình 8 bước ↗</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Message Popup -->
+  <div class="toast-popup" id="toastPopup">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#F5731F">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+    </svg>
+    <span id="toastText">Gửi yêu cầu tư vấn thành công! SpeeGo sẽ liên hệ lại sớm nhất.</span>
+  </div>
+
+  <!-- ========================================================================
+       JAVASCRIPT TƯƠNG TÁC ĐỘC LẬP
+       ======================================================================== -->
+  <script>
+    // 1. FAQ Accordion Interaction
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-question-btn');
+      btn.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Đóng tất cả các item khác để chuẩn dạng accordion
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+          }
+        });
+
+        // Bật/tắt item hiện tại
+        if (isActive) {
+          item.classList.remove('active');
+        } else {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // 2. Mobile Navigation Drawer
+    const mobileMenuOpen = document.getElementById('mobileMenuOpen');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+    function openMobileDrawer() {
+      mobileDrawer.classList.add('open');
+      drawerBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileDrawer() {
+      mobileDrawer.classList.remove('open');
+      drawerBackdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    if (mobileMenuOpen) mobileMenuOpen.addEventListener('click', openMobileDrawer);
+    if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileDrawer);
+    if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeMobileDrawer);
+
+    // 3. Language Switcher Toggle
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+      let isEnglish = true;
+      langToggle.addEventListener('click', () => {
+        isEnglish = !isEnglish;
+        langToggle.querySelector('span').textContent = isEnglish ? 'English' : 'Tiếng Việt';
+        showToast(isEnglish ? 'Switched to English' : 'Đã chuyển sang Tiếng Việt');
+      });
+    }
+
+    // 4. Form Submit Simulation with Toast Notification
+    const consultForm = document.getElementById('consultForm');
+    const toastPopup = document.getElementById('toastPopup');
+    const toastText = document.getElementById('toastText');
+    let toastTimeout;
+
+    function showToast(message) {
+      if (toastText) toastText.textContent = message;
+      if (toastPopup) {
+        toastPopup.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toastPopup.classList.remove('show');
+        }, 4000);
+      }
+    }
+
+    if (consultForm) {
+      consultForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById('fullName').value.trim();
+        showToast(`Cảm ơn ${fullName}! SpeeGo đã tiếp nhận yêu cầu và sẽ phản hồi trong 2 giờ.`);
+        consultForm.reset();
+      });
+    }
+
+    // 5. Smooth Scroll Offset adjustment for Sticky Header
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || !href) return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const headerHeight = document.querySelector('.site-header').offsetHeight || 74;
+          const targetPos = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 12;
+          window.scrollTo({
+            top: targetPos,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!-- ==========================================================================
+     PARTIAL: CTA FORM COMPONENT (SpeeGo Logistics)
+     Supports two variants: 'band' (full-width 2-column) and 'sidebar' (1-column card)
+     ========================================================================== -->
+
+<!-- TEMPLATE: VARIANT "band" (Dải ngang Full-width 2 cột nền Navy) -->
+<template id="tmpl-cta-band">
+  <section class="cta-form-band-section" id="contact-form">
+    <div class="container cta-form-band-grid">
+      <!-- Cột trái: Heading & Mô tả & Hotline -->
+      <div class="cta-band-left">
+        <span class="section-tag">{{TAG}}</span>
+        <h2 class="section-title section-title-white">
+          {{HEADING}}
+        </h2>
+        <p class="cta-band-desc">
+          {{SUBTEXT}}
+        </p>
+        <a href="tel:+84906828898" class="cta-hotline-link">
+          {{PHONE}}
+        </a>
+      </div>
+
+      <!-- Cột phải: Form trắng 2 cột Họ tên + Email -->
+      <div class="cta-band-right">
+        <div class="consult-card-white">
+          <form class="consult-form" onsubmit="handleConsultSubmit(event)">
+            <div class="form-row-2col">
+              <div class="form-group">
+                <label class="form-label" for="band_fullName">Họ và tên</label>
+                <input type="text" id="band_fullName" class="form-control" placeholder="Nguyễn Văn A" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="band_email">Email</label>
+                <input type="email" id="band_email" class="form-control" placeholder="name@congty.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="band_phone">Số điện thoại</label>
+              <input type="tel" id="band_phone" class="form-control" placeholder="Số điện thoại liên hệ" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="band_message">Nhu cầu tư vấn</label>
+              <textarea id="band_message" class="form-control" placeholder="Loại hàng, số lượng, điểm đi và điểm đến..."></textarea>
+            </div>
+            <button type="submit" class="btn-orange btn-submit">
+              Soạn email tư vấn ↗
+            </button>
+            <p class="form-security-note">
+              Mở ứng dụng email với nội dung đã điền. Thông tin chỉ được gửi đi khi bạn bấm Gửi trong email.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<!-- TEMPLATE: VARIANT "sidebar" (Card hẹp 1 cột xếp chồng dọc nền Navy) -->
+<template id="tmpl-cta-sidebar">
+  <div class="consult-card-sidebar" id="contact-form">
+    <span class="section-tag">{{TAG}}</span>
+    <h3 class="sidebar-title">{{HEADING}}</h3>
+    <p class="sidebar-desc">{{SUBTEXT}}</p>
+    <div>
+      <a href="tel:+84906828898" class="sidebar-hotline">{{PHONE}}</a>
+    </div>
+
+    <form class="consult-form" onsubmit="handleConsultSubmit(event)">
+      <div class="form-group">
+        <label class="form-label" for="sidebar_fullName">Họ và tên</label>
+        <input type="text" id="sidebar_fullName" class="form-control" placeholder="Nguyễn Văn A" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sidebar_email">Email</label>
+        <input type="email" id="sidebar_email" class="form-control" placeholder="name@congty.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sidebar_phone">Số điện thoại</label>
+        <input type="tel" id="sidebar_phone" class="form-control" placeholder="Số điện thoại liên hệ" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sidebar_message">Nhu cầu tư vấn</label>
+        <textarea id="sidebar_message" class="form-control" placeholder="Loại hàng, số lượng, điểm đi và điểm đến..."></textarea>
+      </div>
+      <button type="submit" class="btn-orange btn-submit">
+        Soạn email tư vấn ↗
+      </button>
+      <p class="form-security-note">
+        Mở ứng dụng email với nội dung đã điền. Thông tin chỉ được gửi đi khi bạn bấm Gửi trong email.
+      </p>
+    </form>
+  </div>
+</template>

@@ -3,3917 +3,660 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpeeGo Logistics — From Sourcing to Global Delivery</title>
-  <meta name="description" content="SpeeGo Logistics kết nối nhà máy tại Việt Nam & Trung Quốc với người mua tại Mỹ, Canada, Úc — Cung cấp Sourcing & QC, Logistics quốc tế, Fulfillment kho bãi và Xuất nhập khẩu.">
+  <title>SpeeGo Logistics - Kiến trúc Component & Demo các trang</title>
+  
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 
-  <!-- Favicon S-Chevron Symbol -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M8 6h16a2 2 0 0 1 1.6 3.2L16 22l-4-4 7-7H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z' fill='%230344DC'/><path d='M13 13l4 4-7 9H6a2 2 0 0 1-1.6-3.2L13 13z' fill='%23f05a22'/></svg>">
-
-  <!-- Google Fonts: Inter Tight -->
+  <!-- Google Fonts: Be Vietnam Pro & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome 6 CDN for clean monochromatic line icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* ==========================================================================
-       CSS VARIABLES & BRAND DESIGN SYSTEM
-       ========================================================================== */
-    :root {
-      /* Brand Colors (Strictly according to SpeeGo Brand Guidelines) */
-      --primary-blue: #0344DC;       /* Primary Blue: C87 M74 Y0 K0 | R3 G68 B220 */
-      --primary-hover: #0233ab;      /* Slightly darker for hover states */
-      --primary-dark: #022477;       /* Deep brand blue */
-      --primary-deep: #06153d;       /* Midnight blue for high contrast sections */
-      --primary-light: #2563eb;      /* Lighter accent blue */
-      --primary-ice: #edf3ff;        /* Very light blue tint for badges & soft cards */
-      --primary-tint: #f5f8ff;       /* Subtle blue-gray background */
-      --border-blue: #d0e0fc;        /* Clean accent border */
-
-      /* Neutral Palette (Strict: White and very light gray only) */
-      --bg-white: #ffffff;
-      --bg-slate: #f8fafc;
-      --bg-gray: #f1f5f9;
-      --text-dark: #0f172a;          /* Headings and primary labels */
-      --text-body: #334155;          /* Crisp body text */
-      --text-muted: #64748b;         /* Secondary descriptions */
-      --text-light: #94a3b8;         /* Subtext & placeholders */
-      --border-light: #e2e8f0;       /* Neutral hairline borders */
-
-      /* Typography */
-      --font-main: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-      /* Shadows */
-      --shadow-sm: 0 2px 4px rgba(3, 68, 220, 0.04);
-      --shadow-md: 0 6px 18px -3px rgba(3, 68, 220, 0.08), 0 2px 6px -2px rgba(15, 23, 42, 0.04);
-      --shadow-lg: 0 16px 32px -4px rgba(3, 68, 220, 0.11), 0 6px 16px -4px rgba(15, 23, 42, 0.05);
-      --shadow-xl: 0 24px 48px -12px rgba(3, 68, 220, 0.18);
-
-      /* Border Radii */
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --radius-pill: 9999px;
-
-      /* Transitions */
-      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Reset & Global */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      font-family: var(--font-main);
-      font-weight: 400;
-      color: var(--text-body);
-      background-color: var(--bg-white);
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: var(--transition);
-    }
-
-    button, input, select, textarea {
-      font-family: inherit;
-      font-size: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Typography Utilities */
-    .headline-large {
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--text-dark);
-    }
-
-    .headline-section {
-      font-size: clamp(1.9rem, 3.2vw, 2.6rem);
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -0.025em;
-      color: var(--text-dark);
-    }
-
-    .title-card {
-      font-size: 1.25rem;
-      font-weight: 700;
-      line-height: 1.35;
-      color: var(--text-dark);
-    }
-
-    .tagline-italic {
-      font-weight: 300;
-      font-style: italic;
-      color: var(--primary-blue);
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    /* Brand Chevron Motifs (Key Visual) */
-    .chevron-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--primary-ice);
-      color: var(--primary-blue);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-blue);
-      position: relative;
-    }
-
-    .chevron-pill i {
-      font-size: 0.85rem;
-      transform: translateY(-0.5px);
-    }
-
-    /* Standard Buttons */
-    .btn {
-      display: inline-flex;
+    /* Loading indicator & Error Card Styles */
+    .app-loading-state {
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 0.96rem;
-      padding: 12px 26px;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      border: 1.5px solid transparent;
-      transition: var(--transition);
-      white-space: nowrap;
+      gap: 16px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
     }
 
-    .btn-primary {
-      background-color: var(--primary-blue);
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(3, 68, 220, 0.28);
-    }
-
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(3, 68, 220, 0.38);
-      color: #ffffff;
-    }
-
-    .btn-outline {
-      background-color: rgba(255, 255, 255, 0.9);
-      color: var(--primary-blue);
-      border-color: var(--border-blue);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-outline:hover {
-      background-color: #ffffff;
-      border-color: var(--primary-blue);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .btn-white {
-      background-color: #ffffff;
-      color: var(--primary-blue);
-      font-weight: 700;
-      box-shadow: var(--shadow-md);
-    }
-
-    .btn-white:hover {
-      background-color: var(--primary-ice);
-      transform: translateY(-2px);
-    }
-
-    /* Scroll Animation Base */
-    .reveal-on-scroll {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal-on-scroll.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ==========================================================================
-       SECTION 1: TOP BAR
-       ========================================================================== */
-    .topbar {
-      background-color: var(--primary-deep);
-      color: #e2e8f0;
-      font-size: 0.82rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-      z-index: 1001;
-    }
-
-    .topbar .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .loading-spinner {
+      width: 40px;
       height: 40px;
-    }
-
-    .topbar-left {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-    }
-
-    .topbar-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: #cbd5e1;
-      font-weight: 400;
-    }
-
-    .topbar-link i {
-      color: #60a5fa;
-      font-size: 0.8rem;
-    }
-
-    .topbar-link:hover {
-      color: #ffffff;
-    }
-
-    .topbar-separator {
-      color: rgba(255, 255, 255, 0.2);
-      font-size: 0.8rem;
-    }
-
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .topbar-socials {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .social-btn {
-      width: 24px;
-      height: 24px;
+      border: 3px solid rgba(242, 102, 28, 0.2);
+      border-top-color: var(--orange-primary);
       border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.76rem;
-      transition: var(--transition);
-      background: rgba(255, 255, 255, 0.08);
-      color: #cbd5e1;
+      animation: spin 0.8s linear infinite;
     }
 
-    .social-btn:hover {
-      transform: translateY(-2px);
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
-    /* Official Social Colors */
-    .social-fb:hover { background-color: #1877F2; color: #fff; }
-    .social-tiktok:hover { background-color: #010101; color: #fff; }
-    .social-zalo:hover { background-color: #0068FF; color: #fff; }
-    .social-wa:hover { background-color: #25D366; color: #fff; }
-    .social-in:hover { background-color: #0A66C2; color: #fff; }
-
-    .topbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-      padding-left: 16px;
-    }
-
-    .topbar-action-item {
-      color: #e2e8f0;
-      font-weight: 500;
-      cursor: pointer;
-    }
-
-    .topbar-action-item:hover {
-      color: #93c5fd;
-    }
-
-    /* ==========================================================================
-       SECTION 2: HEADER & NAVBAR
-       ========================================================================== */
-    .site-header {
-      background-color: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transition: var(--transition);
-    }
-
-    .site-header.scrolled {
-      box-shadow: 0 8px 24px rgba(3, 68, 220, 0.08);
-      background-color: rgba(255, 255, 255, 0.99);
-    }
-
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 76px;
-    }
-
-    /* Brand Logo */
-    .brand-logo-wrap {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
-
-    .brand-logo-img {
-      height: 48px;
-      width: auto;
-      object-fit: contain;
-      transition: var(--transition);
-    }
-
-    .brand-logo-img:hover {
-      opacity: 0.95;
-    }
-
-    /* Navigation Links */
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      list-style: none;
-      gap: 8px;
-    }
-
-    .nav-item {
-      position: relative;
-    }
-
-    .nav-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 8px 14px;
-      font-size: 0.93rem;
-      font-weight: 500;
-      color: var(--text-dark);
-      border-radius: var(--radius-sm);
-      transition: var(--transition);
-    }
-
-    .nav-link:hover, .nav-item.active .nav-link {
-      color: var(--primary-blue);
-      background-color: var(--primary-ice);
-    }
-
-    .nav-link i.fa-chevron-down {
-      font-size: 0.65rem;
-      transition: transform 0.2s ease;
-    }
-
-    .nav-item:hover .nav-link i.fa-chevron-down {
-      transform: rotate(180deg);
-    }
-
-    /* Dropdown Submenu */
-    .nav-dropdown {
-      position: absolute;
-      top: calc(100% + 4px);
-      left: 0;
-      min-width: 250px;
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
-      padding: 8px 0;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(10px);
-      transition: var(--transition);
-      z-index: 100;
-    }
-
-    .nav-item:hover .nav-dropdown {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .dropdown-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 18px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-dark);
-    }
-
-    .dropdown-link i {
-      width: 20px;
-      color: var(--primary-blue);
-      font-size: 0.95rem;
-    }
-
-    .dropdown-link:hover {
-      background-color: var(--primary-ice);
-      color: var(--primary-blue);
-      padding-left: 22px;
-    }
-
-    /* Header Right Actions */
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    /* Language Switcher */
-    .lang-switcher {
-      position: relative;
-    }
-
-    .lang-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg-slate);
-      border: 1px solid var(--border-light);
-      padding: 7px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-dark);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .lang-btn:hover {
-      border-color: var(--primary-blue);
-      background: var(--primary-ice);
-    }
-
-    .lang-flag {
-      width: 18px;
-      height: 12px;
-      border-radius: 2px;
-      object-fit: cover;
-      display: inline-block;
-    }
-
-    .lang-dropdown {
-      position: absolute;
-      top: calc(100% + 6px);
-      right: 0;
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-md);
-      min-width: 140px;
-      padding: 6px 0;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(8px);
-      transition: var(--transition);
-      z-index: 100;
-    }
-
-    .lang-switcher:hover .lang-dropdown,
-    .lang-switcher.active .lang-dropdown {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .lang-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-dark);
-      cursor: pointer;
-    }
-
-    .lang-item:hover, .lang-item.active {
-      background: var(--primary-ice);
-      color: var(--primary-blue);
-      font-weight: 600;
-    }
-
-    /* Mobile Hamburger */
-    .hamburger-btn {
-      display: none;
-      width: 42px;
-      height: 42px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-slate);
-      border: 1px solid var(--border-light);
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--text-dark);
-      font-size: 1.2rem;
-    }
-
-    /* ==========================================================================
-       SECTION 3: HERO SECTION
-       ========================================================================== */
-    .hero-section {
-      position: relative;
-      background-color: var(--primary-deep);
-      color: #ffffff;
-      padding: 90px 0 110px;
-      overflow: hidden;
-    }
-
-    /* High-res Logistics Photo Background with Enterprise Blue Gradient Overlay */
-    .hero-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(135deg, rgba(6, 21, 61, 0.92) 0%, rgba(3, 68, 220, 0.82) 65%, rgba(6, 21, 61, 0.88) 100%),
-                        url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2000&auto=format&fit=crop');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 1;
-    }
-
-    /* Subtle Chevron Geometry Watermark Overlay */
-    .hero-chevron-pattern {
-      position: absolute;
-      right: -80px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 600px;
-      height: 600px;
-      background-repeat: no-repeat;
-      opacity: 0.12;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      max-width: 860px;
-    }
-
-    .hero-badge-wrap {
-      margin-bottom: 22px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      color: #ffffff;
-      padding: 7px 18px;
-      border-radius: var(--radius-pill);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-    }
-
-    .hero-badge i {
-      color: #60a5fa;
-    }
-
-    .hero-title {
-      font-size: clamp(2.8rem, 5.5vw, 4.2rem);
-      font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -0.035em;
-      color: #ffffff;
-      margin-bottom: 22px;
-    }
-
-    .hero-subtext {
-      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-      line-height: 1.55;
-      color: #e0e7ff;
-      margin-bottom: 38px;
-      max-width: 720px;
-      font-weight: 400;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 56px;
-    }
-
-    .btn-hero-quote {
-      background-color: var(--primary-blue);
-      color: #ffffff;
-      font-size: 1.05rem;
-      font-weight: 700;
-      padding: 16px 36px;
-      border-radius: var(--radius-md);
-      box-shadow: 0 10px 25px rgba(3, 68, 220, 0.45);
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
-    }
-
-    .btn-hero-quote:hover {
-      background-color: #ffffff;
-      color: var(--primary-blue);
-      transform: translateY(-3px);
-      box-shadow: 0 14px 30px rgba(255, 255, 255, 0.25);
-    }
-
-    .btn-hero-phone {
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: #ffffff;
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
-      font-size: 1.05rem;
-      font-weight: 600;
-      padding: 16px 28px;
-      border-radius: var(--radius-md);
-    }
-
-    .btn-hero-phone:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-3px);
-      color: #ffffff;
-    }
-
-    /* 3 Highlight Metrics */
-    .hero-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 760px;
-      padding-top: 36px;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .stat-card {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .stat-number {
-      font-size: clamp(2rem, 3.5vw, 2.7rem);
-      font-weight: 900;
-      line-height: 1;
-      color: #ffffff;
-      margin-bottom: 6px;
-      letter-spacing: -0.02em;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: #cbd5e1;
-      font-weight: 500;
-    }
-
-    /* ==========================================================================
-       SECTION 4: GIỚI THIỆU NGẮN & 3 TABS (GIỚI THIỆU / FORM NHẬP / TRACKING)
-       ========================================================================== */
-    .intro-section {
-      padding: 90px 0;
-      background-color: var(--bg-slate);
-      position: relative;
-    }
-
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
-      margin-bottom: 60px;
-    }
-
-    .intro-left-text .chevron-pill {
-      margin-bottom: 16px;
-    }
-
-    .intro-headline {
-      margin-bottom: 18px;
-    }
-
-    .intro-description {
-      font-size: 1.15rem;
-      line-height: 1.6;
-      color: var(--text-dark);
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
-    .intro-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 30px;
-    }
-
-    .intro-bullet-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.98rem;
-      color: var(--text-body);
-    }
-
-    .intro-bullet-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--primary-ice);
-      color: var(--primary-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    /* Intro Visual Card */
-    .intro-visual-card {
-      position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-    }
-
-    .intro-visual-img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-    }
-
-    .intro-floating-badge {
-      position: absolute;
-      bottom: 24px;
-      left: 24px;
-      right: 24px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 16px 20px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-blue);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .intro-floating-badge-text strong {
-      display: block;
-      color: var(--primary-blue);
-      font-size: 1.05rem;
-    }
-
-    .intro-floating-badge-text span {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    /* Interactive 3 Tabs Hub */
-    .tabs-hub-wrap {
-      background: #ffffff;
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-light);
-      padding: 36px;
-      overflow: hidden;
-    }
-
-    .tabs-nav {
-      display: flex;
-      gap: 12px;
-      border-bottom: 2px solid var(--bg-gray);
-      margin-bottom: 30px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-    }
-
-    .tab-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 24px;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      background: none;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      border-radius: var(--radius-md) var(--radius-md) 0 0;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-
-    .tab-btn i {
-      font-size: 1.05rem;
-      color: var(--text-light);
-    }
-
-    .tab-btn:hover {
-      color: var(--primary-blue);
-    }
-
-    .tab-btn.active {
-      color: var(--primary-blue);
-    }
-
-    .tab-btn.active i {
-      color: var(--primary-blue);
-    }
-
-    .tab-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background-color: var(--primary-blue);
-      border-radius: 3px 3px 0 0;
-    }
-
-    .tab-content-panel {
-      display: none;
-      animation: fadeIn 0.35s ease;
-    }
-
-    .tab-content-panel.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Tab 1: GIỚI THIỆU Details */
-    .tab-intro-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .tab-intro-box {
-      background: var(--bg-slate);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      transition: var(--transition);
-    }
-
-    .tab-intro-box:hover {
-      border-color: var(--primary-blue);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .tab-intro-icon {
-      font-size: 1.8rem;
-      color: var(--primary-blue);
-      margin-bottom: 16px;
-    }
-
-    .tab-intro-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 8px;
-    }
-
-    .tab-intro-text {
-      font-size: 0.9rem;
-      color: var(--text-body);
-      line-height: 1.5;
-    }
-
-    /* Tab 2: FORM NHẬP / TÍNH CƯỚC NHANH */
-    .calculator-form-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      align-items: flex-end;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-group label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    .form-control {
-      width: 100%;
-      height: 48px;
-      padding: 0 14px;
-      border: 1.5px solid var(--border-light);
-      border-radius: var(--radius-sm);
-      background-color: var(--bg-slate);
-      color: var(--text-dark);
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .form-control:focus {
-      border-color: var(--primary-blue);
-      background-color: #ffffff;
-      box-shadow: 0 0 0 3px var(--primary-ice);
-    }
-
-    .calc-result-box {
-      margin-top: 24px;
-      background: var(--primary-ice);
-      border: 1px solid var(--border-blue);
-      border-radius: var(--radius-md);
-      padding: 18px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .calc-result-info {
-      display: flex;
-      gap: 32px;
-    }
-
-    .calc-item strong {
-      display: block;
-      color: var(--primary-blue);
-      font-size: 1.15rem;
-    }
-
-    .calc-item span {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    /* Tab 3: TRACKING */
-    .tracking-tab-wrap {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-
-    .tracking-search-bar {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .tracking-input {
-      flex: 1;
-      height: 52px;
-      padding: 0 18px;
-      font-size: 1rem;
-      border: 2px solid var(--border-blue);
-      border-radius: var(--radius-md);
-      outline: none;
-      background: var(--bg-slate);
-      color: var(--text-dark);
-      transition: var(--transition);
-    }
-
-    .tracking-input:focus {
-      border-color: var(--primary-blue);
-      background: #fff;
-      box-shadow: 0 0 0 4px var(--primary-ice);
-    }
-
-    .sample-codes {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      flex-wrap: wrap;
-    }
-
-    .sample-tag {
-      background: var(--bg-slate);
-      border: 1px solid var(--border-light);
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      color: var(--primary-blue);
-      font-weight: 600;
-    }
-
-    .sample-tag:hover {
-      background: var(--primary-ice);
-      border-color: var(--primary-blue);
-    }
-
-    /* Live Tracking Progress Stepper */
-    .tracking-result-card {
-      background: var(--bg-slate);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-    }
-
-    .tracking-header-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border-light);
-      margin-bottom: 24px;
-    }
-
-    .shipment-stepper {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .stepper-step {
-      text-align: center;
-      position: relative;
-    }
-
-    .step-dot {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--bg-white);
-      border: 3px solid var(--border-light);
-      color: var(--text-light);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .stepper-step.completed .step-dot {
-      background: var(--primary-blue);
-      border-color: var(--primary-blue);
-      color: #fff;
-    }
-
-    .stepper-step.current .step-dot {
-      background: #fff;
-      border-color: var(--primary-blue);
-      color: var(--primary-blue);
-      box-shadow: 0 0 0 4px var(--primary-ice);
-    }
-
-    .step-name {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      display: block;
-    }
-
-    .step-time {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    /* ==========================================================================
-       SECTION 5: DỊCH VỤ TRỌNG TÂM (4 CARDS + 4 TRUST BADGES)
-       ========================================================================== */
-    .services-section {
-      padding: 90px 0;
-      background-color: var(--bg-white);
-      position: relative;
-    }
-
-    .section-header-center {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 56px;
-    }
-
-    .section-header-center .chevron-pill {
-      margin-bottom: 16px;
-    }
-
-    .section-subtitle {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      margin-top: 12px;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-bottom: 50px;
-    }
-
-    .service-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 32px 26px;
-      display: flex;
-      flex-direction: column;
-      transition: var(--transition);
-      position: relative;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .service-card:hover {
-      border-color: var(--primary-blue);
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .service-icon-wrap {
-      width: 58px;
-      height: 58px;
-      border-radius: var(--radius-md);
-      background: var(--primary-ice);
-      color: var(--primary-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.55rem;
-      margin-bottom: 22px;
-      border: 1px solid var(--border-blue);
-      transition: var(--transition);
-    }
-
-    .service-card:hover .service-icon-wrap {
-      background: var(--primary-blue);
-      color: #ffffff;
-      transform: scale(1.05);
-    }
-
-    .service-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 12px;
-    }
-
-    .service-text {
-      font-size: 0.92rem;
-      color: var(--text-body);
-      line-height: 1.6;
-      margin-bottom: 22px;
-      flex-grow: 1;
-    }
-
-    .service-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--primary-blue);
-    }
-
-    .service-link i {
-      transition: transform 0.2s ease;
-    }
-
-    .service-card:hover .service-link i {
-      transform: translateX(5px);
-    }
-
-    /* 4 Trust Badges */
-    .trust-badges-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      background: var(--primary-tint);
-      border: 1px solid var(--border-blue);
-      border-radius: var(--radius-lg);
-      padding: 28px 32px;
-    }
-
-    .trust-badge-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .trust-badge-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #ffffff;
-      color: var(--primary-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: var(--shadow-sm);
-      flex-shrink: 0;
-    }
-
-    .trust-badge-content strong {
-      display: block;
-      font-size: 0.96rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 2px;
-    }
-
-    .trust-badge-content span {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    /* ==========================================================================
-       SECTION 6: QUY TRÌNH VẬN HÀNH 8 BƯỚC (CHEVRON TIMELINE)
-       ========================================================================== */
-    .process-section {
-      padding: 90px 0;
-      background-color: var(--bg-slate);
-      position: relative;
-    }
-
-    .process-timeline {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-      margin-top: 50px;
-    }
-
-    .process-step-card {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 26px 22px;
-      transition: var(--transition);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .process-step-card:hover {
-      border-color: var(--primary-blue);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    /* Number enclosed inside Key Visual Chevron Motif */
-    .step-chevron-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 18px;
-    }
-
-    .step-chevron-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--primary-blue);
-      color: #ffffff;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-weight: 800;
-      font-size: 0.88rem;
-      letter-spacing: 0.04em;
-      clip-path: polygon(0% 0%, 82% 0%, 100% 50%, 82% 100%, 0% 100%);
-      padding-right: 20px;
-    }
-
-    .step-phase-tag {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--text-light);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .step-name-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 10px;
-    }
-
-    .step-desc-text {
-      font-size: 0.88rem;
-      color: var(--text-body);
-      line-height: 1.55;
-    }
-
-    /* ==========================================================================
-       SECTION 7: FORM ĐĂNG KÝ TƯ VẤN MIỄN PHÍ
-       ========================================================================== */
-    .consultation-section {
-      padding: 90px 0;
-      background-color: var(--bg-white);
-      position: relative;
-    }
-
-    .consultation-card {
-      background: linear-gradient(135deg, #ffffff 0%, var(--primary-tint) 100%);
-      border: 1px solid var(--border-blue);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-xl);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-    }
-
-    .consultation-left {
-      background-color: var(--primary-blue);
-      color: #ffffff;
-      padding: 48px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .consultation-left-pattern {
-      position: absolute;
-      top: -30px;
-      right: -30px;
-      width: 220px;
-      height: 220px;
-      opacity: 0.12;
-      pointer-events: none;
-    }
-
-    .consultation-left-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .consultation-left-content .headline-section {
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-
-    .consultation-sla-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 0.88rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
-    .consultation-perks {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 36px;
-    }
-
-    .perk-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.95rem;
-      color: #e0e7ff;
-    }
-
-    .perk-item i {
-      color: #93c5fd;
-      font-size: 1.1rem;
-      margin-top: 2px;
-    }
-
-    .consultation-hotline-box {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .hotline-icon {
-      font-size: 1.4rem;
-      color: #93c5fd;
-    }
-
-    .hotline-details span {
-      display: block;
-      font-size: 0.8rem;
-      color: #cbd5e1;
-    }
-
-    .hotline-details strong {
-      font-size: 1.1rem;
-      color: #ffffff;
-    }
-
-    /* Consultation Right Form */
-    .consultation-right {
-      padding: 48px;
-      background: #ffffff;
-    }
-
-    .form-row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .form-group-full {
-      margin-bottom: 16px;
-    }
-
-    .form-textarea {
-      width: 100%;
-      min-height: 100px;
-      padding: 12px 14px;
-      border: 1.5px solid var(--border-light);
-      border-radius: var(--radius-sm);
-      background-color: var(--bg-slate);
-      color: var(--text-dark);
-      outline: none;
-      resize: vertical;
-      transition: var(--transition);
-    }
-
-    .form-textarea:focus {
-      border-color: var(--primary-blue);
-      background-color: #ffffff;
-      box-shadow: 0 0 0 3px var(--primary-ice);
-    }
-
-    .form-security-note {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 14px;
-    }
-
-    .form-security-note i {
-      color: var(--primary-blue);
-    }
-
-    /* ==========================================================================
-       SECTION 8: ĐỐI TÁC (2 KHỐI: VẬN CHUYỂN & NHÀ MÁY)
-       ========================================================================== */
-    .partners-section {
-      padding: 90px 0;
-      background-color: var(--bg-slate);
-      position: relative;
-    }
-
-    .partners-block {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-xl);
-      padding: 36px 40px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .partners-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 28px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border-light);
+    .app-error-card {
+      max-width: 640px;
+      margin: 80px auto;
+      background: #FFFFFF;
+      border: 1px solid #FECACA;
+      border-left: 6px solid #EF4444;
+      border-radius: 10px;
+      padding: 32px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
     }
 
-    .partners-header-title {
+    .app-error-title {
+      color: #991B1B;
       font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--text-dark);
+      font-weight: 700;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .partners-header-title i {
-      color: var(--primary-blue);
-    }
-
-    .partners-header-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .carrier-logos-grid {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 16px;
-      align-items: center;
-    }
-
-    .carrier-item {
-      background: var(--bg-slate);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-sm);
-      padding: 14px 10px;
-      text-align: center;
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: var(--text-body);
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 60px;
-    }
-
-    .carrier-item:hover {
-      border-color: var(--primary-blue);
-      color: var(--primary-blue);
-      background: #ffffff;
-      box-shadow: var(--shadow-sm);
-      transform: translateY(-2px);
-    }
-
-    /* Factory Network Grid */
-    .factory-network-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .factory-item {
-      background: var(--bg-slate);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      transition: var(--transition);
-    }
-
-    .factory-item:hover {
-      border-color: var(--primary-blue);
-      background: #ffffff;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .factory-tag {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--primary-blue);
-      background: var(--primary-ice);
-      padding: 3px 8px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 8px;
-    }
-
-    .factory-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-    }
-
-    .factory-desc {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    /* ==========================================================================
-       SECTION 9: TESTIMONIALS (3 CARDS, 5 SAO)
-       ========================================================================== */
-    .testimonials-section {
-      padding: 90px 0;
-      background-color: var(--bg-white);
-      position: relative;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-    }
-
-    .testimonial-card {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 34px 28px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .testimonial-card:hover {
-      border-color: var(--primary-blue);
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .testimonial-stars {
-      display: flex;
-      gap: 4px;
-      color: #fbbf24; /* Accessible gold star */
-      font-size: 0.95rem;
-      margin-bottom: 18px;
-    }
-
-    .testimonial-quote {
-      font-size: 0.96rem;
-      color: var(--text-body);
+    .app-error-desc {
+      color: #4B5563;
+      font-size: 0.92rem;
       line-height: 1.65;
-      font-style: italic;
-      margin-bottom: 24px;
-      flex-grow: 1;
+      margin-bottom: 20px;
     }
 
-    .testimonial-author-wrap {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding-top: 18px;
-      border-top: 1px solid var(--border-light);
+    .app-error-cmd {
+      background: #1E293B;
+      color: #38BDF8;
+      font-family: monospace;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin: 12px 0 20px 0;
+      user-select: all;
     }
 
-    .author-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--primary-ice);
-      color: var(--primary-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1rem;
-      border: 2px solid var(--border-blue);
-    }
-
-    .author-info strong {
-      display: block;
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-
-    .author-info span {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    /* ==========================================================================
-       SECTION 10: TẠI SAO CHỌN SPEEGO (6 ĐIỂM, ICON XANH)
-       ========================================================================== */
-    .why-section {
-      padding: 90px 0;
-      background-color: var(--bg-slate);
-      position: relative;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .why-card {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 30px;
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      transition: var(--transition);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .why-card:hover {
-      border-color: var(--primary-blue);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .why-icon-box {
-      width: 50px;
-      height: 50px;
-      border-radius: var(--radius-md);
-      background: var(--primary-ice);
-      color: var(--primary-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      flex-shrink: 0;
-      border: 1px solid var(--border-blue);
-    }
-
-    .why-card:hover .why-icon-box {
-      background: var(--primary-blue);
-      color: #ffffff;
-    }
-
-    .why-content h4 {
-      font-size: 1.12rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 8px;
-    }
-
-    .why-content p {
-      font-size: 0.88rem;
-      color: var(--text-body);
-      line-height: 1.5;
-    }
-
-    /* ==========================================================================
-       SECTION 11: TIN TỨC (4 CARDS + VIEW ALL)
-       ========================================================================== */
-    .news-section {
-      padding: 90px 0;
-      background-color: var(--bg-white);
-      position: relative;
-    }
-
-    .news-header-row {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 48px;
-    }
-
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-
-    .news-card {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .news-card:hover {
-      border-color: var(--primary-blue);
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .news-thumb-wrap {
-      position: relative;
-      height: 180px;
-      overflow: hidden;
-    }
-
-    .news-thumb {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .news-card:hover .news-thumb {
-      transform: scale(1.06);
-    }
-
-    .news-category-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--primary-blue);
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .news-content {
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .news-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      line-height: 1.4;
-      margin-bottom: 10px;
-    }
-
-    .news-excerpt {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 18px;
-      flex-grow: 1;
-    }
-
-    .news-read-link {
+    .btn-retry {
+      background: var(--navy-main);
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.86rem;
-      font-weight: 700;
-      color: var(--primary-blue);
-    }
-
-    .news-read-link i {
-      transition: transform 0.2s ease;
-    }
-
-    .news-card:hover .news-read-link i {
-      transform: translateX(4px);
-    }
-
-    /* ==========================================================================
-       SECTION 12: FOOTER (OFFICIAL BRAND BLUE/NAVY, 5 GLOBAL OFFICES)
-       ========================================================================== */
-    .site-footer {
-      background-color: var(--primary-deep);
-      color: #cbd5e1;
-      padding: 80px 0 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-    }
-
-    .footer-top-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 0.85fr 0.85fr;
-      gap: 50px;
-      margin-bottom: 60px;
-      padding-bottom: 50px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .footer-brand-col {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .footer-logo-badge {
-      background: #ffffff;
-      padding: 8px 16px;
-      border-radius: var(--radius-md);
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-    }
-
-    .footer-logo-img {
-      height: 42px;
-      width: auto;
-    }
-
-    .footer-brand-desc {
-      font-size: 0.92rem;
-      line-height: 1.6;
-      color: #94a3b8;
-      max-width: 380px;
-    }
-
-    .footer-col-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 20px;
-      letter-spacing: 0.02em;
-    }
-
-    .footer-links-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer-link-item a {
-      color: #cbd5e1;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .footer-link-item a:hover {
-      color: #ffffff;
-      padding-left: 5px;
-    }
-
-    .footer-link-item a i {
-      font-size: 0.75rem;
-      color: #60a5fa;
-    }
-
-    /* 5 Representative Offices Grid */
-    .offices-section-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 22px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .offices-section-title i {
-      color: #60a5fa;
-    }
-
-    .offices-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
-      margin-bottom: 50px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .office-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-md);
-      padding: 18px;
-      transition: var(--transition);
-    }
-
-    .office-card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(96, 165, 250, 0.4);
-      transform: translateY(-3px);
-    }
-
-    .office-country {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 8px;
-    }
-
-    .office-address {
-      font-size: 0.8rem;
-      line-height: 1.45;
-      color: #94a3b8;
-      margin-bottom: 10px;
-    }
-
-    .office-hotline {
-      font-size: 0.82rem;
-      color: #60a5fa;
-      font-weight: 600;
-    }
-
-    /* Bottom Copyright */
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.82rem;
-      color: #64748b;
-    }
-
-    .footer-legal-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .footer-legal-links a:hover {
-      color: #94a3b8;
-    }
-
-    /* ==========================================================================
-       SECTION 13: FLOATING SHIPMENT TRACKING WIDGET & POPUP MODAL
-       ========================================================================== */
-    .floating-tracking-btn {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background-color: var(--primary-blue);
-      color: #ffffff;
-      padding: 14px 22px;
-      border-radius: var(--radius-pill);
-      box-shadow: 0 8px 24px rgba(3, 68, 220, 0.4);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 0.92rem;
-      cursor: pointer;
-      z-index: 999;
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
-      transition: var(--transition);
-    }
-
-    .floating-tracking-btn:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 12px 30px rgba(3, 68, 220, 0.5);
-    }
-
-    .radar-pulse {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #60a5fa;
-      position: relative;
-    }
-
-    .radar-pulse::after {
-      content: '';
-      position: absolute;
-      top: -4px;
-      left: -4px;
-      right: -4px;
-      bottom: -4px;
-      border-radius: 50%;
-      border: 2px solid #60a5fa;
-      animation: pulseAnim 1.6s infinite ease-out;
-    }
-
-    @keyframes pulseAnim {
-      0% { transform: scale(0.6); opacity: 1; }
-      100% { transform: scale(2.2); opacity: 0; }
-    }
-
-    /* Tracking Modal Overlay */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-      padding: 20px;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      border-radius: var(--radius-xl);
-      max-width: 600px;
-      width: 100%;
-      padding: 36px;
-      box-shadow: var(--shadow-xl);
-      position: relative;
-      transform: translateY(20px);
-      transition: var(--transition);
-    }
-
-    .modal-overlay.active .modal-card {
-      transform: translateY(0);
-    }
-
-    .modal-close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--bg-slate);
-      border: 1px solid var(--border-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--text-muted);
-      transition: var(--transition);
-    }
-
-    .modal-close-btn:hover {
-      background: var(--primary-ice);
-      color: var(--primary-blue);
-    }
-
-    .modal-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-    }
-
-    .modal-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 22px;
-    }
-
-    /* Success Toast */
-    .toast-notification {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      background: #ffffff;
-      border-left: 5px solid var(--primary-blue);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-xl);
-      padding: 16px 22px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      z-index: 3000;
-      transform: translateX(120%);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      max-width: 380px;
-    }
-
-    .toast-notification.active {
-      transform: translateX(0);
-    }
-
-    .toast-icon {
-      font-size: 1.4rem;
-      color: var(--primary-blue);
-    }
-
-    .toast-text strong {
-      display: block;
-      font-size: 0.95rem;
-      color: var(--text-dark);
-    }
-
-    .toast-text span {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    /* ==========================================================================
-       RESPONSIVE BREAKPOINTS
-       ========================================================================== */
-    @media (max-width: 1080px) {
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .process-timeline {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .why-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .news-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .offices-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .carrier-logos-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-      .factory-network-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 900px) {
-      .topbar {
-        display: none; /* Hide topbar on tablet/mobile to preserve space */
-      }
-      .nav-menu {
-        display: none; /* Controlled by mobile drawer */
-      }
-      .hamburger-btn {
-        display: flex;
-      }
-      .intro-grid {
-        grid-template-columns: 1fr;
-      }
-      .consultation-card {
-        grid-template-columns: 1fr;
-      }
-      .footer-top-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      .trust-badges-bar {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-      }
-      .tab-intro-grid {
-        grid-template-columns: 1fr;
-      }
-      .calculator-form-grid {
-        grid-template-columns: 1fr;
-      }
-      .shipment-stepper {
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-      .process-timeline {
-        grid-template-columns: 1fr;
-      }
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-      .news-grid {
-        grid-template-columns: 1fr;
-      }
-      .offices-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero-stats-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-      .form-row-2 {
-        grid-template-columns: 1fr;
-      }
-      .trust-badges-bar {
-        grid-template-columns: 1fr;
-      }
-      .carrier-logos-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .factory-network-grid {
-        grid-template-columns: 1fr;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-      }
-    }
-
-    /* Mobile Drawer Menu */
-    .mobile-drawer {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 82%;
-      max-width: 340px;
-      height: 100vh;
-      background: #ffffff;
-      box-shadow: -6px 0 25px rgba(0, 0, 0, 0.15);
-      z-index: 2100;
-      padding: 30px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: right 0.35s ease;
-      overflow-y: auto;
-    }
-
-    .mobile-drawer.open {
-      right: 0;
-    }
-
-    .drawer-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 2050;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-    }
-
-    .drawer-backdrop.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .drawer-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 28px;
-    }
-
-    .drawer-nav-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .drawer-nav-list a {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text-dark);
-      padding: 8px 0;
-      display: block;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .drawer-nav-list a:hover {
-      color: var(--primary-blue);
-      padding-left: 6px;
     }
   </style>
 </head>
 <body>
 
-  <!-- ==========================================================================
-       SECTION 1: TOP BAR
-       ========================================================================== -->
-  <div class="topbar">
-    <div class="container">
-      <div class="topbar-left">
-        <a href="tel:02462918618" class="topbar-link">
-          <i class="fa-solid fa-phone"></i>
-          <span>(024) 6291 8618</span>
-        </a>
-        <span class="topbar-separator">|</span>
-        <a href="mailto:info@speegologistic.com" class="topbar-link">
-          <i class="fa-solid fa-envelope"></i>
-          <span>info@speegologistic.com</span>
-        </a>
-        <span class="topbar-separator">|</span>
-        <a href="#footer" class="topbar-link">
-          <span>Chính sách bảo mật</span>
-        </a>
-        <span class="topbar-separator">·</span>
-        <a href="#footer" class="topbar-link">
-          <span>Điều khoản &amp; Điều kiện</span>
-        </a>
-      </div>
+  <!-- PARTIAL HEADER CONTAINER -->
+  <div id="header-container"></div>
 
-      <div class="topbar-right">
-        <!-- Standard Social Icons with Official Brand Colors -->
-        <div class="topbar-socials">
-          <a href="https://facebook.com" target="_blank" rel="noopener" class="social-btn social-fb" title="Facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-          </a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-btn social-tiktok" title="TikTok">
-            <i class="fa-brands fa-tiktok"></i>
-          </a>
-          <a href="https://zalo.me" target="_blank" rel="noopener" class="social-btn social-zalo" title="Zalo">
-            <i class="fa-solid fa-comment-dots"></i>
-          </a>
-          <a href="https://whatsapp.com" target="_blank" rel="noopener" class="social-btn social-wa" title="WhatsApp">
-            <i class="fa-brands fa-whatsapp"></i>
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn social-in" title="LinkedIn">
-            <i class="fa-brands fa-linkedin-in"></i>
-          </a>
-        </div>
-
-        <div class="topbar-actions">
-          <span class="topbar-action-item" onclick="openTrackingModal()">
-            <i class="fa-solid fa-location-crosshairs" style="color: #60a5fa; margin-right: 5px;"></i> Tracking đơn hàng
-          </span>
-          <a href="#offices" class="topbar-action-item">
-            <i class="fa-solid fa-building" style="color: #60a5fa; margin-right: 5px;"></i> Địa chỉ công ty
-          </a>
-        </div>
-      </div>
+  <!-- MAIN APP ROUTER CONTAINER -->
+  <main id="app-main">
+    <div class="app-loading-state">
+      <div class="loading-spinner"></div>
+      <div>Đang tải nội dung SpeeGo...</div>
     </div>
-  </div>
+  </main>
 
-  <!-- ==========================================================================
-       SECTION 2: HEADER & NAVBAR
-       ========================================================================== -->
-  <header class="site-header" id="siteHeader">
-    <div class="container">
-      <nav class="navbar">
-        <!-- Official SpeeGo Logo (With Graceful Fallback) -->
-        <a href="#" class="brand-logo-wrap" title="SpeeGo Logistics">
-          <img src="speego-logo.png" alt="SpeeGo LOGISTICS" class="brand-logo-img" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 280 64\' fill=\'none\'><path d=\'M16 18 C16 13 22 10 32 10 L52 10 C58 10 62 14 62 20 C62 25 58 28 52 28 L28 28 C20 28 16 34 16 42 C16 50 22 54 32 54 L54 54 C60 54 64 50 64 44\' stroke=\'%230b2545\' stroke-width=\'7\' stroke-linecap=\'round\'/><path d=\'M30 26 L42 36 L30 46\' stroke=\'%23f05a22\' stroke-width=\'5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/><path d=\'M38 26 L50 36 L38 46\' stroke=\'%23f05a22\' stroke-width=\'5\' stroke-linecap=\'round\' stroke-linejoin=\'round\' opacity=\'0.8\'/><text x=\'74\' y=\'36\' font-family=\'sans-serif\' font-weight=\'900\' font-size=\'30\' fill=\'%230b2545\'>SpeeGo</text><text x=\'76\' y=\'52\' font-family=\'sans-serif\' font-weight=\'800\' font-size=\'13\' fill=\'%23f05a22\' letter-spacing=\'4\'>LOGISTICS</text></svg>';">
-        </a>
+  <!-- PARTIAL FOOTER CONTAINER -->
+  <div id="footer-container"></div>
 
-        <!-- Main Desktop Navigation Menu -->
-        <ul class="nav-menu">
-          <li class="nav-item">
-            <a href="#services" class="nav-link">
-              Dịch vụ <i class="fa-solid fa-chevron-down"></i>
-            </a>
-            <!-- Submenu Dropdown -->
-            <div class="nav-dropdown">
-              <a href="#services" class="dropdown-link">
-                <i class="fa-solid fa-magnifying-glass-chart"></i> Sourcing &amp; QC
-              </a>
-              <a href="#services" class="dropdown-link">
-                <i class="fa-solid fa-ship"></i> Logistics Quốc Tế
-              </a>
-              <a href="#services" class="dropdown-link">
-                <i class="fa-solid fa-warehouse"></i> Fulfillment Kho Bãi
-              </a>
-              <a href="#services" class="dropdown-link">
-                <i class="fa-solid fa-file-shield"></i> Thủ tục Xuất Nhập Khẩu
-              </a>
-            </div>
-          </li>
-          <li class="nav-item"><a href="#process" class="nav-link">Quy trình</a></li>
-          <li class="nav-item"><a href="#quote" class="nav-link">Tư vấn</a></li>
-          <li class="nav-item"><a href="#partners" class="nav-link">Đối tác</a></li>
-          <li class="nav-item"><a href="#testimonials" class="nav-link">Đánh giá</a></li>
-          <li class="nav-item"><a href="#why" class="nav-link">Vì sao chọn SpeeGo</a></li>
-          <li class="nav-item"><a href="#news" class="nav-link">Tin tức</a></li>
-        </ul>
-
-        <!-- Right Side: Language Switcher + Brand Blue CTA Button -->
-        <div class="header-actions">
-          <!-- Language Switcher VN / EN / ES -->
-          <div class="lang-switcher" id="langSwitcher">
-            <button class="lang-btn" type="button" aria-label="Select Language">
-              <img src="https://flagcdn.com/w40/vn.png" alt="VN" class="lang-flag" id="activeFlag">
-              <span id="activeLangCode">VN</span>
-              <i class="fa-solid fa-chevron-down" style="font-size: 0.65rem;"></i>
-            </button>
-            <div class="lang-dropdown">
-              <div class="lang-item active" onclick="switchLanguage('VN', 'https://flagcdn.com/w40/vn.png')">
-                <img src="https://flagcdn.com/w40/vn.png" class="lang-flag" alt="VN"> Tiếng Việt
-              </div>
-              <div class="lang-item" onclick="switchLanguage('EN', 'https://flagcdn.com/w40/us.png')">
-                <img src="https://flagcdn.com/w40/us.png" class="lang-flag" alt="EN"> English (US)
-              </div>
-              <div class="lang-item" onclick="switchLanguage('ES', 'https://flagcdn.com/w40/es.png')">
-                <img src="https://flagcdn.com/w40/es.png" class="lang-flag" alt="ES"> Español
-              </div>
-            </div>
-          </div>
-
-          <!-- Strict Brand Blue CTA (Strictly No Orange on Website UI) -->
-          <a href="#quote" class="btn btn-primary">
-            <span>Nhận báo giá</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-
-          <!-- Mobile Hamburger Toggle -->
-          <button class="hamburger-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Mobile Drawer Menu -->
-  <div class="drawer-backdrop" id="drawerBackdrop"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
-    <div>
-      <div class="drawer-header">
-        <img src="speego-logo.png" alt="SpeeGo" style="height: 38px;" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 280 64\' fill=\'none\'><path d=\'M16 18 C16 13 22 10 32 10 L52 10 C58 10 62 14 62 20 C62 25 58 28 52 28 L28 28 C20 28 16 34 16 42 C16 50 22 54 32 54 L54 54 C60 54 64 50 64 44\' stroke=\'%230b2545\' stroke-width=\'7\' stroke-linecap=\'round\'/><path d=\'M30 26 L42 36 L30 46\' stroke=\'%23f05a22\' stroke-width=\'5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/><path d=\'M38 26 L50 36 L38 46\' stroke=\'%23f05a22\' stroke-width=\'5\' stroke-linecap=\'round\' stroke-linejoin=\'round\' opacity=\'0.8\'/><text x=\'74\' y=\'36\' font-family=\'sans-serif\' font-weight=\'900\' font-size=\'30\' fill=\'%230b2545\'>SpeeGo</text><text x=\'76\' y=\'52\' font-family=\'sans-serif\' font-weight=\'800\' font-size=\'13\' fill=\'%23f05a22\' letter-spacing=\'4\'>LOGISTICS</text></svg>';">
-        <button class="modal-close-btn" id="drawerCloseBtn" aria-label="Close menu">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <ul class="drawer-nav-list">
-        <li><a href="#services" class="drawer-link">Dịch vụ</a></li>
-        <li><a href="#process" class="drawer-link">Quy trình</a></li>
-        <li><a href="#quote" class="drawer-link">Tư vấn</a></li>
-        <li><a href="#partners" class="drawer-link">Đối tác</a></li>
-        <li><a href="#testimonials" class="drawer-link">Đánh giá</a></li>
-        <li><a href="#why" class="drawer-link">Vì sao chọn SpeeGo</a></li>
-        <li><a href="#news" class="drawer-link">Tin tức</a></li>
-        <li><a href="#offices" class="drawer-link">Văn phòng đại diện</a></li>
-      </ul>
-    </div>
-    <div style="padding-top: 20px;">
-      <a href="#quote" class="btn btn-primary" style="width: 100%;">Nhận báo giá ngay</a>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       SECTION 3: HERO SECTION
-       ========================================================================== -->
-  <section class="hero-section" id="hero">
-    <div class="hero-bg"></div>
-    <!-- Key Visual Geometric Chevron Overlay Motif -->
-    <svg class="hero-chevron-pattern" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M120 40 L260 200 L120 360" stroke="#ffffff" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M40 40 L180 200 L40 360" stroke="#60a5fa" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M200 40 L340 200 L200 360" stroke="#ffffff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.5" />
-    </svg>
-
-    <div class="container">
-      <div class="hero-content reveal-on-scroll">
-        <!-- Small Badge -->
-        <div class="hero-badge-wrap">
-          <span class="hero-badge">
-            <i class="fa-solid fa-globe"></i> GLOBAL LOGISTICS PARTNER
-          </span>
-        </div>
-
-        <!-- Large Headline -->
-        <h1 class="hero-title">
-          From Sourcing to Global Delivery
-        </h1>
-
-        <!-- Subtext -->
-        <p class="hero-subtext">
-          We help businesses source, inspect, ship and fulfil with confidence — faster, safer and more cost-effective.
-        </p>
-
-        <!-- 2 CTA Buttons -->
-        <div class="hero-cta-group">
-          <a href="#quote" class="btn btn-hero-quote">
-            <span>Get a Quote</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-          <a href="tel:+84906828898" class="btn btn-hero-phone">
-            <i class="fa-solid fa-phone-volume"></i>
-            <span>(+84) 906 828 898</span>
-          </a>
-        </div>
-
-        <!-- 3 Highlight Metrics -->
-        <div class="hero-stats-grid">
-          <div class="stat-card">
-            <span class="stat-number">200+</span>
-            <span class="stat-label">Global Partners</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number">99%</span>
-            <span class="stat-label">On-time Delivery</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number">50+</span>
-            <span class="stat-label">Countries Covered</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 4: GIỚI THIỆU NGẮN & 3 TABS (GIỚI THIỆU / FORM NHẬP / TRACKING)
-       ========================================================================== -->
-  <section class="intro-section" id="about">
-    <div class="container">
-      <!-- Short Introduction Overview -->
-      <div class="intro-grid">
-        <div class="intro-left-text reveal-on-scroll">
-          <div class="chevron-pill">
-            <i class="fa-solid fa-angles-right"></i> Về SpeeGo Logistics
-          </div>
-          <h2 class="headline-section intro-headline">
-            SpeeGo Logistics connects factories in Vietnam &amp; China to buyers in the US, Canada, and Australia — end to end.
-          </h2>
-          <p class="tagline-italic" style="margin-bottom: 18px;">
-            Giải pháp chuỗi cung ứng khép kín tối ưu cho doanh nghiệp xuất khẩu &amp; bán lẻ quốc tế.
-          </p>
-          <ul class="intro-bullets">
-            <li class="intro-bullet-item">
-              <span class="intro-bullet-icon"><i class="fa-solid fa-check"></i></span>
-              <span><strong>Sourcing, MOQ negotiation &amp; on-site QC:</strong> Tìm kiếm xưởng tận gốc, đàm phán số lượng tối thiểu và kiểm định trực tiếp tại nhà máy.</span>
-            </li>
-            <li class="intro-bullet-item">
-              <span class="intro-bullet-icon"><i class="fa-solid fa-check"></i></span>
-              <span><strong>Ocean FCL/LCL &amp; air freight with live OMS tracking:</strong> Vận chuyển đường biển nguyên container/hàng lẻ &amp; đường bay với hệ thống quản trị đơn hàng trực tiếp.</span>
-            </li>
-            <li class="intro-bullet-item">
-              <span class="intro-bullet-icon"><i class="fa-solid fa-check"></i></span>
-              <span><strong>Customs clearance &amp; destination fulfillment:</strong> Thông quan xuất nhập khẩu chuyên nghiệp và xử lý đơn hàng kho bãi tại nước nhận.</span>
-            </li>
-            <li class="intro-bullet-item">
-              <span class="intro-bullet-icon"><i class="fa-solid fa-check"></i></span>
-              <span><strong>Transparent quotes — zero hidden surcharges:</strong> Báo giá rõ ràng từng chi phí, cam kết không phát sinh phụ phí ẩn ngoài hợp đồng.</span>
-            </li>
-          </ul>
-
-          <a href="#services" class="btn btn-outline">
-            <span>Learn more</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="intro-right-visual reveal-on-scroll">
-          <div class="intro-visual-card">
-            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop" alt="SpeeGo End to End Logistics" class="intro-visual-img">
-            <div class="intro-floating-badge">
-              <div class="intro-floating-badge-text">
-                <strong>Hệ thống quản trị OMS thông minh</strong>
-                <span>Theo dõi toàn trình từ dây chuyền xuất xưởng đến tận cửa khách hàng</span>
-              </div>
-              <i class="fa-solid fa-satellite-dish" style="color: var(--primary-blue); font-size: 1.5rem; margin-left: 15px;"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 Interactive Tabs Hub (GIỚI THIỆU / FORM NHẬP / TRACKING) -->
-      <div class="tabs-hub-wrap reveal-on-scroll">
-        <div class="tabs-nav">
-          <button class="tab-btn active" onclick="openTab(event, 'tab-gioithieu')">
-            <i class="fa-solid fa-circle-info"></i> GIỚI THIỆU DỊCH VỤ
-          </button>
-          <button class="tab-btn" onclick="openTab(event, 'tab-formnhap')">
-            <i class="fa-solid fa-calculator"></i> FORM NHẬP / TÍNH CƯỚC NHANH
-          </button>
-          <button class="tab-btn" onclick="openTab(event, 'tab-tracking')">
-            <i class="fa-solid fa-radar"></i> TRA CỨU TRACKING OMS
-          </button>
-        </div>
-
-        <!-- Tab 1: GIỚI THIỆU -->
-        <div class="tab-content-panel active" id="tab-gioithieu">
-          <div class="tab-intro-grid">
-            <div class="tab-intro-box">
-              <div class="tab-intro-icon"><i class="fa-solid fa-industry"></i></div>
-              <h3 class="tab-intro-title">Mạng Lưới Nhà Máy Tận Gốc</h3>
-              <p class="tab-intro-text">Liên kết trực tiếp hơn 350+ nhà máy đạt chuẩn tại Quảng Đông, Chiết Giang (TQ) và Bình Dương, Đồng Nai, Bắc Ninh (VN) giúp tối ưu giá gốc và điều kiện MOQ linh hoạt.</p>
-            </div>
-            <div class="tab-intro-box">
-              <div class="tab-intro-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-              <h3 class="tab-intro-title">Kiểm Soát Chất Lượng (QC)</h3>
-              <p class="tab-intro-text">Đội ngũ kỹ thuật viên kiểm định tại xưởng theo tiêu chuẩn AQL 2.5, gửi báo cáo hình ảnh, video thực tế chi tiết trước khi đóng thùng niêm phong xuất xưởng.</p>
-            </div>
-            <div class="tab-intro-box">
-              <div class="tab-intro-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
-              <h3 class="tab-intro-title">Fulfillment Kho Bãi Mỹ &amp; Úc</h3>
-              <p class="tab-intro-text">Kho vệ tinh tại Houston TX (Mỹ), Melbourne (Úc) và Burnaby (Canada) sẵn sàng dán tem, bốc dỡ, lưu kho và giao chặng cuối (Last-mile) trong 24-48 giờ.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab 2: FORM NHẬP / TÍNH CƯỚC NHANH -->
-        <div class="tab-content-panel" id="tab-formnhap">
-          <div class="calculator-form-grid">
-            <div class="form-group">
-              <label for="calcOrigin">Điểm đi (Origin)</label>
-              <select class="form-control" id="calcOrigin">
-                <option value="VN">Việt Nam (Hải Phòng / Cát Lái / SGN)</option>
-                <option value="CN">Trung Quốc (Quảng Châu / Thâm Quyến / Ninh Ba)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="calcDest">Điểm đến (Destination)</label>
-              <select class="form-control" id="calcDest">
-                <option value="US">Hoa Kỳ (Houston / LA / Long Beach / NYC)</option>
-                <option value="CA">Canada (Vancouver / Toronto)</option>
-                <option value="AU">Úc (Sydney / Melbourne / Brisbane)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="calcMode">Phương thức vận chuyển</label>
-              <select class="form-control" id="calcMode" onchange="recalculateQuote()">
-                <option value="ocean_fcl">Đường biển nguyên container (FCL)</option>
-                <option value="ocean_lcl">Đường biển hàng lẻ (LCL)</option>
-                <option value="air_express">Đường hàng không nhanh (Air Freight)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>&nbsp;</label>
-              <button type="button" class="btn btn-primary" style="height: 48px; width: 100%;" onclick="recalculateQuote()">
-                <i class="fa-solid fa-magnifying-glass"></i> Ước Tính Cước
-              </button>
-            </div>
-          </div>
-
-          <div class="calc-result-box" id="calcResultBox">
-            <div class="calc-result-info">
-              <div class="calc-item">
-                <span id="calcTransitLabel">Thời gian vận chuyển dự kiến</span>
-                <strong id="calcTransitTime">14 - 18 Ngày</strong>
-              </div>
-              <div class="calc-item">
-                <span>Tần suất chuyến</span>
-                <strong id="calcFrequency">3 - 4 Chuyến / Tuần</strong>
-              </div>
-              <div class="calc-item">
-                <span>Trạng thái giá</span>
-                <strong style="color: #0344DC;">Cam kết không chi phí ẩn</strong>
-              </div>
-            </div>
-            <a href="#quote" class="btn btn-outline" style="background: #fff;">
-              Áp dụng vào báo giá <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Tab 3: TRACKING OMS -->
-        <div class="tab-content-panel" id="tab-tracking">
-          <div class="tracking-tab-wrap">
-            <div class="tracking-search-bar">
-              <input type="text" class="tracking-input" id="tabTrackingInput" placeholder="Nhập mã vận đơn SpeeGo OMS hoặc mã hãng tàu/hàng không (VD: SPG-US882910)" value="SPG-US882910">
-              <button class="btn btn-primary" onclick="simulateTrackingSearch('tabTrackingInput')">
-                <i class="fa-solid fa-magnifying-glass"></i> Tra Cứu
-              </button>
-            </div>
-
-            <div class="sample-codes">
-              <span>Mã demo có sẵn:</span>
-              <span class="sample-tag" onclick="quickFillTracking('SPG-US882910')">SPG-US882910 (Mỹ)</span>
-              <span class="sample-tag" onclick="quickFillTracking('SPG-AU441920')">SPG-AU441920 (Úc)</span>
-              <span class="sample-tag" onclick="quickFillTracking('SPG-CA102834')">SPG-CA102834 (Canada)</span>
-              <span class="sample-tag" onclick="window.open('https://www.ups.com/track', '_blank')">Link UPS Demo <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></span>
-            </div>
-
-            <!-- Visual Stepper Progress Card -->
-            <div class="tracking-result-card" id="trackingDemoCard">
-              <div class="tracking-header-info">
-                <div>
-                  <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Mã vận đơn OMS</span>
-                  <h4 style="color: var(--primary-blue); font-size: 1.25rem; font-weight: 800;" id="trackedCode">SPG-US882910</h4>
-                  <span style="font-size: 0.85rem; color: var(--text-body);" id="trackedRoute">Tuyến: Cát Lái (VN) &rarr; Port of Los Angeles (US)</span>
-                </div>
-                <div style="text-align: right;">
-                  <span class="chevron-pill" style="background: #e0f2fe; color: #0284c7; border: none;" id="trackedStatus">
-                    <i class="fa-solid fa-ship"></i> Đang Vận Chuyển Biển
-                  </span>
-                  <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">Dự kiến cập cảng: <strong>24/09/2026</strong></div>
-                </div>
-              </div>
-
-              <div class="shipment-stepper">
-                <div class="stepper-step completed">
-                  <div class="step-dot"><i class="fa-solid fa-check"></i></div>
-                  <span class="step-name">Xác nhận đơn</span>
-                  <span class="step-time">12/09 - 09:30</span>
-                </div>
-                <div class="stepper-step completed">
-                  <div class="step-dot"><i class="fa-solid fa-check"></i></div>
-                  <span class="step-name">Thông quan xuất</span>
-                  <span class="step-time">14/09 - 15:45</span>
-                </div>
-                <div class="stepper-step current">
-                  <div class="step-dot"><i class="fa-solid fa-ship"></i></div>
-                  <span class="step-name">Đang trên biển</span>
-                  <span class="step-time">Vessel: EVER GIVEN</span>
-                </div>
-                <div class="stepper-step">
-                  <div class="step-dot">4</div>
-                  <span class="step-name">Giao chặng cuối</span>
-                  <span class="step-time">Houston / Door</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 5: DỊCH VỤ TRỌNG TÂM (4 CARDS + 4 TRUST BADGES)
-       ========================================================================== -->
-  <section class="services-section" id="services">
-    <div class="container">
-      <div class="section-header-center reveal-on-scroll">
-        <div class="chevron-pill">
-          <i class="fa-solid fa-cubes"></i> Danh Mục Dịch Vụ
-        </div>
-        <h2 class="headline-section">Dịch Vụ Trọng Tâm Của SpeeGo</h2>
-        <p class="section-subtitle">
-          Giải pháp toàn diện từ tìm kiếm xưởng sản xuất, vận tải xuyên biên giới đến phân phối chặng cuối an toàn.
-        </p>
-      </div>
-
-      <!-- 4 Service Cards (Strict Copy from Specification) -->
-      <div class="services-grid">
-        <!-- Card 1: Sourcing & QC -->
-        <div class="service-card reveal-on-scroll">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-microscope"></i>
-          </div>
-          <h3 class="service-title">Sourcing &amp; QC</h3>
-          <p class="service-text">
-            Hỗ trợ tìm kiếm nhà cung cấp uy tín, đánh giá năng lực và kiểm tra chất lượng sản phẩm trước khi xuất hàng, giúp giảm rủi ro trong chuỗi cung ứng.
-          </p>
-          <a href="#quote" class="service-link">
-            <span>Tư vấn Sourcing</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <!-- Card 2: Logistics -->
-        <div class="service-card reveal-on-scroll">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-ship"></i>
-          </div>
-          <h3 class="service-title">Logistics</h3>
-          <p class="service-text">
-            Cung cấp giải pháp vận chuyển quốc tế bằng đường biển, đường hàng không với lịch trình linh hoạt, chi phí tối ưu và theo dõi minh bạch.
-          </p>
-          <a href="#quote" class="service-link">
-            <span>Lịch trình &amp; Tuyến</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <!-- Card 3: Fulfillment -->
-        <div class="service-card reveal-on-scroll">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-boxes-packing"></i>
-          </div>
-          <h3 class="service-title">Fulfillment</h3>
-          <p class="service-text">
-            Quản lý lưu kho, xử lý đơn hàng, đóng gói và giao hàng nhanh chóng, giúp doanh nghiệp tối ưu vận hành và nâng cao trải nghiệm khách hàng.
-          </p>
-          <a href="#quote" class="service-link">
-            <span>Giải pháp Kho bãi</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <!-- Card 4: Xuất nhập khẩu -->
-        <div class="service-card reveal-on-scroll">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-file-contract"></i>
-          </div>
-          <h3 class="service-title">Xuất nhập khẩu</h3>
-          <p class="service-text">
-            Hỗ trợ tư vấn thủ tục, chứng từ, khai báo hải quan và các quy trình xuất nhập khẩu, giúp hàng hóa lưu thông thuận lợi và tuân thủ quy định.
-          </p>
-          <a href="#quote" class="service-link">
-            <span>Thủ tục Hải quan</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- 4 Trust Badges (Safe, On schedule, Cost optimized, Long-term partnership) -->
-      <div class="trust-badges-bar reveal-on-scroll">
-        <div class="trust-badge-item">
-          <div class="trust-badge-icon">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-          <div class="trust-badge-content">
-            <strong>Safe</strong>
-            <span>Cargo always protected</span>
-          </div>
-        </div>
-
-        <div class="trust-badge-item">
-          <div class="trust-badge-icon">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-          </div>
-          <div class="trust-badge-content">
-            <strong>On schedule</strong>
-            <span>Clear timeline commitment</span>
-          </div>
-        </div>
-
-        <div class="trust-badge-item">
-          <div class="trust-badge-icon">
-            <i class="fa-solid fa-chart-line"></i>
-          </div>
-          <div class="trust-badge-content">
-            <strong>Cost optimized</strong>
-            <span>Efficient shipping solutions</span>
-          </div>
-        </div>
-
-        <div class="trust-badge-item">
-          <div class="trust-badge-icon">
-            <i class="fa-solid fa-handshake"></i>
-          </div>
-          <div class="trust-badge-content">
-            <strong>Long-term partnership</strong>
-            <span>Sustainable growth partner</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 6: QUY TRÌNH VẬN HÀNH 8 BƯỚC (CHEVRON TIMELINE)
-       ========================================================================== -->
-  <section class="process-section" id="process">
-    <div class="container">
-      <div class="section-header-center reveal-on-scroll">
-        <div class="chevron-pill">
-          <i class="fa-solid fa-arrows-split-up-and-left"></i> Quy Trình Chuẩn Hóa
-        </div>
-        <h2 class="headline-section">Quy Trình Vận Hành 8 Bước Chuyên Nghiệp</h2>
-        <p class="section-subtitle">
-          Từng chặng đều được giám sát và cập nhật số liệu thời gian thực trên phần mềm quản lý SpeeGo OMS.
-        </p>
-      </div>
-
-      <!-- 8 Steps with Key Visual Chevron Motifs pointing right/forward -->
-      <div class="process-timeline">
-        <!-- Bước 1 -->
-        <div class="process-step-card reveal-on-scroll">
-          <div class="step-chevron-header">
-            <span class="step-chevron-badge">Bước 01</span>
-            <span class="step-phase-tag">Tiếp nhận</span>
-          </div>
-          <h4 class="step-name-title">Tiếp nhận thông tin</h4>
-          <p class="step-desc-text">Tiếp nhận yêu cầu và phân tích nhu cầu của doanh nghiệp.</p>
-        </div>
-
-        <!-- Bước 2 -->
-        <div class="process-step-card reveal-on-scroll">
-          <div class="step-chevron-header">
-            <span class="step-chevron-badge">Bước 02</span>
-            <span class="step-phase-tag">Tư vấn</span>
-          </div>
-          <h4 class="step-name-title">Tư vấn giải pháp</h4>
-          <p class="step-desc-text">Đề xuất chuyên sâu các giải pháp tối ưu về chi phí và thời gian.</p>
-        </div>
-
-        <!-- Bước 3 -->
-        <div class="process-step-card reveal-on-scroll">
-          <div class="step-chevron-header">
-            <span class="step-chevron-badge">Bước 03</span>
-            <span class="step-phase-tag">Sourcing</span>
-          </div>
-          <h4 class="step-name-title">Tìm nguồn hàng &amp; nhà máy</h4>
-          <p class="step-desc-text">Tìm nguồn hàng &amp; kết nối nhà máy, deal giá &amp; MOQ.</p>
-        </div>
-
-        <!-- Bước 4 -->
-        <div class="process-step-card reveal-on-scroll">
-          <div class="step-chevron-header">
-            <span class="step-chevron-badge">Bước 04</span>
-            <span class="step-phase-tag">Sản xuất</span>
-          </div>
-          <h4 class="step-name-title">Giám sát sản xuất</h4>
-          <p class="step-desc-text">Theo dõi tiến độ, đảm bảo kế hoạch sản xuất cho khách hàng.</p>
-        </div>
-
-        <!-- Bước 5 -->
-        <div class="process-step-card reveal-on-scroll">
-          <div class="step-chevron-header">
-            <span class="step-chevron-badge">Bước 05</span>
-            <span class="step-phase-tag">QC xưởng</span>
-          </div>
-          <h4 class="step-name-title">Kiểm tra chất lượng</h4>
-          <p class="step-desc-text">Kiểm tra chất lượng hàng hóa trước khi đóng gói và xuất xưởng.</p>
-        </div>
-
-        <!-- Bước 6 -->
-        <div class="process-step-card reveal-on-scroll">
-          <div class="step-chevron-header">
-            <span class="step-chevron-badge">Bước 06</span>
-            <span class="step-phase-tag">Hải quan</span>
-          </div>
-          <h4 class="step-name-title">Chứng từ thuế quan</h4>
-          <p class="step-desc-text">Hoàn thiện chứng từ và hỗ trợ các thủ tục hải quan cần thiết.</p>
-        </div>
-
-        <!-- Bước 7 -->
-        <div class="process-step-card reveal-on-scroll">
-          <div class="step-chevron-header">
-            <span class="step-chevron-badge">Bước 07</span>
-            <span class="step-phase-tag">Vận chuyển</span>
-          </div>
-          <h4 class="step-name-title">Vận chuyển quốc tế</h4>
-          <p class="step-desc-text">Vận chuyển bằng phương thức phù hợp đến đúng điểm nhận.</p>
-        </div>
-
-        <!-- Bước 8 -->
-        <div class="process-step-card reveal-on-scroll">
-          <div class="step-chevron-header">
-            <span class="step-chevron-badge">Bước 08</span>
-            <span class="step-phase-tag">Bàn giao</span>
-          </div>
-          <h4 class="step-name-title">Thanh toán &amp; hoàn tất</h4>
-          <p class="step-desc-text">Hoàn tất giao dịch và bàn giao đầy đủ hồ sơ liên quan.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 7: FORM ĐĂNG KÝ TƯ VẤN
-       ========================================================================== -->
-  <section class="consultation-section" id="quote">
-    <div class="container">
-      <div class="consultation-card reveal-on-scroll">
-        <!-- Left Side: Brand Highlights & Hotline -->
-        <div class="consultation-left">
-          <svg class="consultation-left-pattern" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M40 20 L120 100 L40 180" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M80 20 L160 100 L80 180" stroke="#60a5fa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <div class="consultation-left-content">
-            <span class="consultation-sla-badge">
-              <i class="fa-solid fa-bolt"></i> Phản hồi trong 2 giờ
-            </span>
-            <h2 class="headline-section" style="color: #fff;">Đăng ký tư vấn miễn phí</h2>
-            <p style="color: #e0e7ff; margin-bottom: 24px; font-size: 0.98rem;">
-              Chuyên viên SpeeGo sẽ trực tiếp rà soát đơn hàng, đối chiếu mã HS, tính toán cước tối ưu và đề xuất xưởng đối tác phù hợp nhất.
-            </p>
-
-            <ul class="consultation-perks">
-              <li class="perk-item">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Miễn phí rà soát biểu thuế nhập khẩu Mỹ (Section 301, ADD/CVD)</span>
-              </li>
-              <li class="perk-item">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Tư vấn deal MOQ trực tiếp với chủ nhà máy tại VN &amp; Trung Quốc</span>
-              </li>
-              <li class="perk-item">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Báo giá trọn gói Door-to-Door, cam kết 0 phụ phí ẩn</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="consultation-hotline-box">
-            <i class="fa-solid fa-headset hotline-icon"></i>
-            <div class="hotline-details">
-              <span>Hỗ trợ tư vấn khẩn cấp 24/7</span>
-              <strong>(+84) 906 828 898</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Side: Clean Modern Form -->
-        <div class="consultation-right">
-          <form id="consultationForm" onsubmit="handleConsultationSubmit(event)">
-            <div class="form-row-2">
-              <div class="form-group">
-                <label for="fullName">Họ và tên *</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Nguyễn Văn A" required>
-              </div>
-              <div class="form-group">
-                <label for="phoneContact">SĐT / Zalo / WhatsApp *</label>
-                <input type="text" class="form-control" id="phoneContact" placeholder="0906 828 898" required>
-              </div>
-            </div>
-
-            <div class="form-row-2">
-              <div class="form-group">
-                <label for="businessEmail">Email doanh nghiệp *</label>
-                <input type="email" class="form-control" id="businessEmail" placeholder="contact@yourcompany.com" required>
-              </div>
-              <div class="form-group">
-                <label for="companyName">Tên công ty / Thương hiệu</label>
-                <input type="text" class="form-control" id="companyName" placeholder="Glamour Beauty LLC">
-              </div>
-            </div>
-
-            <div class="form-row-2">
-              <div class="form-group">
-                <label for="serviceType">Dịch vụ cần tư vấn *</label>
-                <select class="form-control" id="serviceType" required>
-                  <option value="all_in_one">Trọn gói (Sourcing &rarr; QC &rarr; Ship &rarr; Fulfill)</option>
-                  <option value="sourcing_qc">Sourcing &amp; QC nhà máy</option>
-                  <option value="logistics">Logistics quốc tế (Đường biển / Air)</option>
-                  <option value="fulfillment">Fulfillment kho bãi</option>
-                  <option value="customs">Thủ tục hải quan &amp; Chứng từ XNK</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="tradeLane">Tuyến vận chuyển quan tâm *</label>
-                <select class="form-control" id="tradeLane" required>
-                  <option value="vn_us">Việt Nam &rarr; Hoa Kỳ (US)</option>
-                  <option value="cn_us">Trung Quốc &rarr; Hoa Kỳ (US)</option>
-                  <option value="vn_cn_ca">VN / China &rarr; Canada</option>
-                  <option value="vn_cn_au">VN / China &rarr; Úc (Australia)</option>
-                  <option value="other">Tuyến quốc tế khác</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group-full">
-              <label for="orderNotes">Chi tiết yêu cầu (loại hàng, số lượng dự kiến, tiến độ mong muốn)</label>
-              <textarea class="form-textarea" id="orderNotes" placeholder="Ví dụ: Cần nguồn phụ kiện làm đẹp từ xưởng VN xuất 1 container 40HQ đi Cảng Houston, cần hỗ trợ làm chứng từ FDA..."></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%; height: 52px; font-size: 1.05rem;">
-              <i class="fa-solid fa-paper-plane"></i> Gửi Yêu Cầu Tư Vấn Ngay
-            </button>
-
-            <div class="form-security-note">
-              <i class="fa-solid fa-lock"></i>
-              <span>Thông tin được mã hóa an toàn và tự động đồng bộ về hệ thống quản lý SpeeGo.</span>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 8: ĐỐI TÁC (2 KHỐI: VẬN CHUYỂN & NHÀ MÁY)
-       ========================================================================== -->
-  <section class="partners-section" id="partners">
-    <div class="container">
-      <div class="section-header-center reveal-on-scroll">
-        <div class="chevron-pill">
-          <i class="fa-solid fa-network-wired"></i> Mạng Lưới Hợp Tác
-        </div>
-        <h2 class="headline-section">Đối Tác Chiến Lược Của SpeeGo</h2>
-        <p class="section-subtitle">
-          Kết nối trực tiếp giữa hãng vận chuyển quốc tế hàng đầu và mạng lưới xưởng sản xuất uy tín.
-        </p>
-      </div>
-
-      <!-- Khối 1: Đối tác vận chuyển -->
-      <div class="partners-block reveal-on-scroll">
-        <div class="partners-header">
-          <div>
-            <h3 class="partners-header-title">
-              <i class="fa-solid fa-plane-departure"></i> Đối Tác Vận Chuyển Toàn Cầu
-            </h3>
-            <span class="partners-header-desc">Hãng hàng không, liên minh hãng tàu biển và đơn vị chuyển phát quốc tế uy tín hàng đầu</span>
-          </div>
-          <span class="chevron-pill" style="font-size: 0.75rem;">Space &amp; Slot Guaranteed</span>
-        </div>
-
-        <div class="carrier-logos-grid">
-          <div class="carrier-item">MAERSK</div>
-          <div class="carrier-item">COSCO</div>
-          <div class="carrier-item">ONE LINE</div>
-          <div class="carrier-item">EVERGREEN</div>
-          <div class="carrier-item">VN AIRLINES</div>
-          <div class="carrier-item">CATHAY</div>
-          <div class="carrier-item">UPS</div>
-          <div class="carrier-item">FEDEX</div>
-        </div>
-      </div>
-
-      <!-- Khối 2: Đối tác nhà máy -->
-      <div class="partners-block reveal-on-scroll">
-        <div class="partners-header">
-          <div>
-            <h3 class="partners-header-title">
-              <i class="fa-solid fa-industry"></i> Mạng Lưới Nhà Máy Đối Tác (Việt Nam &amp; Trung Quốc)
-            </h3>
-            <span class="partners-header-desc">Hơn 350+ xưởng sản xuất trực tiếp sẵn sàng đàm phán MOQ, giám sát chất lượng và xuất hàng</span>
-          </div>
-          <span class="chevron-pill" style="font-size: 0.75rem;">Verified Factory Network</span>
-        </div>
-
-        <div class="factory-network-grid">
-          <div class="factory-item">
-            <span class="factory-tag">Nails &amp; Beauty Supplies</span>
-            <h4 class="factory-title">Xưởng Phụ Kiện Nail &amp; Spa</h4>
-            <p class="factory-desc">Mạng lưới 45+ xưởng tại Bình Dương &amp; Quảng Châu chuyên cọ, móng tip, máy mài, đồ decor tiệm nail xuất Mỹ.</p>
-          </div>
-          <div class="factory-item">
-            <span class="factory-tag">Home Decor &amp; Furniture</span>
-            <h4 class="factory-title">Đồ Gỗ &amp; Trang Trí Nội Thất</h4>
-            <p class="factory-desc">Xưởng mây tre đan, gốm sứ thủ công và đồ gỗ xuất khẩu đạt tiêu chuẩn FSC, xuất cảng Hải Phòng &amp; Cát Lái.</p>
-          </div>
-          <div class="factory-item">
-            <span class="factory-tag">Consumer Goods</span>
-            <h4 class="factory-title">Bao Bì &amp; Hàng Tiêu Dùng</h4>
-            <p class="factory-desc">Gia công hộp giấy, túi zipper, tem nhãn mã vạch chuẩn Amazon FBA và các chuỗi bán lẻ tại California, Texas.</p>
-          </div>
-          <div class="factory-item">
-            <span class="factory-tag">Garments &amp; Textiles</span>
-            <h4 class="factory-title">May Mặc &amp; Đồng Phục</h4>
-            <p class="factory-desc">Hỗ trợ nhận may mẫu sample nhanh trong 3-5 ngày, hỗ trợ MOQ từ nhỏ đến container FCL theo đơn đặt hàng.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 9: TESTIMONIALS (3 CARDS, 5 SAO)
-       ========================================================================== -->
-  <section class="testimonials-section" id="testimonials">
-    <div class="container">
-      <div class="section-header-center reveal-on-scroll">
-        <div class="chevron-pill">
-          <i class="fa-solid fa-star"></i> Phản Hồi Từ Khách Hàng
-        </div>
-        <h2 class="headline-section">Khách Hàng Nói Về SpeeGo</h2>
-        <p class="section-subtitle">
-          Sự đồng hành bền vững cùng hàng trăm thương hiệu tại Hoa Kỳ, Úc và Canada.
-        </p>
-      </div>
-
-      <div class="testimonials-grid">
-        <!-- Testimonial 1: Kevin Le -->
-        <div class="testimonial-card reveal-on-scroll">
-          <div class="testimonial-stars">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          </div>
-          <p class="testimonial-quote">
-            "SpeeGo giúp chuỗi cửa hàng của chúng tôi tại California giải quyết triệt để bài toán sourcing phụ kiện nail salon tại Việt Nam. Đội QC của SpeeGo kiểm định rất kỹ tại xưởng, quay video từng lô hàng trước khi đóng seal cont. Tỷ lệ hàng lỗi giảm hẳn 95%."
-          </p>
-          <div class="testimonial-author-wrap">
-            <div class="author-avatar">KL</div>
-            <div class="author-info">
-              <strong>Kevin Le</strong>
-              <span>CEO, Glamour Nail Supplies (California, USA)</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 2: Sarah Mitchell -->
-        <div class="testimonial-card reveal-on-scroll">
-          <div class="testimonial-stars">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          </div>
-          <p class="testimonial-quote">
-            "Hệ thống OMS live tracking của SpeeGo cực kỳ minh bạch và chuyên nghiệp. Mỗi tháng chúng tôi nhập từ 4-6 container hàng gia dụng về cảng Sydney, chưa từng gặp bất kỳ khoản phụ phí ẩn nào phát sinh ngoài báo giá ban đầu. Rất an tâm đồng hành lâu dài."
-          </p>
-          <div class="testimonial-author-wrap">
-            <div class="author-avatar">SM</div>
-            <div class="author-info">
-              <strong>Sarah Mitchell</strong>
-              <span>Operations Director, EcoLiving Home (Melbourne, Úc)</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 3: David Tran -->
-        <div class="testimonial-card reveal-on-scroll">
-          <div class="testimonial-stars">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          </div>
-          <p class="testimonial-quote">
-            "Chúng tôi gom nguyên liệu bao bì mỹ phẩm từ xưởng Quảng Châu kết hợp thành phẩm đóng chai tại TP.HCM để xuất đi Vancouver. SpeeGo xử lý thủ tục thông quan hai đầu và chứng từ giấy phép rất trơn tru, hàng về đúng tiến độ cam kết."
-          </p>
-          <div class="testimonial-author-wrap">
-            <div class="author-avatar">DT</div>
-            <div class="author-info">
-              <strong>David Tran</strong>
-              <span>Co-Founder, PureGlow Beauty Inc. (Vancouver, Canada)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 10: TẠI SAO CHỌN SPEEGO (6 ĐIỂM, ICON XANH)
-       ========================================================================== -->
-  <section class="why-section" id="why">
-    <div class="container">
-      <div class="section-header-center reveal-on-scroll">
-        <div class="chevron-pill">
-          <i class="fa-solid fa-award"></i> Ưu Thế Vượt Trội
-        </div>
-        <h2 class="headline-section">Vì Sao Chọn SpeeGo Logistics?</h2>
-        <p class="section-subtitle">
-          6 trụ cột cốt lõi tạo nên năng lực cạnh tranh và sự tín nhiệm của đối tác toàn cầu.
-        </p>
-      </div>
-
-      <div class="why-grid">
-        <!-- Điểm 1 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-network-wired"></i>
-          </div>
-          <div class="why-content">
-            <h4>Chuỗi cung ứng đa lĩnh vực</h4>
-            <p>Năng lực xử lý phong phú từ phụ kiện làm đẹp, đồ trang trí nội thất, hàng tiêu dùng đến máy móc linh kiện điện tử.</p>
-          </div>
-        </div>
-
-        <!-- Điểm 2 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-map-location-dot"></i>
-          </div>
-          <div class="why-content">
-            <h4>Mạng lưới nhà máy rộng khắp TQ, VN</h4>
-            <p>Quan hệ đối tác trực tiếp với hàng trăm cơ sở sản xuất tại các thủ phủ công nghiệp lớn, deal giá xuất xưởng tốt nhất.</p>
-          </div>
-        </div>
-
-        <!-- Điểm 3 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-truck-plane"></i>
-          </div>
-          <div class="why-content">
-            <h4>Đa dạng phương thức vận chuyển</h4>
-            <p>Linh hoạt chuyển đổi giữa tàu biển FCL/LCL, đường bay nhanh Express, đường bộ liên vận tùy theo yêu cầu ngân sách.</p>
-          </div>
-        </div>
-
-        <!-- Điểm 4 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-receipt"></i>
-          </div>
-          <div class="why-content">
-            <h4>Cam kết không chi phí ẩn</h4>
-            <p>Hợp đồng báo giá trọn gói minh bạch từng dòng thuế phí, cam kết không phát sinh các loại phí cảng hay phụ thu bất thường.</p>
-          </div>
-        </div>
-
-        <!-- Điểm 5 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-headset"></i>
-          </div>
-          <div class="why-content">
-            <h4>Đội ngũ hỗ trợ nhanh chóng</h4>
-            <p>Chuyên viên song ngữ Anh - Việt - Trung trực 24/7 giải quyết phát sinh hải quan và cập nhật tiến độ liên tục.</p>
-          </div>
-        </div>
-
-        <!-- Điểm 6 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-laptop-code"></i>
-          </div>
-          <div class="why-content">
-            <h4>Tracking bằng hệ thống OMS</h4>
-            <p>Phần mềm quản lý đơn hàng chuyên sâu giúp khách hàng tra cứu vị trí lô hàng, container và tải hồ sơ chứng từ tức thì.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 11: TIN TỨC (4 CARDS + VIEW ALL BUTTON)
-       ========================================================================== -->
-  <section class="news-section" id="news">
-    <div class="container">
-      <div class="news-header-row reveal-on-scroll">
-        <div>
-          <div class="chevron-pill">
-            <i class="fa-solid fa-newspaper"></i> Phân Tích &amp; Xu Hướng
-          </div>
-          <h2 class="headline-section" style="margin-top: 8px;">Tin Tức &amp; Báo Cáo Thị Trường</h2>
-        </div>
-        <button class="btn btn-outline" onclick="openNewsModal('Tất Cả Tin Tức', 'Danh sách tổng hợp 48 bài phân tích chuỗi cung ứng quốc tế và thị trường logistics mới nhất năm 2026.')">
-          <span>View All</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </div>
-
-      <div class="news-grid">
-        <!-- News 1 -->
-        <div class="news-card reveal-on-scroll">
-          <div class="news-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=800&auto=format&fit=crop" alt="Trans-Pacific Ocean Rates" class="news-thumb">
-            <span class="news-category-badge">Freight Market</span>
-          </div>
-          <div class="news-content">
-            <h3 class="news-title">Trans-Pacific Ocean Rates Outlook &amp; Peak Season Prep</h3>
-            <p class="news-excerpt">Dự báo biến động giá cước vận tải biển tuyến xuyên Thái Bình Dương và chiến lược đặt chỗ sớm cho mùa cao điểm cuối năm.</p>
-            <a href="javascript:void(0)" class="news-read-link" onclick="openNewsModal('Trans-Pacific Ocean Rates Outlook & Peak Season Prep', 'Báo cáo chi tiết về biến động giá cước container FCL/LCL từ các cảng Đông Nam Á và Trung Quốc đi bờ Tây (LA, Long Beach) và bờ Đông Mỹ, cùng các khuyến nghị giữ chỗ tàu mùa cao điểm.')">
-              <span>Read Analysis</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- News 2 -->
-        <div class="news-card reveal-on-scroll">
-          <div class="news-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?q=80&w=800&auto=format&fit=crop" alt="Fast-Track Cosmetics Clearance" class="news-thumb">
-            <span class="news-category-badge">Air Freight</span>
-          </div>
-          <div class="news-content">
-            <h3 class="news-title">Fast-Track Cosmetics &amp; E-Commerce Clearance in the US</h3>
-            <p class="news-excerpt">Quy trình thông quan hỏa tốc cho mặt hàng mỹ phẩm, phụ kiện làm đẹp theo quy định FDA MoCRA và tiêu chuẩn hàng thương mại điện tử.</p>
-            <a href="javascript:void(0)" class="news-read-link" onclick="openNewsModal('Fast-Track Cosmetics & E-Commerce Clearance in the US', 'Hướng dẫn chi tiết tuân thủ quy chuẩn FDA MoCRA 2026 đối với cơ sở sản xuất và dòng sản phẩm làm đẹp nhập khẩu vào thị trường Hoa Kỳ qua đường hàng không hỏa tốc.')">
-              <span>Read Analysis</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- News 3 -->
-        <div class="news-card reveal-on-scroll">
-          <div class="news-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop" alt="Factory Audits in Vietnam" class="news-thumb">
-            <span class="news-category-badge">Factory Sourcing</span>
-          </div>
-          <div class="news-content">
-            <h3 class="news-title">Navigating Low MOQs &amp; Production Audits in Vietnam</h3>
-            <p class="news-excerpt">Bí quyết đàm phán số lượng đặt hàng tối thiểu và quy trình thẩm định năng lực thực tế của các xưởng gia công tại Việt Nam.</p>
-            <a href="javascript:void(0)" class="news-read-link" onclick="openNewsModal('Navigating Low MOQs & Production Audits in Vietnam', 'Kinh nghiệm thực tiễn từ đội ngũ SpeeGo trong việc kết nối các thương hiệu vừa và nhỏ với xưởng sản xuất tại Việt Nam, tối ưu chi phí làm khuôn và cam kết số lượng MOQ hợp lý.')">
-              <span>Read Analysis</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- News 4 -->
-        <div class="news-card reveal-on-scroll">
-          <div class="news-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="OMS Technology" class="news-thumb">
-            <span class="news-category-badge">Technology</span>
-          </div>
-          <div class="news-content">
-            <h3 class="news-title">The Power of Real-time Order Management Systems — OMS</h3>
-            <p class="news-excerpt">Cách các doanh nghiệp xuất nhập khẩu hàng đầu sử dụng nền tảng số hóa để loại bỏ sai sót và theo dõi hàng hóa từ xưởng tới kho.</p>
-            <a href="javascript:void(0)" class="news-read-link" onclick="openNewsModal('The Power of Real-time Order Management Systems — OMS', 'Phân tích cách nền tảng SpeeGo OMS số hóa toàn bộ chứng từ vận tải đường biển/đường bay, cập nhật tọa độ GPS và thông báo tình trạng thông quan tự động.')">
-              <span>Read Analysis</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 12: FOOTER (OFFICIAL BRAND BLUE, 5 GLOBAL OFFICES)
-       ========================================================================== -->
-  <footer class="site-footer" id="footer">
-    <div class="container">
-      <div class="footer-top-grid">
-        <!-- Col 1: Brand Info -->
-        <div class="footer-brand-col">
-          <div class="footer-logo-badge">
-            <img src="speego-logo.png" alt="SpeeGo Logistics" class="footer-logo-img" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 280 64\' fill=\'none\'><path d=\'M16 18 C16 13 22 10 32 10 L52 10 C58 10 62 14 62 20 C62 25 58 28 52 28 L28 28 C20 28 16 34 16 42 C16 50 22 54 32 54 L54 54 C60 54 64 50 64 44\' stroke=\'%230b2545\' stroke-width=\'7\' stroke-linecap=\'round\'/><path d=\'M30 26 L42 36 L30 46\' stroke=\'%23f05a22\' stroke-width=\'5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/><path d=\'M38 26 L50 36 L38 46\' stroke=\'%23f05a22\' stroke-width=\'5\' stroke-linecap=\'round\' stroke-linejoin=\'round\' opacity=\'0.8\'/><text x=\'74\' y=\'36\' font-family=\'sans-serif\' font-weight=\'900\' font-size=\'30\' fill=\'%230b2545\'>SpeeGo</text><text x=\'76\' y=\'52\' font-family=\'sans-serif\' font-weight=\'800\' font-size=\'13\' fill=\'%23f05a22\' letter-spacing=\'4\'>LOGISTICS</text></svg>';">
-          </div>
-          <p class="footer-brand-desc">
-            Đơn vị sản xuất và cung cấp dịch vụ logistics toàn cầu. Chuyên tuyến Trung Quốc và Việt Nam đi Mỹ, Canada, Úc.
-          </p>
-          <div class="topbar-socials" style="margin-top: 10px;">
-            <a href="https://facebook.com" class="social-btn social-fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://tiktok.com" class="social-btn social-tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://zalo.me" class="social-btn social-zalo" title="Zalo"><i class="fa-solid fa-comment-dots"></i></a>
-            <a href="https://whatsapp.com" class="social-btn social-wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://linkedin.com" class="social-btn social-in" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
-        </div>
-
-        <!-- Col 2: Dịch Vụ Chính -->
-        <div>
-          <h4 class="footer-col-title">Dịch Vụ Chính</h4>
-          <ul class="footer-links-list">
-            <li class="footer-link-item"><a href="#services"><i class="fa-solid fa-chevron-right"></i> Sourcing &amp; Tìm xưởng tận gốc</a></li>
-            <li class="footer-link-item"><a href="#services"><i class="fa-solid fa-chevron-right"></i> Kiểm tra chất lượng (QC tại xưởng)</a></li>
-            <li class="footer-link-item"><a href="#services"><i class="fa-solid fa-chevron-right"></i> Vận tải đường biển FCL &amp; LCL</a></li>
-            <li class="footer-link-item"><a href="#services"><i class="fa-solid fa-chevron-right"></i> Vận tải hàng không quốc tế</a></li>
-            <li class="footer-link-item"><a href="#services"><i class="fa-solid fa-chevron-right"></i> Lưu kho &amp; Fulfillment tại Mỹ / Úc</a></li>
-            <li class="footer-link-item"><a href="#services"><i class="fa-solid fa-chevron-right"></i> Thủ tục hải quan &amp; Giấy phép XNK</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Liên Kết Nhanh -->
-        <div>
-          <h4 class="footer-col-title">Liên Kết Nhanh</h4>
-          <ul class="footer-links-list">
-            <li class="footer-link-item"><a href="#about"><i class="fa-solid fa-chevron-right"></i> Về chúng tôi (End-to-End)</a></li>
-            <li class="footer-link-item"><a href="#process"><i class="fa-solid fa-chevron-right"></i> Quy trình vận hành 8 bước</a></li>
-            <li class="footer-link-item"><a href="#quote"><i class="fa-solid fa-chevron-right"></i> Đăng ký nhận báo giá</a></li>
-            <li class="footer-link-item"><a href="javascript:void(0)" onclick="openTrackingModal()"><i class="fa-solid fa-chevron-right"></i> Tra cứu vận đơn SpeeGo OMS</a></li>
-            <li class="footer-link-item"><a href="#partners"><i class="fa-solid fa-chevron-right"></i> Mạng lưới đối tác toàn cầu</a></li>
-            <li class="footer-link-item"><a href="#news"><i class="fa-solid fa-chevron-right"></i> Tin tức &amp; Báo cáo thị trường</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 5 Văn Phòng Đại Diện Của SpeeGo -->
-      <div id="offices">
-        <h4 class="offices-section-title">
-          <i class="fa-solid fa-globe"></i> Hệ Thống 5 Văn Phòng &amp; Trung Tâm Kho Vận Toàn Cầu
-        </h4>
-        <div class="offices-grid">
-          <!-- Văn phòng 1: Hoa Kỳ -->
-          <div class="office-card">
-            <div class="office-country">
-              <img src="https://flagcdn.com/w40/us.png" class="lang-flag" alt="US"> Hoa Kỳ (USA)
-            </div>
-            <p class="office-address">10600 Richmond Ave, Suite 210, Houston, TX 77042</p>
-            <div class="office-hotline">Hotline: +1 (832) 555-0198</div>
-          </div>
-
-          <!-- Văn phòng 2: Hà Nội -->
-          <div class="office-card">
-            <div class="office-country">
-              <img src="https://flagcdn.com/w40/vn.png" class="lang-flag" alt="VN"> Hà Nội (Việt Nam)
-            </div>
-            <p class="office-address">Tầng 6, Detech Tower, Số 8 Tôn Thất Thuyết, Cầu Giấy, Hà Nội</p>
-            <div class="office-hotline">Hotline: (024) 6291 8618</div>
-          </div>
-
-          <!-- Văn phòng 3: Hồ Chí Minh -->
-          <div class="office-card">
-            <div class="office-country">
-              <img src="https://flagcdn.com/w40/vn.png" class="lang-flag" alt="VN"> TP. Hồ Chí Minh
-            </div>
-            <p class="office-address">Waseco Building, 10 Phổ Quang, Q. Tân Bình (VP &amp; Kho hàng riêng)</p>
-            <div class="office-hotline">Hotline: (+84) 906 828 898</div>
-          </div>
-
-          <!-- Văn phòng 4: Canada -->
-          <div class="office-card">
-            <div class="office-country">
-              <img src="https://flagcdn.com/w40/ca.png" class="lang-flag" alt="CA"> Canada
-            </div>
-            <p class="office-address">4400 Dominion St, Suite 305, Burnaby, BC V5G 4G3</p>
-            <div class="office-hotline">Hotline: +1 (604) 555-0144</div>
-          </div>
-
-          <!-- Văn phòng 5: Trung Quốc -->
-          <div class="office-card">
-            <div class="office-country">
-              <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" alt="CN"> Trung Quốc (Guangzhou)
-            </div>
-            <p class="office-address">Baiyun District, Guangzhou (Kho gom hàng &amp; Hub QC xưởng)</p>
-            <div class="office-hotline">Hotline: +86 (20) 8618 9000</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer Bottom Copyright -->
-      <div class="footer-bottom">
-        <div>&copy; 2026 SpeeGo Logistics. All rights reserved.</div>
-        <div class="footer-legal-links">
-          <a href="javascript:void(0)" onclick="openNewsModal('Chính sách bảo mật', 'SpeeGo Logistics cam kết bảo mật tuyệt đối thông tin kinh doanh, hóa đơn, mẫu mã sản phẩm và danh bạ nhà máy của đối tác theo tiêu chuẩn ISO/IEC 27001.')">Chính sách bảo mật</a>
-          <a href="javascript:void(0)" onclick="openNewsModal('Điều khoản dịch vụ', 'Các điều khoản và điều kiện giao dịch vận tải quốc tế áp dụng theo quy tắc Incoterms 2020 và Công ước Vận tải Đường biển FIATA.')">Điều khoản dịch vụ</a>
-          <a href="javascript:void(0)" onclick="openNewsModal('Chính sách bồi thường', 'Cam kết bồi thường minh bạch 100% giá trị tổn thất đối với hàng hóa có mua bảo hiểm trong toàn trình vận chuyển.')">Chính sách bồi thường</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ==========================================================================
-       SECTION 13: FLOATING SHIPMENT TRACKING WIDGET & POPUP MODALS
-       ========================================================================== -->
-  <!-- Floating Action Button -->
-  <div class="floating-tracking-btn" onclick="openTrackingModal()">
-    <div class="radar-pulse"></div>
-    <i class="fa-solid fa-location-crosshairs"></i>
-    <span>Shipment Tracking</span>
-  </div>
-
-  <!-- Tracking Popup Modal -->
-  <div class="modal-overlay" id="trackingModal" onclick="handleModalBackdropClick(event, 'trackingModal')">
-    <div class="modal-card">
-      <button class="modal-close-btn" onclick="closeTrackingModal()" aria-label="Close modal">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <div class="chevron-pill" style="margin-bottom: 12px;">
-        <i class="fa-solid fa-satellite-dish"></i> SpeeGo Live OMS
-      </div>
-      <h3 class="modal-title">Tra Cứu Trạng Thái Vận Đơn</h3>
-      <p class="modal-subtitle">
-        Nhập mã vận đơn SpeeGo OMS hoặc liên kết trực tiếp đối tác vận chuyển quốc tế.
-      </p>
-
-      <div style="display: flex; gap: 10px; margin-bottom: 16px;">
-        <input type="text" class="tracking-input" id="popupTrackingInput" placeholder="Ví dụ: SPG-US882910" value="SPG-US882910" style="height: 48px;">
-        <button class="btn btn-primary" style="height: 48px; padding: 0 20px;" onclick="simulatePopupTracking()">
-          Kiểm Tra
-        </button>
-      </div>
-
-      <div class="sample-codes" style="margin-bottom: 20px;">
-        <span>Mã test nhanh:</span>
-        <span class="sample-tag" onclick="fillPopupTracking('SPG-US882910')">SPG-US882910</span>
-        <span class="sample-tag" onclick="fillPopupTracking('SPG-AU441920')">SPG-AU441920</span>
-        <a href="https://www.ups.com/track?loc=en_US" target="_blank" rel="noopener" class="sample-tag" style="background: var(--primary-ice);">
-          <i class="fa-brands fa-ups"></i> Link UPS Demo
-        </a>
-      </div>
-
-      <!-- Result display inside modal -->
-      <div id="popupTrackingResult" style="background: var(--bg-slate); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 18px;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-          <strong style="color: var(--primary-blue);" id="popupTrackCode">SPG-US882910</strong>
-          <span style="color: #0284c7; font-weight: 700; font-size: 0.85rem;" id="popupTrackStatus">● Đang trên biển</span>
-        </div>
-        <p style="font-size: 0.85rem; color: var(--text-body); margin-bottom: 8px;" id="popupTrackDesc">
-          Tàu vận tải đã rời Cảng Cát Lái (VN), đang trên hành trình tiến vào Port of Los Angeles (US).
-        </p>
-        <div style="font-size: 0.8rem; color: var(--text-muted);">
-          Dự kiến cập cảng &amp; thông quan: <strong>24/09/2026</strong>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- General Info / News Reader Modal -->
-  <div class="modal-overlay" id="generalModal" onclick="handleModalBackdropClick(event, 'generalModal')">
-    <div class="modal-card">
-      <button class="modal-close-btn" onclick="closeGeneralModal()" aria-label="Close modal">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <div class="chevron-pill" style="margin-bottom: 12px;">
-        <i class="fa-solid fa-newspaper"></i> SpeeGo Intelligence
-      </div>
-      <h3 class="modal-title" id="generalModalTitle">Chi Tiết Báo Cáo</h3>
-      <p class="modal-subtitle" id="generalModalDate">Xuất bản: Tháng 09/2026 · SpeeGo Research Team</p>
-
-      <div id="generalModalContent" style="font-size: 0.95rem; line-height: 1.7; color: var(--text-body); margin-bottom: 24px;">
-        Nội dung chi tiết...
-      </div>
-
-      <div style="display: flex; justify-content: flex-end;">
-        <button class="btn btn-primary" onclick="closeGeneralModal()">Đóng</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Notification Alert on Form Submit -->
-  <div class="toast-notification" id="toastNotification">
-    <div class="toast-icon">
-      <i class="fa-solid fa-circle-check"></i>
-    </div>
-    <div class="toast-text">
-      <strong>Gửi Yêu Cầu Thành Công!</strong>
-      <span id="toastMessage">Chuyên viên SpeeGo sẽ liên hệ trong vòng 2 giờ.</span>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       VANILLA JAVASCRIPT LOGIC
-       ========================================================================== -->
+  <!-- JAVASCRIPT: COMPONENT LOADER & SPA HASH ROUTER -->
   <script>
-    // 1. Sticky Header Blur & Background Color Transition
-    window.addEventListener('scroll', function() {
-      const header = document.getElementById('siteHeader');
-      if (window.scrollY > 40) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
+    (function () {
+      'use strict';
 
-    // 2. Mobile Drawer Navigation
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    const drawerBackdrop = document.getElementById('drawerBackdrop');
-    const drawerLinks = document.querySelectorAll('.drawer-link');
+      // 1. ROUTE DEFINITIONS & PAGE FILE MAPPING
+      const ROUTES = {
+        // Vietnamese routes (10 pages)
+        '#/knowledge': {
+          file: 'pages/VI/vi-01-chuyenmuc-tat-ca-chuyen-muc.html',
+          title: 'SpeeGo Knowledge - Hiểu hành trình. Chủ động từng bước.',
+          nav: 'knowledge',
+          lang: 'vi'
+        },
+        '#/knowledge/huong-dan-van-chuyen': {
+          file: 'pages/VI/vi-02-chuyenmuc-shipping-guides.html',
+          title: 'Hướng dẫn vận chuyển | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'vi'
+        },
+        '#/knowledge/kien-thuc-nganh-hang': {
+          file: 'pages/VI/vi-03-chuyenmuc-industry-guides.html',
+          title: 'Kiến thức ngành hàng | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'vi'
+        },
+        '#/knowledge/tuyen-thuong-mai': {
+          file: 'pages/VI/vi-04-chuyenmuc-trade-route.html',
+          title: 'Tuyến thương mại | SpeeGo Knowledge',
+          nav: 'shipping-routes',
+          lang: 'vi'
+        },
+        '#/knowledge/sourcing-qc': {
+          file: 'pages/VI/vi-05-chuyenmuc-sourcing-qc.html',
+          title: 'Sourcing & QC | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'vi'
+        },
+        '#/knowledge/fulfillment-kho-van': {
+          file: 'pages/VI/vi-06-chuyenmuc-fulfillment-warehouse.html',
+          title: 'Fulfillment & Kho vận | SpeeGo Knowledge',
+          nav: 'fulfillment',
+          lang: 'vi'
+        },
+        '#/knowledge/tin-xuat-nhap-khau': {
+          file: 'pages/VI/vi-07-chuyenmuc-import-export-news.html',
+          title: 'Tin xuất nhập khẩu | SpeeGo Knowledge',
+          nav: 'import-export',
+          lang: 'vi'
+        },
+        '#/knowledge/chuan-bi-lo-hang': {
+          file: 'pages/VI/vi-08-post-chuan-bi-lo-hang.html',
+          title: 'Chuẩn bị lô hàng: bắt đầu từ những thông tin nào? | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'vi'
+        },
+        '#/knowledge/quy-trinh-nhap-kho': {
+          file: 'pages/VI/vi-09-post-quy-trinh-nhap-kho.html',
+          title: 'Từ barcode đến nhập kho: quy trình Fulfillment tại SpeeGo | SpeeGo Knowledge',
+          nav: 'fulfillment',
+          lang: 'vi'
+        },
+        '#/knowledge/kiem-soat-chat-luong': {
+          file: 'pages/VI/vi-10-post-kiem-soat-chat-luong.html',
+          title: 'QC theo từng giai đoạn: kiểm soát chất lượng trước khi xuất hàng | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'vi'
+        },
+        '#/sourcing': {
+          file: 'pages/sourcing.html',
+          title: 'Tìm nguồn hàng & kiểm soát chất lượng | SpeeGo Logistics',
+          nav: 'sourcing',
+          lang: 'vi'
+        },
 
-    function openDrawer() {
-      mobileDrawer.classList.add('open');
-      drawerBackdrop.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeDrawer() {
-      mobileDrawer.classList.remove('open');
-      drawerBackdrop.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openDrawer);
-    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
-    if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
-    drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
-
-    // 3. Language Switcher Interaction
-    function switchLanguage(code, flagUrl) {
-      document.getElementById('activeLangCode').textContent = code;
-      document.getElementById('activeFlag').src = flagUrl;
-      const langItems = document.querySelectorAll('.lang-item');
-      langItems.forEach(item => {
-        if (item.textContent.includes(code)) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
+        // English routes (10 pages)
+        '#/en/knowledge': {
+          file: 'pages/EN/en-01-chuyenmuc-tat-ca-chuyen-muc.html',
+          title: 'SpeeGo Knowledge - Understand the journey. Plan every step.',
+          nav: 'knowledge',
+          lang: 'en'
+        },
+        '#/en/shipping-guides': {
+          file: 'pages/EN/en-02-chuyenmuc-shipping-guides.html',
+          title: 'Shipping Guides | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'en'
+        },
+        '#/en/industry-guides': {
+          file: 'pages/EN/en-03-chuyenmuc-industry-guides.html',
+          title: 'Industry Guides | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'en'
+        },
+        '#/en/trade-routes': {
+          file: 'pages/EN/en-04-chuyenmuc-trade-route.html',
+          title: 'Trade Routes | SpeeGo Knowledge',
+          nav: 'shipping-routes',
+          lang: 'en'
+        },
+        '#/en/sourcing-qc': {
+          file: 'pages/EN/en-05-chuyenmuc-sourcing-qc.html',
+          title: 'Sourcing & QC | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'en'
+        },
+        '#/en/fulfillment-warehouse': {
+          file: 'pages/EN/en-06-chuyenmuc-fulfillment-warehouse.html',
+          title: 'Fulfillment & Warehouse | SpeeGo Knowledge',
+          nav: 'fulfillment',
+          lang: 'en'
+        },
+        '#/en/import-export-news': {
+          file: 'pages/EN/en-07-chuyenmuc-import-export-news.html',
+          title: 'Import & Export News | SpeeGo Knowledge',
+          nav: 'import-export',
+          lang: 'en'
+        },
+        '#/en/post/preparing-your-shipment': {
+          file: 'pages/EN/en-08-post-chuan-bi-lo-hang.html',
+          title: 'Preparing Your Shipment: Where Should You Start? | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'en'
+        },
+        '#/en/post/fulfillment-receiving': {
+          file: 'pages/EN/en-09-post-quy-trinh-nhap-kho.html',
+          title: 'From Barcodes to Receiving: How Inbound Fulfillment Works at SpeeGo | SpeeGo Knowledge',
+          nav: 'fulfillment',
+          lang: 'en'
+        },
+        '#/en/post/quality-control': {
+          file: 'pages/EN/en-10-post-kiem-soat-chat-luong.html',
+          title: 'Quality Control at Every Stage: Ensuring Quality Before Shipment | SpeeGo Knowledge',
+          nav: 'knowledge',
+          lang: 'en'
         }
-      });
-      showToast('Đã đổi ngôn ngữ sang: ' + code);
-    }
-
-    // 4. Section 4: 3-Tabs Switcher (GIỚI THIỆU / FORM NHẬP / TRACKING)
-    function openTab(evt, tabName) {
-      const panels = document.querySelectorAll('.tab-content-panel');
-      panels.forEach(panel => panel.classList.remove('active'));
-
-      const tabBtns = document.querySelectorAll('.tab-btn');
-      tabBtns.forEach(btn => btn.classList.remove('active'));
-
-      document.getElementById(tabName).classList.add('active');
-      evt.currentTarget.classList.add('active');
-    }
-
-    // Calculator tab logic
-    function recalculateQuote() {
-      const mode = document.getElementById('calcMode').value;
-      const dest = document.getElementById('calcDest').value;
-      const timeElem = document.getElementById('calcTransitTime');
-      const freqElem = document.getElementById('calcFrequency');
-
-      if (mode === 'air_express') {
-        timeElem.textContent = '3 - 5 Ngày (Hỏa Tốc)';
-        freqElem.textContent = 'Hàng Ngày (Daily Flight)';
-      } else if (mode === 'ocean_lcl') {
-        timeElem.textContent = (dest === 'US' || dest === 'CA') ? '18 - 22 Ngày' : '16 - 20 Ngày';
-        freqElem.textContent = '2 Chuyến / Tuần';
-      } else {
-        timeElem.textContent = (dest === 'US') ? '14 - 18 Ngày' : '12 - 16 Ngày';
-        freqElem.textContent = '3 - 4 Chuyến / Tuần';
-      }
-      showToast('Đã cập nhật dữ liệu cước dự kiến!');
-    }
-
-    // Tracking tab sample helpers
-    function quickFillTracking(code) {
-      document.getElementById('tabTrackingInput').value = code;
-      simulateTrackingSearch('tabTrackingInput');
-    }
-
-    function simulateTrackingSearch(inputId) {
-      const code = document.getElementById(inputId).value.trim() || 'SPG-US882910';
-      document.getElementById('trackedCode').textContent = code;
-      
-      const statusElem = document.getElementById('trackedStatus');
-      const routeElem = document.getElementById('trackedRoute');
-
-      if (code.includes('AU')) {
-        statusElem.innerHTML = '<i class="fa-solid fa-anchor"></i> Đang Thông Quan Melbourne';
-        routeElem.textContent = 'Tuyến: Cát Lái (VN) &rarr; Port of Melbourne (Australia)';
-      } else if (code.includes('CA')) {
-        statusElem.innerHTML = '<i class="fa-solid fa-plane"></i> Đang Bay Chặng Vancouver';
-        routeElem.textContent = 'Tuyến: Tân Sơn Nhất (SGN) &rarr; Vancouver Airport (YVR)';
-      } else {
-        statusElem.innerHTML = '<i class="fa-solid fa-ship"></i> Đang Vận Chuyển Biển';
-        routeElem.textContent = 'Tuyến: Cát Lái (VN) &rarr; Port of Los Angeles (US)';
-      }
-      showToast('Tra cứu thành công vận đơn: ' + code);
-    }
-
-    // 5. Section 7: Consultation Form Submission
-    function handleConsultationSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('fullName').value;
-      const phone = document.getElementById('phoneContact').value;
-      const ticketId = 'SPG-REQ' + Math.floor(100000 + Math.random() * 900000);
-
-      showToast(`Cảm ơn ${name}! Mã yêu cầu #${ticketId} đã được ghi nhận. SpeeGo sẽ phản hồi trong 2 giờ.`);
-      e.target.reset();
-    }
-
-    // 6. Section 13: Tracking Modal Logic
-    function openTrackingModal() {
-      document.getElementById('trackingModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeTrackingModal() {
-      document.getElementById('trackingModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function fillPopupTracking(code) {
-      document.getElementById('popupTrackingInput').value = code;
-      simulatePopupTracking();
-    }
-
-    function simulatePopupTracking() {
-      const code = document.getElementById('popupTrackingInput').value.trim() || 'SPG-US882910';
-      document.getElementById('popupTrackCode').textContent = code;
-      const statusElem = document.getElementById('popupTrackStatus');
-      const descElem = document.getElementById('popupTrackDesc');
-
-      if (code.includes('AU')) {
-        statusElem.textContent = '● Cập cảng Melbourne';
-        descElem.textContent = 'Lô hàng đã cập Cảng Melbourne và đang tiến hành thủ tục kiểm dịch biosecurity.';
-      } else if (code.includes('CA')) {
-        statusElem.textContent = '● Đang thông quan Vancouver';
-        descElem.textContent = 'Đã truyền tờ khai điện tử CBSA Canada, dự kiến giải phóng hàng trong 24h.';
-      } else {
-        statusElem.textContent = '● Đang trên biển (Vessel: EVER GIVEN)';
-        descElem.textContent = 'Tàu vận tải đã rời Cảng Cát Lái (VN), đang trên hành trình đến Cảng Los Angeles.';
-      }
-    }
-
-    // 7. General News & Modal Reader
-    function openNewsModal(title, content) {
-      document.getElementById('generalModalTitle').textContent = title;
-      document.getElementById('generalModalContent').textContent = content;
-      document.getElementById('generalModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeGeneralModal() {
-      document.getElementById('generalModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function handleModalBackdropClick(e, modalId) {
-      if (e.target.id === modalId) {
-        if (modalId === 'trackingModal') closeTrackingModal();
-        if (modalId === 'generalModal') closeGeneralModal();
-      }
-    }
-
-    // 8. Toast Notification Utility
-    let toastTimeout;
-    function showToast(message) {
-      const toast = document.getElementById('toastNotification');
-      const msgElem = document.getElementById('toastMessage');
-      if (msgElem && message) msgElem.textContent = message;
-
-      toast.classList.add('active');
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove('active');
-      }, 4000);
-    }
-
-    // 9. Smooth Scroll Fade-In Observer (IntersectionObserver)
-    document.addEventListener('DOMContentLoaded', function() {
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.12
       };
 
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            obs.unobserve(entry.target);
+      // 1b. DIRECT LANGUAGE COUNTERPARTS MAPPING (1-to-1 bilingual switching)
+      const LANG_PAIRS = {
+        // VI -> EN
+        '#/knowledge': '#/en/knowledge',
+        '#/knowledge/huong-dan-van-chuyen': '#/en/shipping-guides',
+        '#/knowledge/kien-thuc-nganh-hang': '#/en/industry-guides',
+        '#/knowledge/tuyen-thuong-mai': '#/en/trade-routes',
+        '#/knowledge/sourcing-qc': '#/en/sourcing-qc',
+        '#/knowledge/fulfillment-kho-van': '#/en/fulfillment-warehouse',
+        '#/knowledge/tin-xuat-nhap-khau': '#/en/import-export-news',
+        '#/knowledge/chuan-bi-lo-hang': '#/en/post/preparing-your-shipment',
+        '#/knowledge/quy-trinh-nhap-kho': '#/en/post/fulfillment-receiving',
+        '#/knowledge/kiem-soat-chat-luong': '#/en/post/quality-control',
+
+        // EN -> VI
+        '#/en/knowledge': '#/knowledge',
+        '#/en/shipping-guides': '#/knowledge/huong-dan-van-chuyen',
+        '#/en/industry-guides': '#/knowledge/kien-thuc-nganh-hang',
+        '#/en/trade-routes': '#/knowledge/tuyen-thuong-mai',
+        '#/en/sourcing-qc': '#/knowledge/sourcing-qc',
+        '#/en/fulfillment-warehouse': '#/knowledge/fulfillment-kho-van',
+        '#/en/import-export-news': '#/knowledge/tin-xuat-nhap-khau',
+        '#/en/post/preparing-your-shipment': '#/knowledge/chuan-bi-lo-hang',
+        '#/en/post/fulfillment-receiving': '#/knowledge/quy-trinh-nhap-kho',
+        '#/en/post/quality-control': '#/knowledge/kiem-soat-chat-luong'
+      };
+
+      // In-memory cache for loaded partials and pages
+      const cache = {
+        headerHtml: null,
+        footerHtml: null,
+        ctaFormHtml: null,
+        pages: {}
+      };
+
+      let currentLang = 'vi';
+
+      // 2. HELPER: FETCH WITH TRY/CATCH
+      async function fetchText(url) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+          return await response.text();
+        } catch (err) {
+          console.error(`Error loading resource [${url}]:`, err);
+          throw err;
+        }
+      }
+
+      // 3. LOAD & INITIALIZE SHARED PARTIALS
+      async function loadPartials() {
+        try {
+          // Parallel fetch header, footer, and cta-form
+          const [header, footer, ctaForm] = await Promise.all([
+            fetchText('partials/header.html'),
+            fetchText('partials/footer.html'),
+            fetchText('partials/cta-form.html')
+          ]);
+
+          cache.headerHtml = header;
+          cache.footerHtml = footer;
+          cache.ctaFormHtml = ctaForm;
+
+          // Inject into DOM
+          const headerContainer = document.getElementById('header-container');
+          const footerContainer = document.getElementById('footer-container');
+
+          if (headerContainer) headerContainer.innerHTML = header;
+          if (footerContainer) footerContainer.innerHTML = footer;
+
+          // Parse CTA Form templates into memory
+          parseCtaTemplates(ctaForm);
+
+          // Bind header and footer global interactions
+          bindHeaderInteractions();
+          return true;
+        } catch (err) {
+          renderErrorScreen('Lỗi nạp component dùng chung (partials)', err);
+          return false;
+        }
+      }
+
+      // 4. PARSE CTA FORM TEMPLATES
+      let ctaTemplates = {};
+      function parseCtaTemplates(html) {
+        const dummy = document.createElement('div');
+        dummy.innerHTML = html;
+        const tmplBand = dummy.querySelector('#tmpl-cta-band');
+        const tmplSidebar = dummy.querySelector('#tmpl-cta-sidebar');
+        ctaTemplates = {
+          band: tmplBand ? tmplBand.innerHTML : '',
+          sidebar: tmplSidebar ? tmplSidebar.innerHTML : ''
+        };
+      }
+
+      // 5. RENDER CTA FORM INSTANCES IN PAGE
+      function renderCtaComponents(container) {
+        const ctaPlaceholders = container.querySelectorAll('[data-component="cta-form"]');
+        ctaPlaceholders.forEach(el => {
+          const variant = el.getAttribute('data-variant') || 'band';
+          const heading = el.getAttribute('data-heading') || 'Bắt đầu từ nhu cầu của bạn.';
+          const subtext = el.getAttribute('data-subtext') || 'Chia sẻ về hàng hóa và kế hoạch của doanh nghiệp. SpeeGo sẽ tư vấn giải pháp phù hợp.';
+          const phone = el.getAttribute('data-phone') || '(+84) 906 828 898 ↗';
+          const tag = el.getAttribute('data-tag') || "LET'S MOVE FORWARD";
+
+          let templateStr = ctaTemplates[variant] || ctaTemplates.band || '';
+          if (templateStr) {
+            const renderedHtml = templateStr
+              .replace(/{{TAG}}/g, tag)
+              .replace(/{{HEADING}}/g, heading)
+              .replace(/{{SUBTEXT}}/g, subtext)
+              .replace(/{{PHONE}}/g, phone);
+
+            el.outerHTML = renderedHtml;
           }
         });
-      }, observerOptions);
-
-      document.querySelectorAll('.reveal-on-scroll').forEach(elem => {
-        observer.observe(elem);
-      });
-    });
-
-    // Close Modals on ESC Key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeTrackingModal();
-        closeGeneralModal();
-        closeDrawer();
       }
-    });
+
+      // 6. RENDER DYNAMIC BREADCRUMB
+      function renderBreadcrumb(items) {
+        const listEl = document.getElementById('breadcrumbList');
+        if (!listEl) return;
+
+        if (!items || !items.length) {
+          listEl.innerHTML = '';
+          return;
+        }
+
+        let html = '';
+        items.forEach((item, index) => {
+          const isLast = index === items.length - 1;
+          if (isLast) {
+            html += `<span class="breadcrumb-current">${item.label}</span>`;
+          } else {
+            html += `<a href="${item.href}" class="breadcrumb-link">${item.label}</a>`;
+            html += `<span class="breadcrumb-sep">/</span>`;
+          }
+        });
+
+        listEl.innerHTML = html;
+      }
+
+      // 7. UPDATE ACTIVE NAVIGATION HIGHLIGHTS
+      function updateNavHighlights(activeNavKey) {
+        // Desktop nav
+        document.querySelectorAll('#headerNavMenu .nav-item').forEach(item => {
+          if (item.getAttribute('data-nav') === activeNavKey) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        // Mobile drawer links
+        document.querySelectorAll('#mobileDrawerLinks .drawer-link').forEach(link => {
+          if (link.getAttribute('data-nav') === activeNavKey) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      // 8. BIND HEADER INTERACTIONS (Mobile Drawer & Language Switcher)
+      function bindHeaderInteractions() {
+        const openBtn = document.getElementById('mobileMenuOpen');
+        const closeBtn = document.getElementById('mobileMenuClose');
+        const drawer = document.getElementById('mobileDrawer');
+        const backdrop = document.getElementById('drawerBackdrop');
+
+        function openDrawer() {
+          if (drawer) drawer.classList.add('open');
+          if (backdrop) backdrop.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+          if (drawer) drawer.classList.remove('open');
+          if (backdrop) backdrop.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+
+        if (openBtn) openBtn.onclick = openDrawer;
+        if (closeBtn) closeBtn.onclick = closeDrawer;
+        if (backdrop) backdrop.onclick = closeDrawer;
+
+        // Auto close drawer when clicking any link inside
+        document.querySelectorAll('#mobileDrawerLinks a').forEach(a => {
+          a.addEventListener('click', closeDrawer);
+        });
+
+        // Language toggle
+        const langToggle = document.getElementById('langToggle');
+        if (langToggle) {
+          langToggle.onclick = () => {
+            const hash = window.location.hash || '#/knowledge';
+            if (LANG_PAIRS[hash]) {
+              window.location.hash = LANG_PAIRS[hash];
+            } else if (currentLang === 'vi') {
+              window.location.hash = '#/en/knowledge';
+            } else {
+              window.location.hash = '#/knowledge';
+            }
+          };
+        }
+      }
+
+      // 9. BIND PAGE INTERACTIONS (Accordion FAQ, Pills, Smooth Scroll)
+      function bindPageInteractions() {
+        // FAQ Accordions
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+          const btn = item.querySelector('.faq-question-btn');
+          if (btn) {
+            btn.onclick = () => {
+              const isActive = item.classList.contains('active');
+              faqItems.forEach(other => {
+                if (other !== item) other.classList.remove('active');
+              });
+              if (isActive) {
+                item.classList.remove('active');
+              } else {
+                item.classList.add('active');
+              }
+            };
+          }
+        });
+
+        // Pill filters in Shipping Guide explore section
+        const pills = document.querySelectorAll('.pills-filter-row .pill-btn');
+        pills.forEach(pill => {
+          pill.addEventListener('click', function (e) {
+            // If it has href starting with #/, router handles navigation
+            pills.forEach(p => p.classList.remove('active'));
+            this.classList.add('active');
+          });
+        });
+      }
+
+      // 10. ERROR SCREEN DISPLAY
+      function renderErrorScreen(title, err) {
+        const appMain = document.getElementById('app-main');
+        if (!appMain) return;
+
+        appMain.innerHTML = `
+          <div class="container">
+            <div class="app-error-card">
+              <div class="app-error-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                ${title}
+              </div>
+              <p class="app-error-desc">
+                Trình duyệt đã chặn truy cập file cục bộ qua <code>fetch()</code> khi mở trực tiếp file HTML (giao thức <code>file:///</code>). 
+                Để xem trang đầy đủ với kiến trúc partials động, vui lòng chạy website qua một web server cục bộ:
+              </p>
+              <div class="app-error-cmd">
+                npx serve .<br>
+                # hoặc chạy bằng Python:<br>
+                python -m http.server 8080
+              </div>
+              <p class="app-error-desc" style="font-size: 0.84rem; color: #6B7280;">
+                Chi tiết kỹ thuật: ${err ? err.message : 'Unknown error'}
+              </p>
+              <button class="btn-retry" onclick="window.location.reload()">
+                Thử lại ↻
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      // 11. ROUTE DISPATCHER
+      async function router() {
+        let hash = window.location.hash;
+        
+        // Normalize empty or root hashes to default route
+        if (!hash || hash === '#' || hash === '#/') {
+          window.location.hash = '#/knowledge';
+          return;
+        }
+
+        // Support alias: #/knowledge1 -> #/knowledge
+        if (hash === '#/knowledge1' || hash === '#knowledge') {
+          window.location.hash = '#/knowledge';
+          return;
+        }
+
+        const route = ROUTES[hash] || ROUTES['#/knowledge'];
+        currentLang = route.lang || 'vi';
+
+        // Update document title
+        if (route.title) {
+          document.title = route.title;
+        }
+
+        // Update language toggle text
+        const currentLangText = document.getElementById('currentLangText');
+        if (currentLangText) {
+          currentLangText.textContent = (currentLang === 'vi') ? 'English' : 'Tiếng Việt';
+        }
+
+        const appMain = document.getElementById('app-main');
+        if (!appMain) return;
+
+        // Show loading state
+        appMain.innerHTML = `
+          <div class="app-loading-state">
+            <div class="loading-spinner"></div>
+            <div>Đang tải trang...</div>
+          </div>
+        `;
+
+        try {
+          // Fetch or get from cache
+          let pageHtml = cache.pages[route.file];
+          if (!pageHtml) {
+            pageHtml = await fetchText(route.file);
+            cache.pages[route.file] = pageHtml;
+          }
+
+          // Inject into main
+          appMain.innerHTML = pageHtml;
+
+          // Parse page-level metadata
+          const pageContainer = appMain.querySelector('.page-container');
+          let breadcrumbs = [];
+          let navKey = route.nav;
+
+          if (pageContainer) {
+            const rawBreadcrumbs = pageContainer.getAttribute('data-breadcrumb');
+            if (rawBreadcrumbs) {
+              try {
+                breadcrumbs = JSON.parse(rawBreadcrumbs);
+              } catch (e) {
+                console.error('Invalid breadcrumb JSON:', e);
+              }
+            }
+            const pageNav = pageContainer.getAttribute('data-nav');
+            if (pageNav) navKey = pageNav;
+          }
+
+          // Update breadcrumbs and active nav menu
+          renderBreadcrumb(breadcrumbs);
+          updateNavHighlights(navKey);
+
+          // Render any nested CTA Form components
+          renderCtaComponents(appMain);
+
+          // Re-bind interactive events (FAQ accordion, pills)
+          bindPageInteractions();
+
+          // Scroll to top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        } catch (err) {
+          renderErrorScreen(`Không thể tải trang [${route.file}]`, err);
+        }
+      }
+
+      // 12. INITIALIZATION
+      async function init() {
+        const partialsLoaded = await loadPartials();
+        if (partialsLoaded) {
+          window.addEventListener('hashchange', router);
+          router();
+        }
+      }
+
+      // Run on DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+
+    // 13. GLOBAL CONSULTATION FORM SUBMIT HANDLER (Toast Simulation)
+    let toastTimeout;
+    function handleConsultSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const nameInput = form.querySelector('input[type="text"]');
+      const name = nameInput ? nameInput.value.trim() : 'Quý khách';
+
+      const toastPopup = document.getElementById('toastPopup');
+      const toastText = document.getElementById('toastText');
+
+      if (toastText) {
+        toastText.textContent = `Cảm ơn ${name}! SpeeGo đã tiếp nhận yêu cầu và sẽ liên hệ lại trong vòng 2 giờ.`;
+      }
+
+      if (toastPopup) {
+        toastPopup.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toastPopup.classList.remove('show');
+        }, 4500);
+      }
+
+      form.reset();
+    }
   </script>
 </body>
 </html>
