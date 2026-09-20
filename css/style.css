@@ -875,6 +875,30 @@ img {
   text-decoration: underline;
 }
 
+/* Multi-card grid list (used in pages 03, 05, 07) */
+.featured-cards-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.featured-cards-list .featured-article-card {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.featured-cards-list .featured-img-wrap {
+  height: 200px;
+  min-height: 200px;
+}
+
+@media (max-width: 768px) {
+  .featured-cards-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Sidebar Column */
 .featured-sidebar {
   display: flex;

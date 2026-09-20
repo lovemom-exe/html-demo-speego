@@ -231,19 +231,19 @@
         },
         '#/en/post/preparing-your-shipment': {
           file: 'pages/EN/en-08-post-chuan-bi-lo-hang.html',
-          title: 'Preparing Your Shipment: Where Should You Start? | SpeeGo Knowledge',
+          title: 'Preparing Your Shipment: What Information Do You Need? | SpeeGo Knowledge',
           nav: 'knowledge',
           lang: 'en'
         },
         '#/en/post/fulfillment-receiving': {
           file: 'pages/EN/en-09-post-quy-trinh-nhap-kho.html',
-          title: 'From Barcodes to Receiving: How Inbound Fulfillment Works at SpeeGo | SpeeGo Knowledge',
+          title: 'From Barcodes to Receiving: Fulfillment at SpeeGo | SpeeGo Knowledge',
           nav: 'fulfillment',
           lang: 'en'
         },
         '#/en/post/quality-control': {
           file: 'pages/EN/en-10-post-kiem-soat-chat-luong.html',
-          title: 'Quality Control at Every Stage: Ensuring Quality Before Shipment | SpeeGo Knowledge',
+          title: 'Quality Control at Every Stage: Before Your Goods Ship | SpeeGo Knowledge',
           nav: 'knowledge',
           lang: 'en'
         }
@@ -346,15 +346,163 @@
         };
       }
 
+      // 4b. BILINGUAL DICTIONARY FOR CTA FORM & CONTACT
+      const CTA_I18N = {
+        vi: {
+          tag: "LET'S MOVE FORWARD",
+          defaultHeadingBand: 'Bắt đầu từ nhu cầu của bạn.',
+          defaultHeadingSidebar: 'Bạn cần tư vấn?',
+          defaultSubtext: 'Chia sẻ về hàng hóa và kế hoạch của doanh nghiệp. SpeeGo sẽ tư vấn giải pháp phù hợp.',
+          phone: '(+84) 906 828 898 ↗',
+          labelName: 'Họ và tên',
+          placeholderName: 'Nguyễn Văn An',
+          labelEmail: 'Email',
+          placeholderEmail: 'ban@congty.com',
+          labelPhone: 'Số điện thoại',
+          placeholderPhone: 'Số điện thoại liên hệ',
+          labelMessage: 'Nhu cầu tư vấn',
+          placeholderMessage: 'Loại hàng, số lượng, điểm đi và điểm đến...',
+          btnSubmit: 'Soạn email tư vấn ↗',
+          securityNote: 'Mở ứng dụng email với nội dung đã điền. Thông tin chỉ được gửi đi khi bạn bấm Gửi trong email.'
+        },
+        en: {
+          tag: "LET'S MOVE FORWARD",
+          defaultHeadingBand: 'Start with what<br>you need.',
+          defaultHeadingSidebar: 'Need expert advice?',
+          defaultSubtext: 'Tell us about your products and business plans. SpeeGo will help you find the right solution.',
+          phone: '(+84) 906 828 898 ↗',
+          labelName: 'Full name',
+          placeholderName: 'Your full name',
+          labelEmail: 'Email',
+          placeholderEmail: 'you@company.com',
+          labelPhone: 'Phone number',
+          placeholderPhone: 'Your contact number',
+          labelMessage: 'How can we help?',
+          placeholderMessage: 'Product type, quantity, origin, and destination...',
+          btnSubmit: 'Draft an Inquiry ↗',
+          securityNote: 'Opens your email app with a prepared message. Your information is only sent when you click Send in your email app.'
+        }
+      };
+
+      // 4c. UPDATE SHELL (HEADER & FOOTER) LANGUAGE
+      function updateShellLanguage(lang) {
+        const isEn = (lang === 'en');
+        document.documentElement.lang = isEn ? 'en' : 'vi';
+
+        // 1. Header Logo
+        const headerLogoLink = document.getElementById('headerLogoLink');
+        if (headerLogoLink) {
+          headerLogoLink.setAttribute('href', isEn ? '#/en/knowledge' : '#/knowledge');
+        }
+
+        // 2. Header Desktop Navigation
+        const navItems = [
+          { id: 'navLinkKnowledge', text: 'Knowledge', href: isEn ? '#/en/knowledge' : '#/knowledge' },
+          { id: 'navLinkImportExport', text: isEn ? 'Import & Export' : 'Xuất nhập khẩu', href: isEn ? '#/en/import-export-news' : '#/knowledge/tin-xuat-nhap-khau' },
+          { id: 'navLinkRoutes', text: isEn ? 'Shipping Routes' : 'Tuyến vận chuyển', href: isEn ? '#/en/trade-routes' : '#/knowledge/tuyen-thuong-mai' },
+          { id: 'navLinkFulfillment', text: 'Fulfillment', href: isEn ? '#/en/fulfillment-warehouse' : '#/knowledge/fulfillment-kho-van' },
+          { id: 'navLinkSourcing', text: 'Sourcing', href: isEn ? '#/en/sourcing-qc' : '#/sourcing' }
+        ];
+        navItems.forEach(item => {
+          const el = document.getElementById(item.id);
+          if (el) {
+            el.textContent = item.text;
+            el.setAttribute('href', item.href);
+          }
+        });
+
+        // 3. Header Action Button
+        const headerCtaBtn = document.getElementById('headerCtaBtn');
+        if (headerCtaBtn) {
+          headerCtaBtn.textContent = isEn ? 'Get in Touch ↗' : 'Nhận tư vấn ↗';
+        }
+
+        // 4. Lang switcher label
+        const currentLangText = document.getElementById('currentLangText');
+        if (currentLangText) {
+          currentLangText.textContent = isEn ? 'Tiếng Việt' : 'English';
+        }
+
+        // 5. Mobile Drawer Navigation
+        const mobileNavItems = [
+          { id: 'mNavLinkKnowledge', text: 'Knowledge', href: isEn ? '#/en/knowledge' : '#/knowledge' },
+          { id: 'mNavLinkImportExport', text: isEn ? 'Import & Export' : 'Xuất nhập khẩu', href: isEn ? '#/en/import-export-news' : '#/knowledge/tin-xuat-nhap-khau' },
+          { id: 'mNavLinkRoutes', text: isEn ? 'Shipping Routes' : 'Tuyến vận chuyển', href: isEn ? '#/en/trade-routes' : '#/knowledge/tuyen-thuong-mai' },
+          { id: 'mNavLinkFulfillment', text: 'Fulfillment', href: isEn ? '#/en/fulfillment-warehouse' : '#/knowledge/fulfillment-kho-van' },
+          { id: 'mNavLinkSourcing', text: 'Sourcing', href: isEn ? '#/en/sourcing-qc' : '#/sourcing' }
+        ];
+        mobileNavItems.forEach(item => {
+          const el = document.getElementById(item.id);
+          if (el) {
+            el.textContent = item.text;
+            el.setAttribute('href', item.href);
+          }
+        });
+        const mHeaderCtaBtn = document.getElementById('mHeaderCtaBtn');
+        if (mHeaderCtaBtn) {
+          mHeaderCtaBtn.textContent = isEn ? 'Get in Touch ↗' : 'Nhận tư vấn ↗';
+        }
+
+        // 6. Footer Logo Link
+        const footerLogoLink = document.getElementById('footerLogoLink');
+        if (footerLogoLink) {
+          footerLogoLink.setAttribute('href', isEn ? '#/en/knowledge' : '#/knowledge');
+        }
+
+        // 7. Footer Tagline
+        const footerTagline = document.getElementById('footerTagline');
+        if (footerTagline) {
+          footerTagline.textContent = isEn
+            ? 'Connecting suppliers in Vietnam & China with markets in the US, Canada, and Australia.'
+            : 'Kết nối nguồn hàng Việt Nam & Trung Quốc với thị trường Mỹ, Canada và Úc.';
+        }
+
+        // 8. Footer Explore Column
+        const footerExploreTitle = document.getElementById('footerExploreTitle');
+        if (footerExploreTitle) {
+          footerExploreTitle.textContent = isEn ? 'Explore' : 'Khám phá';
+        }
+
+        const footerNavItems = [
+          { id: 'footerLinkKnowledge', text: 'Knowledge', href: isEn ? '#/en/knowledge' : '#/knowledge' },
+          { id: 'footerLinkImportExport', text: isEn ? 'Import & Export' : 'Xuất nhập khẩu', href: isEn ? '#/en/import-export-news' : '#/knowledge/tin-xuat-nhap-khau' },
+          { id: 'footerLinkRoutes', text: isEn ? 'Shipping Routes' : 'Tuyến vận chuyển', href: isEn ? '#/en/trade-routes' : '#/knowledge/tuyen-thuong-mai' },
+          { id: 'footerLinkFulfillment', text: 'Fulfillment', href: isEn ? '#/en/fulfillment-warehouse' : '#/knowledge/fulfillment-kho-van' },
+          { id: 'footerLinkSourcing', text: 'Sourcing', href: isEn ? '#/en/sourcing-qc' : '#/sourcing' }
+        ];
+        footerNavItems.forEach(item => {
+          const el = document.getElementById(item.id);
+          if (el) {
+            el.textContent = item.text;
+            el.setAttribute('href', item.href);
+          }
+        });
+
+        // 9. Footer Connect Column Title
+        const footerConnectTitle = document.getElementById('footerConnectTitle');
+        if (footerConnectTitle) {
+          footerConnectTitle.textContent = isEn ? 'Connect with SpeeGo' : 'Kết nối với SpeeGo';
+        }
+
+        // 10. Footer Legal Link
+        const footerLegalLink = document.getElementById('footerLegalLink');
+        if (footerLegalLink) {
+          footerLegalLink.textContent = isEn ? 'Our 8-step process ↗' : 'Quy trình 8 bước ↗';
+        }
+      }
+
       // 5. RENDER CTA FORM INSTANCES IN PAGE
       function renderCtaComponents(container) {
+        const lang = currentLang || 'vi';
+        const i18n = CTA_I18N[lang] || CTA_I18N.vi;
+
         const ctaPlaceholders = container.querySelectorAll('[data-component="cta-form"]');
         ctaPlaceholders.forEach(el => {
           const variant = el.getAttribute('data-variant') || 'band';
-          const heading = el.getAttribute('data-heading') || 'Bắt đầu từ nhu cầu của bạn.';
-          const subtext = el.getAttribute('data-subtext') || 'Chia sẻ về hàng hóa và kế hoạch của doanh nghiệp. SpeeGo sẽ tư vấn giải pháp phù hợp.';
-          const phone = el.getAttribute('data-phone') || '(+84) 906 828 898 ↗';
-          const tag = el.getAttribute('data-tag') || "LET'S MOVE FORWARD";
+          const heading = el.getAttribute('data-heading') || (variant === 'band' ? i18n.defaultHeadingBand : i18n.defaultHeadingSidebar);
+          const subtext = el.getAttribute('data-subtext') || i18n.defaultSubtext;
+          const phone = el.getAttribute('data-phone') || i18n.phone;
+          const tag = el.getAttribute('data-tag') || i18n.tag;
 
           let templateStr = ctaTemplates[variant] || ctaTemplates.band || '';
           if (templateStr) {
@@ -362,7 +510,17 @@
               .replace(/{{TAG}}/g, tag)
               .replace(/{{HEADING}}/g, heading)
               .replace(/{{SUBTEXT}}/g, subtext)
-              .replace(/{{PHONE}}/g, phone);
+              .replace(/{{PHONE}}/g, phone)
+              .replace(/{{LABEL_NAME}}/g, i18n.labelName)
+              .replace(/{{PLACEHOLDER_NAME}}/g, i18n.placeholderName)
+              .replace(/{{LABEL_EMAIL}}/g, i18n.labelEmail)
+              .replace(/{{PLACEHOLDER_EMAIL}}/g, i18n.placeholderEmail)
+              .replace(/{{LABEL_PHONE}}/g, i18n.labelPhone)
+              .replace(/{{PLACEHOLDER_PHONE}}/g, i18n.placeholderPhone)
+              .replace(/{{LABEL_MESSAGE}}/g, i18n.labelMessage)
+              .replace(/{{PLACEHOLDER_MESSAGE}}/g, i18n.placeholderMessage)
+              .replace(/{{BTN_SUBMIT}}/g, i18n.btnSubmit)
+              .replace(/{{SECURITY_NOTE}}/g, i18n.securityNote);
 
             el.outerHTML = renderedHtml;
           }
@@ -440,6 +598,18 @@
         // Auto close drawer when clicking any link inside
         document.querySelectorAll('#mobileDrawerLinks a').forEach(a => {
           a.addEventListener('click', closeDrawer);
+        });
+
+        // Smooth scroll for consultation CTA buttons without altering SPA hash
+        document.addEventListener('click', function (e) {
+          const ctaLink = e.target.closest('a[href="#contact-form"]');
+          if (ctaLink) {
+            e.preventDefault();
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+              contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
         });
 
         // Language toggle
@@ -550,11 +720,8 @@
           document.title = route.title;
         }
 
-        // Update language toggle text
-        const currentLangText = document.getElementById('currentLangText');
-        if (currentLangText) {
-          currentLangText.textContent = (currentLang === 'vi') ? 'English' : 'Tiếng Việt';
-        }
+        // Update Shell / Wrapper components for current language
+        updateShellLanguage(currentLang);
 
         const appMain = document.getElementById('app-main');
         if (!appMain) return;
@@ -563,7 +730,7 @@
         appMain.innerHTML = `
           <div class="app-loading-state">
             <div class="loading-spinner"></div>
-            <div>Đang tải trang...</div>
+            <div>${currentLang === 'en' ? 'Loading page...' : 'Đang tải trang...'}</div>
           </div>
         `;
 
@@ -638,13 +805,17 @@
       event.preventDefault();
       const form = event.target;
       const nameInput = form.querySelector('input[type="text"]');
-      const name = nameInput ? nameInput.value.trim() : 'Quý khách';
+      const isEn = (document.documentElement.lang === 'en');
+      const fallbackName = isEn ? 'there' : 'Quý khách';
+      const name = nameInput ? (nameInput.value.trim() || fallbackName) : fallbackName;
 
       const toastPopup = document.getElementById('toastPopup');
       const toastText = document.getElementById('toastText');
 
       if (toastText) {
-        toastText.textContent = `Cảm ơn ${name}! SpeeGo đã tiếp nhận yêu cầu và sẽ liên hệ lại trong vòng 2 giờ.`;
+        toastText.textContent = isEn
+          ? `Thank you ${name}! SpeeGo has received your inquiry and will contact you shortly.`
+          : `Cảm ơn ${name}! SpeeGo đã tiếp nhận yêu cầu và sẽ liên hệ lại trong vòng 2 giờ.`;
       }
 
       if (toastPopup) {
