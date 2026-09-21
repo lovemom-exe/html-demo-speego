@@ -1,11 +1,128 @@
-<script>
-  // Tự động chuyển hướng sang khung ứng dụng đầy đủ nếu mở trực tiếp từ File Explorer
-  if (typeof window !== 'undefined' && !document.getElementById('app-main')) {
-    window.location.replace('../../index.html#/fulfillment');
-  }
-</script>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeeGo Fulfillment - Giải pháp kho vận tối ưu cho doanh nghiệp</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="header-container"><!-- ==========================================================================
+     PARTIAL: HEADER & NAVIGATION (SpeeGo Logistics)
+     ========================================================================== -->
 
-<div class="page-container page-fulfillment" 
+<!-- 1. TOP BAR MỎNG NỀN NAVY -->
+<div class="top-bar">
+  <div class="container top-bar-inner">
+    <div class="top-bar-left">
+      GLOBAL LOGISTICS PARTNER
+    </div>
+    <div class="top-bar-right">
+      <a href="tel:02462918618" class="top-bar-link">
+        (024) 6291 8618
+      </a>
+      <span class="top-bar-sep">/</span>
+      <a href="mailto:info@speegologistic.com" class="top-bar-link">
+        info@speegologistic.com
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- 2. HEADER CHÍNH NỀN TRẮNG -->
+<header class="site-header">
+  <div class="container header-inner">
+    <!-- Logo SpeeGo -->
+    <a href="#/knowledge" class="logo-link" id="headerLogoLink" title="SpeeGo Logistics">
+      <img src="assets/speego-logo-dark.png" alt="SpeeGo Logistics" class="logo-img">
+    </a>
+
+    <!-- Menu Điều hướng Ngang -->
+    <nav class="nav-menu" id="headerNavMenu">
+      <div class="nav-item" data-nav="knowledge">
+        <a href="#/knowledge" class="nav-link" id="navLinkKnowledge">Knowledge</a>
+      </div>
+      <div class="nav-item" data-nav="import-export">
+        <a href="#/xuat-nhap-khau" class="nav-link" id="navLinkImportExport">Xuất nhập khẩu</a>
+      </div>
+      <div class="nav-item" data-nav="shipping-routes">
+        <a href="#/tuyen-van-chuyen" class="nav-link" id="navLinkRoutes">Tuyến vận chuyển</a>
+      </div>
+      <div class="nav-item" data-nav="fulfillment">
+        <a href="#/fulfillment" class="nav-link" id="navLinkFulfillment" class="nav-item active">Fulfillment</a>
+      </div>
+      <div class="nav-item" data-nav="sourcing">
+        <a href="#/sourcing" class="nav-link" id="navLinkSourcing">Sourcing</a>
+      </div>
+    </nav>
+
+    <!-- Nút Hành động & Đổi Ngôn ngữ -->
+    <div class="header-actions">
+      <a href="#contact-form" class="btn-navy" id="headerCtaBtn">
+        Nhận tư vấn ↗
+      </a>
+      <div class="lang-switcher" id="langToggle" onclick="window.location.href='en-fulfillment.html'" title="Chuyển đổi ngôn ngữ">
+        <span id="currentLangText">English</span>
+        <span class="lang-arrow">▾</span>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuOpen" aria-label="Mở Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <img src="assets/speego-logo-dark.png" alt="SpeeGo Logistics" style="height: 32px; width: auto;">
+    <button class="drawer-close" id="mobileMenuClose">&times;</button>
+  </div>
+  <div class="drawer-links" id="mobileDrawerLinks">
+    <a href="#/knowledge" class="drawer-link" data-nav="knowledge" id="mNavLinkKnowledge">Knowledge</a>
+    <a href="#/xuat-nhap-khau" class="drawer-link" data-nav="import-export" id="mNavLinkImportExport">Xuất nhập khẩu</a>
+    <a href="#/tuyen-van-chuyen" class="drawer-link" data-nav="shipping-routes" id="mNavLinkRoutes">Tuyến vận chuyển</a>
+    <a href="#/fulfillment" class="drawer-link" data-nav="fulfillment" id="mNavLinkFulfillment">Fulfillment</a>
+    <a href="#/sourcing" class="drawer-link" data-nav="sourcing" id="mNavLinkSourcing">Sourcing</a>
+    <div style="margin-top: 16px;">
+      <a href="#contact-form" class="btn-orange" id="mHeaderCtaBtn" style="width: 100%; text-align: center;">Nhận tư vấn ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- 3. DYNAMIC BREADCRUMB CONTAINER -->
+<nav class="breadcrumb-section" id="breadcrumbSection" aria-label="Đường dẫn trang">
+  <div class="container">
+    <div class="breadcrumb-list" id="breadcrumbList">
+      <!-- Breadcrumb items rendered dynamically via JS -->
+    </div>
+  </div>
+</nav>
+</div>
+  
+  <div class="breadcrumb-container" id="appBreadcrumb">
+    <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <div class="breadcrumb-list" id="breadcrumbList">
+          <a href="index.html#/knowledge" class="breadcrumb-link">Trang chủ</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="breadcrumb-current">Fulfillment</span>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main id="app-main">
+    <div class="page-container page-fulfillment" 
      data-page="fulfillment" 
      data-nav="fulfillment" 
      data-breadcrumb='[{"label":"Trang chủ","href":"#/sourcing"},{"label":"Fulfillment","href":"#/fulfillment"}]'>
@@ -771,12 +888,326 @@
   </section>
 
   <!-- 9. BAND CONSULTATION FORM -->
-  <div data-component="cta-form" data-variant="band" id="contact-form"></div>
+  
+  <section class="cta-form-band-section" id="contact-form">
+    <div class="container cta-form-band-grid">
+      <!-- Cột trái: Heading & Mô tả & Hotline -->
+      <div class="cta-band-left">
+        <span class="section-tag">LET'S MOVE FORWARD</span>
+        <h2 class="section-title section-title-white">
+          Bắt đầu từ nhu cầu của bạn.
+        </h2>
+        <p class="cta-band-desc">
+          Chia sẻ về hàng hóa và kế hoạch của doanh nghiệp. SpeeGo sẽ tư vấn giải pháp phù hợp.
+        </p>
+        <a href="tel:+84906828898" class="cta-hotline-link">
+          (+84) 906 828 898 ↗
+        </a>
+      </div>
 
+      <!-- Cột phải: Form trắng 2 cột Họ tên + Email -->
+      <div class="cta-band-right">
+        <div class="consult-card-white">
+          <form class="consult-form" onsubmit="handleConsultSubmit(event)">
+            <div class="form-row-2col">
+              <div class="form-group">
+                <label class="form-label" for="band_fullName">Họ và tên</label>
+                <input type="text" id="band_fullName" class="form-control" placeholder="Nguyễn Văn An" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="band_email">Email</label>
+                <input type="email" id="band_email" class="form-control" placeholder="ban@congty.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="band_phone">Số điện thoại</label>
+              <input type="tel" id="band_phone" class="form-control" placeholder="Số điện thoại liên hệ" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="band_message">Nhu cầu tư vấn</label>
+              <textarea id="band_message" class="form-control" placeholder="Loại hàng, số lượng, điểm đi và điểm đến..."></textarea>
+            </div>
+            <button type="submit" class="btn-orange btn-submit">
+              Soạn email tư vấn ↗
+            </button>
+            <p class="form-security-note">
+              Mở ứng dụng email với nội dung đã điền. Thông tin chỉ được gửi đi khi bạn bấm Gửi trong email.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  </div>
+
+  </main>
+
+  <div id="footer-container"><!-- ==========================================================================
+     PARTIAL: FOOTER (SpeeGo Logistics)
+     ========================================================================== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <!-- Cột 1: Logo trắng & Tagline -->
+    <div class="footer-col">
+      <a href="#/knowledge" id="footerLogoLink">
+        <img src="assets/speego-logo-white.png" alt="SpeeGo Logistics" class="footer-logo">
+      </a>
+      <p class="footer-tagline" id="footerTagline">
+        Kết nối nguồn hàng Việt Nam &amp; Trung Quốc với thị trường Mỹ, Canada và Úc.
+      </p>
+    </div>
+
+    <!-- Cột 2: Khám phá -->
+    <div class="footer-col">
+      <h4 class="footer-col-title" id="footerExploreTitle">Khám phá</h4>
+      <ul class="footer-links" id="footerNavLinks">
+        <li><a href="#/knowledge" class="footer-link" id="footerLinkKnowledge">Knowledge</a></li>
+        <li><a href="#/xuat-nhap-khau" class="footer-link" id="footerLinkImportExport">Xuất nhập khẩu</a></li>
+        <li><a href="#/tuyen-van-chuyen" class="footer-link" id="footerLinkRoutes">Tuyến vận chuyển</a></li>
+        <li><a href="#/fulfillment" class="footer-link" id="footerLinkFulfillment">Fulfillment</a></li>
+        <li><a href="#/sourcing" class="footer-link" id="footerLinkSourcing">Sourcing</a></li>
+      </ul>
+    </div>
+
+    <!-- Cột 3: Kết nối với SpeeGo -->
+    <div class="footer-col">
+      <h4 class="footer-col-title" id="footerConnectTitle">Kết nối với SpeeGo</h4>
+      <div class="footer-contact-list">
+        <div class="footer-contact-item">
+          <a href="mailto:info@speegologistic.com">info@speegologistic.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <a href="tel:+84906828898">(+84) 906 828 898</a>
+        </div>
+        <div class="footer-contact-item">
+          7303 Breen Dr, Suite D2<br>
+          Houston, TX 77086, US
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thanh Copyright dưới cùng -->
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <div class="footer-copyright">
+        © 2026 SpeeGo Logistics.
+      </div>
+      <div class="footer-legal-links">
+        <a href="#" id="footerLegalLink">Quy trình 8 bước ↗</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Message Popup (Thông báo tương tác) -->
+<div class="toast-popup" id="toastPopup">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="#F2661C">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+  </svg>
+  <span id="toastText">Gửi yêu cầu tư vấn thành công! SpeeGo sẽ liên hệ lại sớm nhất.</span>
+</div>
+</div>
+
+  
   <script>
-    if (typeof window.initWarehouseGallery === 'function') {
-      window.initWarehouseGallery();
+    // 1. Mobile Menu Drawer
+    const openBtn = document.getElementById('mobileMenuOpen');
+    const closeBtn = document.getElementById('mobileMenuClose');
+    const drawer = document.getElementById('mobileDrawer');
+    const backdrop = document.getElementById('drawerBackdrop');
+
+    function openDrawer() {
+      if (drawer) drawer.classList.add('open');
+      if (backdrop) backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
+    function closeDrawer() {
+      if (drawer) drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    if (openBtn) openBtn.onclick = openDrawer;
+    if (closeBtn) closeBtn.onclick = closeDrawer;
+    if (backdrop) backdrop.onclick = closeDrawer;
+    document.querySelectorAll('#mobileDrawerLinks a').forEach(a => a.addEventListener('click', closeDrawer));
+
+    // 2. Pricing Accordion Toggle
+    function togglePricingGroup(headerEl) {
+      const group = headerEl.closest('.ff-pricing-group');
+      if (!group) return;
+      const isActive = group.classList.contains('active');
+      document.querySelectorAll('.ff-pricing-group').forEach(g => {
+        g.classList.remove('active');
+        const icon = g.querySelector('.ff-pricing-toggle-icon');
+        if (icon) icon.textContent = '+';
+      });
+      if (!isActive) {
+        group.classList.add('active');
+        const icon = group.querySelector('.ff-pricing-toggle-icon');
+        if (icon) icon.textContent = '✕';
+      }
+    }
+    window.togglePricingGroup = togglePricingGroup;
+
+    // 3. FAQ Accordion Toggle
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const btn = item.querySelector('.faq-question-btn');
+      if (btn) {
+        btn.onclick = () => {
+          const isActive = item.classList.contains('active');
+          document.querySelectorAll('.faq-item').forEach(other => {
+            if (other !== item) other.classList.remove('active');
+          });
+          if (isActive) item.classList.remove('active');
+          else item.classList.add('active');
+        };
+      }
+    });
+
+    // 4. Warehouse Gallery Slider (3s Auto-Play with Hover Pause)
+    let currentGallerySlide = 0;
+    let galleryAutoPlayTimer = null;
+
+    function setSlide(idx) {
+      const slides = document.querySelectorAll('.ff-warehouse-slide');
+      const dots = document.querySelectorAll('.ff-slider-dots .ff-dot');
+      if (!slides || slides.length === 0) return;
+
+      currentGallerySlide = (idx + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        if (i === currentGallerySlide) slide.classList.add('active');
+        else slide.classList.remove('active');
+      });
+      dots.forEach((dot, i) => {
+        if (i === currentGallerySlide) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
+    }
+
+    function slideGallery(dir) {
+      setSlide(currentGallerySlide + dir);
+      restartGalleryAutoPlay();
+    }
+
+    function startGalleryAutoPlay() {
+      stopGalleryAutoPlay();
+      const frame = document.querySelector('.ff-warehouse-slider-frame');
+      if (!frame) return;
+      galleryAutoPlayTimer = setInterval(() => {
+        setSlide(currentGallerySlide + 1);
+      }, 3000);
+    }
+
+    function stopGalleryAutoPlay() {
+      if (galleryAutoPlayTimer) {
+        clearInterval(galleryAutoPlayTimer);
+        galleryAutoPlayTimer = null;
+      }
+    }
+
+    function restartGalleryAutoPlay() {
+      stopGalleryAutoPlay();
+      startGalleryAutoPlay();
+    }
+
+    function initWarehouseGallery() {
+      const frame = document.querySelector('.ff-warehouse-slider-frame');
+      if (!frame) return;
+      setSlide(0);
+      startGalleryAutoPlay();
+      frame.onmouseenter = () => stopGalleryAutoPlay();
+      frame.onmouseleave = () => startGalleryAutoPlay();
+    }
+
+    window.setSlide = function(idx) {
+      setSlide(idx);
+      restartGalleryAutoPlay();
+    };
+    window.slideGallery = slideGallery;
+    window.initWarehouseGallery = initWarehouseGallery;
+    window.stopGalleryAutoPlay = stopGalleryAutoPlay;
+
+    // 5. Cost Calculator
+    function calculateFulfillmentCost() {
+      const wEl = document.getElementById('calcWeight');
+      const zEl = document.getElementById('calcZone');
+      const lEl = document.getElementById('calcLength');
+      const wiEl = document.getElementById('calcWidth');
+      const hEl = document.getElementById('calcHeight');
+      const pkgEl = document.getElementById('calcPkg');
+
+      if (!wEl || !zEl) return;
+
+      const weight = parseFloat(wEl.value) || 0;
+      const zone = parseInt(zEl.value, 10) || 1;
+      const l = parseFloat(lEl.value) || 0;
+      const w = parseFloat(wiEl.value) || 0;
+      const h = parseFloat(hEl.value) || 0;
+      const pkg = pkgEl ? pkgEl.value : 'poly';
+
+      const dimWeight = (l * w * h) / 166;
+      const billableWeight = Math.max(weight, dimWeight);
+
+      let extraPkgCost = 0;
+      let pkgText = 'Đã bao gồm';
+      if (document.documentElement.lang === 'en') pkgText = 'Included';
+
+      if (pkg === 'bubble') { extraPkgCost = 0.50; pkgText = '+$0.50'; }
+      else if (pkg === 'carton_s') { extraPkgCost = 1.00; pkgText = '+$1.00'; }
+      else if (pkg === 'carton_m') { extraPkgCost = 1.50; pkgText = '+$1.50'; }
+      else if (pkg === 'carton_l') { extraPkgCost = 1.70; pkgText = '+$1.70'; }
+
+      const resWeight = document.getElementById('calcResultWeight');
+      const resAio = document.getElementById('calcResultAio');
+      const resPkg = document.getElementById('calcResultPkg');
+      const resShip = document.getElementById('calcResultShip');
+      const resTotal = document.getElementById('calcResultTotal');
+
+      if (resWeight) resWeight.textContent = `${billableWeight.toFixed(2)} lbs`;
+
+      let total = 0;
+      let aioText = '$7.00';
+      let shipText = document.documentElement.lang === 'en' ? 'Included' : 'Đã bao gồm';
+
+      if (billableWeight <= 1.76) {
+        total = 7.00 + extraPkgCost;
+        aioText = '$7.00';
+      } else if (billableWeight <= 5.5) {
+        total = 10.00 + extraPkgCost;
+        aioText = '$10.00';
+      } else {
+        let handlingFee = 2.50;
+        if (billableWeight > 15 && billableWeight <= 30) handlingFee = 3.25;
+        else if (billableWeight > 30 && billableWeight <= 50) handlingFee = 4.50;
+        else if (billableWeight > 50 && billableWeight <= 70) handlingFee = 6.35;
+        else if (billableWeight > 70 && billableWeight <= 100) handlingFee = 7.75;
+        else if (billableWeight > 100) handlingFee = 10.00;
+
+        const zoneFactor = 0.45 * zone;
+        const weightFactor = (billableWeight - 1) * 0.85;
+        const uspsRate = 5.20 + zoneFactor + weightFactor;
+        total = handlingFee + uspsRate + extraPkgCost;
+        aioText = `$${handlingFee.toFixed(2)}`;
+        shipText = `$${uspsRate.toFixed(2)}`;
+      }
+
+      if (resAio) resAio.textContent = aioText;
+      if (resPkg) resPkg.textContent = pkgText;
+      if (resShip) resShip.textContent = shipText;
+      if (resTotal) resTotal.textContent = `$${total.toFixed(2)}`;
+    }
+    window.calculateFulfillmentCost = calculateFulfillmentCost;
+
+    // Run on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      initWarehouseGallery();
+      calculateFulfillmentCost();
+    });
   </script>
 
-</div>
+</body>
+</html>
