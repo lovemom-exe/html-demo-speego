@@ -9,8 +9,8 @@ BASE = Path(r"c:\Users\X1 Yoga\html speego")
 index_path = BASE / "index.html"
 index_content = index_path.read_text(encoding="utf-8")
 
-# Extract all routes
-route_files = set(re.findall(r"file:\s*'([^']+)'", index_content))
+# Extract all routes from pages/
+route_files = set(re.findall(r"file:\s*'(pages/[^']+)'", index_content))
 
 # Collect all files into bundle
 bundle = {}
@@ -66,14 +66,11 @@ if target_marker not in index_content:
     sys.exit(1)
 
 # Check if OFFLINE_BUNDLE already exists
-if "const OFFLINE_BUNDLE =" in index_content:
-    # Replace existing OFFLINE_BUNDLE
-    index_content = re.sub(
-        r"// 1c\. OFFLINE BUNDLE.*?const OFFLINE_BUNDLE = \{.*?\};\n",
-        offline_bundle_js,
-        index_content,
-        flags=re.DOTALL
-    )
+start_marker = "      // 1c. OFFLINE BUNDLE FOR FILE:/// PROTOCOL & ZERO-LATENCY BROWSING"
+if start_marker in index_content:
+    prefix = index_content.split(start_marker)[0]
+    suffix = index_content.split(target_marker)[1]
+    index_content = prefix + offline_bundle_js + "\n" + target_marker + suffix
 else:
     index_content = index_content.replace(target_marker, offline_bundle_js + "\n" + target_marker)
 

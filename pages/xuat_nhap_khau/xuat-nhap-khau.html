@@ -1,55 +1,144 @@
+<script>
+  // Tự động chuyển hướng sang khung ứng dụng đầy đủ nếu mở trực tiếp từ File Explorer
+  if (typeof window !== 'undefined' && !document.getElementById('app-main')) {
+    window.location.replace('../../index.html#/xuat-nhap-khau');
+  }
+</script>
+
 <div class="page-container page-import-export"
      data-page="xuat-nhap-khau"
      data-nav="import-export"
      data-breadcrumb='[{"label":"Trang chủ","href":"#/sourcing"},{"label":"Xuất nhập khẩu","href":"#/xuat-nhap-khau"}]'>
 
-  <!-- Hero Section -->
-  <section class="page-hero-clean">
+  <!-- 1. HERO SECTION (2 COLUMNS: TEXT LEFT, CARD IMAGE RIGHT) -->
+  <section class="page-hero-2col">
     <div class="container">
-      <div class="page-hero-content">
-        <span class="section-tag section-tag-orange">DỊCH VỤ THỦ TỤC &amp; HẢI QUAN</span>
-        <h1 class="page-hero-title">Xuất nhập khẩu SpeeGo</h1>
-        <p class="page-hero-desc">
-          Giải pháp khai báo hải quan, tư vấn mã HS, giấy chứng nhận xuất xứ (C/O), kiểm dịch và tối ưu biểu thuế xuất nhập khẩu hai chiều giữa Việt Nam, Trung Quốc và Bắc Mỹ.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Service Cards Section -->
-  <section class="ie-services-section" style="padding: 48px 0 64px; background: #F8FAFC;">
-    <div class="container">
-      <div class="section-header" style="text-align: center; max-width: 760px; margin: 0 auto 40px;">
-        <span class="section-tag">DỊCH VỤ TRỌNG TÂM</span>
-        <h2 class="section-title">Thông quan thông suốt, tuân thủ pháp lý</h2>
-        <p style="color: #64748B; margin-top: 10px;">Các tài liệu biểu mẫu và thông tư xuất nhập khẩu mới nhất sẽ được cập nhật liên tục.</p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
-        <!-- Card 1 -->
-        <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; padding: 28px; box-shadow: 0 4px 18px rgba(15,39,66,0.05);">
-          <div style="font-size: 12px; font-weight: 700; color: #F26419; text-transform: uppercase; margin-bottom: 8px;">THỦ TỤC HẢI QUAN</div>
-          <h3 style="font-size: 1.25rem; font-weight: 700; color: #04243D; margin-bottom: 12px;">Khai báo Hải quan Trọn gói</h3>
-          <p style="font-size: 0.92rem; color: #5B6472; line-height: 1.6;">Đại diện doanh nghiệp hoàn tất tờ khai hải quan điện tử tại các chi cục Hải quan cảng biển (Cát Lái, Hải Phòng, Cái Mép) và sân bay quốc tế (Tân Sơn Nhất, Nội Bài).</p>
+      <div class="hero-2col-grid">
+        <!-- Cột trái: Tiêu đề, giới thiệu & nút trao đổi -->
+        <div class="hero-2col-left">
+          <div class="hero-tag-bar">IMPORT &amp; EXPORT</div>
+          <h1 class="hero-h1-clean">
+            Xuất nhập khẩu<br>
+            <span class="text-orange">thuận lợi hơn.</span>
+          </h1>
+          <p class="hero-desc-clean">
+            Tư vấn chứng từ, khai báo hải quan và hỗ trợ tuân thủ trong từng bước xuất nhập khẩu. Một đầu mối đồng hành từ chuẩn bị hồ sơ đến thông quan.
+          </p>
+          <div class="hero-actions-row">
+            <a href="#contact-form" class="btn-orange">
+              Trao đổi nhu cầu ↗
+            </a>
+            <a href="tel:+84906828898" class="hero-phone-label">
+              (+84) 906 828 898
+            </a>
+          </div>
         </div>
 
-        <!-- Card 2 -->
-        <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; padding: 28px; box-shadow: 0 4px 18px rgba(15,39,66,0.05);">
-          <div style="font-size: 12px; font-weight: 700; color: #F26419; text-transform: uppercase; margin-bottom: 8px;">CHỨNG NHẬN &amp; KIỂM ĐỊNH</div>
-          <h3 style="font-size: 1.25rem; font-weight: 700; color: #04243D; margin-bottom: 12px;">C/O, Kiểm dịch &amp; FDA / EPA</h3>
-          <p style="font-size: 0.92rem; color: #5B6472; line-height: 1.6;">Tư vấn cấp chứng nhận xuất xứ form B, AK, AJ, EUR.1; đăng ký chứng chỉ FDA (thực phẩm, mỹ phẩm) và EPA cho các lô hàng nhập khẩu vào Mỹ.</p>
-        </div>
-
-        <!-- Card 3 -->
-        <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; padding: 28px; box-shadow: 0 4px 18px rgba(15,39,66,0.05);">
-          <div style="font-size: 12px; font-weight: 700; color: #F26419; text-transform: uppercase; margin-bottom: 8px;">TƯ VẤN THUẾ &amp; HS CODE</div>
-          <h3 style="font-size: 1.25rem; font-weight: 700; color: #04243D; margin-bottom: 12px;">Tra cứu HS Code &amp; Biểu thuế</h3>
-          <p style="font-size: 0.92rem; color: #5B6472; line-height: 1.6;">Phân loại chính xác mã HS, kiểm tra chính sách thuế nhập khẩu, thuế chống bán phá giá và tối ưu chi phí thuế hợp pháp theo các hiệp định thương mại tự do.</p>
+        <!-- Cột phải: Ảnh thiết bị chứng từ kèm caption SpeeGo -->
+        <div class="hero-2col-right">
+          <div class="hero-img-card-wrap">
+            <img src="assets/card_hand_device.jpg" alt="Chứng từ rõ ràng. Quy trình xuyên suốt." onerror="this.onerror=null; this.src='assets/warehouse_hero.jpg';">
+            <div class="hero-img-caption-bar">
+              <div class="hero-caption-brand">SPEEGO LOGISTICS</div>
+              <div class="hero-caption-sub">Chứng từ rõ ràng. Quy trình xuyên suốt.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Consultation Form Band -->
+  <!-- 2. DỊCH VỤ CHÍNH (5 CARDS GRID: 3 CỘT) -->
+  <section class="ie-services-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">DỊCH VỤ CHÍNH</span>
+        <h2 class="section-title">Giải pháp cho từng yêu cầu xuất nhập khẩu.</h2>
+      </div>
+
+      <div class="ie-cards-3col-grid">
+        <!-- Card 01 -->
+        <div class="ie-service-card">
+          <div class="ie-badge-box">01</div>
+          <h3 class="ie-card-h3">Tư vấn hải quan</h3>
+          <p class="ie-card-body">Tư vấn mã HS, chính sách mặt hàng, thuế và hồ sơ hải quan.</p>
+        </div>
+
+        <!-- Card 02 -->
+        <div class="ie-service-card">
+          <div class="ie-badge-box">02</div>
+          <h3 class="ie-card-h3">Khai báo và thông quan xuất nhập khẩu</h3>
+          <p class="ie-card-body">Thực hiện thủ tục thông quan cho hàng hóa xuất nhập khẩu.</p>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="ie-service-card">
+          <div class="ie-badge-box">03</div>
+          <h3 class="ie-card-h3">Kiểm tra chuyên ngành</h3>
+          <p class="ie-card-body">Hỗ trợ kiểm tra chuyên ngành theo yêu cầu của từng loại hàng.</p>
+        </div>
+
+        <!-- Card 04 -->
+        <div class="ie-service-card">
+          <div class="ie-badge-box">04</div>
+          <h3 class="ie-card-h3">Chứng nhận xuất xứ hàng hóa</h3>
+          <p class="ie-card-body">Hỗ trợ hồ sơ và thủ tục chứng nhận xuất xứ hàng hóa. (C/O)</p>
+        </div>
+
+        <!-- Card 05 -->
+        <div class="ie-service-card">
+          <div class="ie-badge-box">05</div>
+          <h3 class="ie-card-h3">Các dịch vụ hỗ trợ tuân thủ bổ sung</h3>
+          <p class="ie-card-body">Bảo hiểm hàng hóa, hun trùng, kiểm tra, kiểm dịch động thực vật</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. VÌ SAO CHỌN SPEEGO (4 CARDS NỀN XÁM NHẠT) -->
+  <section class="ie-why-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">VÌ SAO CHỌN SPEEGO</span>
+        <h2 class="section-title">
+          Hiểu thủ tục.<br>
+          Chủ động kiểm soát rủi ro.
+        </h2>
+      </div>
+
+      <div class="ie-why-grid">
+        <!-- Card 01 -->
+        <div class="ie-service-card">
+          <div class="ie-badge-box">01</div>
+          <h3 class="ie-card-h3">Am hiểu thủ tục xuất nhập khẩu</h3>
+          <p class="ie-card-body">SpeeGo hỗ trợ doanh nghiệp xử lý chứng từ, khai báo hải quan và các thủ tục cần thiết cho từng lô hàng xuất nhập khẩu.</p>
+        </div>
+
+        <!-- Card 02 -->
+        <div class="ie-service-card">
+          <div class="ie-badge-box">02</div>
+          <h3 class="ie-card-h3">Hỗ trợ đa dạng loại hàng</h3>
+          <p class="ie-card-body">Tư vấn yêu cầu nhập khẩu, chính sách mặt hàng và các thủ tục kiểm tra chuyên ngành phù hợp với từng loại hàng hóa.</p>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="ie-service-card">
+          <div class="ie-badge-box">03</div>
+          <h3 class="ie-card-h3">Kiểm soát rủi ro hải quan</h3>
+          <p class="ie-card-body">Hỗ trợ kiểm tra hồ sơ, mã HS, chứng từ và các yêu cầu liên quan nhằm giảm rủi ro chậm thông quan, bổ sung hồ sơ hoặc phát sinh chi phí.</p>
+        </div>
+
+        <!-- Card 04 -->
+        <div class="ie-service-card">
+          <div class="ie-badge-box">04</div>
+          <h3 class="ie-card-h3">Hỗ trợ xuyên suốt quy trình</h3>
+          <p class="ie-card-body">Từ tư vấn trước khi nhập khẩu, chuẩn bị chứng từ, khai báo đến thông quan, SpeeGo đồng hành cùng doanh nghiệp trong toàn bộ quy trình.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CONSULTATION FORM BAND -->
   <div data-component="cta-form" data-variant="band" id="contact-form"></div>
+
 </div>
